@@ -1,0 +1,45 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pic/baseBtn4.png</file>
+        <file>pic/baseCboxBackGround.png</file>
+        <file>pic/baseRightBtn.png</file>
+        <file>pic/baseTitle.png</file>
+        <file>pic/battery_1.png</file>
+        <file>pic/battery_2.png</file>
+        <file>pic/battery_3.png</file>
+        <file>pic/battery_4.png</file>
+        <file>pic/battery_gif.gif</file>
+        <file>pic/button.png</file>
+        <file>pic/CBoxArrow.png</file>
+        <file>pic/closeBtn1.png</file>
+        <file>pic/closeBtn2.png</file>
+        <file>pic/greenCircle.png</file>
+        <file>pic/greyCircle.png</file>
+        <file>pic/input.gif</file>
+        <file>pic/input_3.png</file>
+        <file>pic/lock.png</file>
+        <file>pic/logo_xinglong.png</file>
+        <file>pic/menu_1.png</file>
+        <file>pic/menu_2.png</file>
+        <file>pic/MessBtn1.png</file>
+        <file>pic/MessBtn2.png</file>
+        <file>pic/offCircle.png</file>
+        <file>pic/onCircle.png</file>
+        <file>pic/output.gif</file>
+        <file>pic/output_3.png</file>
+        <file>pic/redCircle.png</file>
+        <file>pic/sd.png</file>
+        <file>pic/toolBtn2.png</file>
+        <file>pic/xinglong.png</file>
+        <file>pic/baseTitle3.png</file>
+        <file>pic/Btn_OFF.png</file>
+        <file>pic/Btn_ON.png</file>
+        <file>pic/Btn_close.png</file>
+        <file>pic/Btn_zoomIn.png</file>
+        <file>pic/Btn_zoomOut.png</file>
+        <file>pic/measuredValue.png</file>
+        <file>pic/from.png</file>
+        <file>pic/harmonic.png</file>
+        <file>pic/settting.png</file>
+    </qresource>
+</RCC>
