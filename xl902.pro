@@ -23,13 +23,10 @@ SOURCES += main.cpp \
     thread/thread_fun.cpp \
     thread/thread_init.cpp \
     SMV/RSMV/RSMV_option.cpp \
-    SMV/RSMV/RSMV_rms.cpp \
     SMV/RSMV/RSMV_wave.cpp \
     SMV/RSMV/RSMV_harmonic.cpp \
-    SMV/RSMV/RSMV_energy.cpp \
     elapseTime.cpp \
     SMV/RSMV/RSMV_init_Harmonic.cpp \
-    SMV/RSMV/RSMV_init_Phasor.cpp \
     sysIni.cpp \
     rightSideBar.cpp \
     driver_xl618_2.cpp \
@@ -37,7 +34,9 @@ SOURCES += main.cpp \
     form/buildWord.cpp \
     form/form_Page.cpp \
     RD_update.cpp \
-    charger_RS.cpp
+    SMV/RSMV/ME_update.cpp \
+    SMV/RSMV/ES_update.cpp \
+    RS_charger.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -48,7 +47,6 @@ HEADERS  += \
     SerialPort/qextserialbase.h \
     SerialPort/ManageSerialPort.h \
     thread/timeThread.h \
-    SMV/RSMV/RSMV_initPhasor.h \
     SMV/RSMV/RSMV_initHarmonic.h
 
 FORMS    += \

@@ -8,10 +8,8 @@
 
 #include "ui_mainwidget.h"
 #include "thread/timeThread.h"
-#include "SMV/RSMV/RSMV_initPhasor.h"
 #include "SMV/RSMV/RSMV_option.h"
 #include "QTimer"
-#define _WIN_
 
 class QextSerialPort;
 class Histogram;
@@ -49,10 +47,9 @@ private:
     QTime   elapseTime;   //运行时间
     int   elapseTimeCal;
     timeThread        timeThreadTimer ;
-    PhasorPaint       *RSMV_phasorPaint;
     ReceiveSMV        RSMV;
     Histogram         *RSMV_harmonic_histogram;
-    QPolygonF         RSMV_ESTD_PolygonF;//坐标点
+    QPolygonF         ESTD_PolygonF;//坐标点
 
     double            xval[300];  //波形图目前这样设置不会有问题
 
@@ -98,9 +95,9 @@ private slots:
     void slt_RD_update(pRDTYPE);
     void slt_RS_update(pRSTYPE);
 
-    void slt_RSMV_rms_update(pMETYPE);
-    void slt_RSMV_ES_update(pESTYPE );
-    void slt_RSMV_ESTD_update(pESTDTYPE );
+    void slt_ME_update(pMETYPE);
+    void slt_ES_update(pESTYPE );
+    void slt_ESTD_update(pESTDTYPE );
     void slt_ENERGY_PUL_update(pPULSEPOW );
     void slt_ENERGY_STD_update(pPULSEPOW );
     void slt_RSMV_wave_update();

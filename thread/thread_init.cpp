@@ -14,8 +14,8 @@ timeThread::timeThread()
     SSMV_RMS_Timer =new QTimer(this);
     connect(SSMV_RMS_Timer, SIGNAL(timeout()), this, SLOT(set_SSMV_RMS_Arg()));     //定时接收数据
 
-    RSMV_RMS_Timer =new QTimer(this);
-    connect(RSMV_RMS_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_RMS_Arg()) );
+    ME_Timer =new QTimer(this);
+    connect(ME_Timer, SIGNAL(timeout()), this, SLOT(set_ME_Arg()) );
 
     RSMV_Wave_Timer =new QTimer(this);
     connect(RSMV_Wave_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_WAVE_Arg()) );
@@ -38,11 +38,11 @@ timeThread::timeThread()
     RFT3_Timer =new QTimer(this);
     connect(RFT3_Timer, SIGNAL(timeout()), this, SLOT(set_RFT3_timeDone()) );
 
-    RSMV_ES_Timer =new QTimer(this);
-    connect(RSMV_ES_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_ES_Arg()) );
+    ES_Timer =new QTimer(this);
+    connect(ES_Timer, SIGNAL(timeout()), this, SLOT(set_ES_Arg()) );
 
-    RSMV_ESTD_Timer =new QTimer(this);
-    connect(RSMV_ESTD_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_ESTD_Arg()) );
+    ESTD_Timer =new QTimer(this);
+    connect(ESTD_Timer, SIGNAL(timeout()), this, SLOT(set_ESTD_Arg()) );
 
     ENERGY_PUL_Timer =new QTimer(this);
     connect(ENERGY_PUL_Timer, SIGNAL(timeout()), this, SLOT(set_ENERGY_PUL_Arg()) );
@@ -53,7 +53,7 @@ timeThread::timeThread()
     runType = 0;
 
     IsSSMV_RMS                = false;
-    IsRSMV_RMS                = false;
+    IsME                = false;
     IsRSMV_WAVE               = false;
     IsRSMV_WAVEALL            = false;
     IsRSMV_PHASOR             = false;
@@ -65,8 +65,8 @@ timeThread::timeThread()
     IsENERGY_PUL              = false;
     m_waitStart               = false;
     IsRFT3                    = false;
-    IsRSMV_ES                 = false;
-    IsRSMV_ESTD                = false;
+    IsES                 = false;
+    IsESTD                = false;
 }
 
 void timeThread::Serial_getFD(const int fdSerial)  //每次发送需要知道串口的id
@@ -96,7 +96,7 @@ void timeThread::enableItem(int Item)
     switch (Item)
     {
         case SSMV_RMS:                  this->IsSSMV_RMS        = true; break;
-        case RSMV_RMS:                  this->IsRSMV_RMS        = true; break;
+        case ME:                  this->IsME        = true; break;
         case RSMV_WAVE:                 this->IsRSMV_WAVE       = true; break;
         case RSMV_WAVEALL:              this->IsRSMV_WAVEALL           = true; break;
         case RSMV_PHASOR:               this->IsRSMV_PHASOR                     = true; break;
@@ -104,8 +104,8 @@ void timeThread::enableItem(int Item)
         case RSMV_HARMONIC:             this->IsRSMV_HARMONIC                   = true; break;
         case RD:                        this->IsRD              = true; break;
         case RFT3_WAVE:                this->IsRFT3                        = true; break;
-        case RSMV_ES:                   this->IsRSMV_ES             = true; break;
-        case RSMV_ESTD:            this->IsRSMV_ESTD             = true; break;
+        case ES:                   this->IsES             = true; break;
+        case ESTD:            this->IsESTD             = true; break;
         case ENERGY_PUL:        this->IsENERGY_PUL     = true; break;
         case ENERGY_STD:            this->IsENERGY_STD = true; break;
         default:break;
@@ -123,10 +123,10 @@ void timeThread::run()
             slt_SSMV_rms_timeDone();
 
         }
-        if (IsRSMV_RMS == true)
+        if (IsME == true)
         {
-            IsRSMV_RMS = false;
-            slt_RSMV_rms_timeDone();
+            IsME = false;
+            slt_ME_timeDone();
         }
         if (IsRSMV_WAVE == true)
         {
@@ -165,15 +165,15 @@ void timeThread::run()
             IsRFT3 = false;
             slt_RFT3_timeDone();
         }
-        if (IsRSMV_ES == true)
+        if (IsES == true)
         {
-            IsRSMV_ES = false;
-            slt_RSMV_ES_timeDone();
+            IsES = false;
+            slt_ES_timeDone();
         }
-        if (IsRSMV_ESTD == true)
+        if (IsESTD == true)
         {
-            IsRSMV_ESTD = false;
-            slt_RSMV_ESTD_timeDone();
+            IsESTD = false;
+            slt_ESTD_timeDone();
         }
         if (IsENERGY_PUL == true)
         {
@@ -203,11 +203,11 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
 
             }
         break;
-        case RSMV_RMS:
+        case ME:
             {
                 timerNum = 0;
-                RSMV_RMS_Timer->setInterval(1500);
-                RSMV_RMS_Timer->start();
+                ME_Timer->setInterval(1500);
+                ME_Timer->start();
 
             }
         break;
@@ -269,20 +269,20 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
             }
          break;
 
-        case RSMV_ES:
+        case ES:
             {
                 timerNum = 0;
-                RSMV_ES_Timer->setInterval(3000);
-                RSMV_ES_Timer->start();
+                ES_Timer->setInterval(3000);
+                ES_Timer->start();
 
             }
          break;
 
-        case RSMV_ESTD:
+        case ESTD:
             {
                 timerNum = 0;
-                RSMV_ESTD_Timer->setInterval(2000);
-                RSMV_ESTD_Timer->start();
+                ESTD_Timer->setInterval(2000);
+                ESTD_Timer->start();
 
             }
          break;
@@ -319,9 +319,9 @@ void timeThread::close_timer(int timerNum)
      break;
 
 
-    case RSMV_RMS:
-                        RSMV_RMS_Timer->stop();
-                        IsRSMV_RMS = false;
+    case ME:
+                        ME_Timer->stop();
+                        IsME = false;
 
     break;
 
@@ -364,15 +364,15 @@ void timeThread::close_timer(int timerNum)
                        //
       break;
 
-     case RSMV_ES:
-                        RSMV_ES_Timer->stop();
-                        IsRSMV_ES = false;
+     case ES:
+                        ES_Timer->stop();
+                        IsES = false;
                        //
       break;
 
-      case RSMV_ESTD:
-                         RSMV_ESTD_Timer->stop();
-                         IsRSMV_ESTD = false;
+      case ESTD:
+                         ESTD_Timer->stop();
+                         IsESTD = false;
                         //
        break;
 
@@ -385,7 +385,7 @@ void timeThread::close_timer(int timerNum)
  void timeThread::stop()
 {
     SSMV_RMS_Timer->stop();
-    RSMV_RMS_Timer->stop();
+    ME_Timer->stop();
     RSMV_Wave_Timer->stop();
     RSMV_Waveall_Timer->stop();
     RSMV_Phasor_Timer->stop();
@@ -393,22 +393,22 @@ void timeThread::close_timer(int timerNum)
     RSMV_Harmonic_Timer->stop();
     RD_Timer->stop();
     RFT3_Timer->stop();
-    RSMV_ES_Timer->stop();
-    RSMV_ESTD_Timer->stop();
+    ES_Timer->stop();
+    ESTD_Timer->stop();
     ENERGY_PUL_Timer->stop();
     ENERGY_STD_Timer->stop();
 
 
     IsSSMV_RMS        = false;
-    IsRSMV_RMS        = false;
+    IsME        = false;
     IsRSMV_WAVE       = false;
     IsRSMV_PHASOR     = false;
     IsRS       = false;
     IsRSMV_HARMONIC   = false;
     IsRD = false;
     IsRFT3            = false;
-    IsRSMV_ES    = false;
-    IsRSMV_ESTD  = false;
+    IsES    = false;
+    IsESTD  = false;
     IsENERGY_PUL= false;
     IsENERGY_STD= false;
 }
@@ -417,6 +417,8 @@ void timeThread::close_timer(int timerNum)
 
 void timeThread::slt_SSMV_rms_timeDone()
 {
+
+
 
 }
 
@@ -476,11 +478,7 @@ void timeThread:: slt_RSMV_waveall_timeDone()
 
 void timeThread::slt_RSMV_phasor_timeDone()
 {
-    qDebug()<<"slt_RSMV_phasor_timeDone";
-    if( (driver_619->getME(driver_619->pMETYPE_Data) == ERR_RIGHT) )
-    {
-        emit sig_RSMV_phasor_update(driver_619->pMETYPE_Data);
-    }
+
 }
 
 void timeThread::dealFullData(QString elapsedTime, int *targetRow, int *realLen, QTextStream *textStream)    //完整性表格数据填充
@@ -577,50 +575,7 @@ void timeThread::slt_RD_timeDone()
 *******************************************************************************************************/
 void timeThread::slt_RFT3_timeDone()
 {
-    pLKLTYPE      pLKLTYPE_Temp=NULL;
-    if((pLKLTYPE_Temp=driver_619->newLKLBuf(63,RSMV_wave_sampleCnt))==NULL)
-    {
-        free(pLKLTYPE_Temp);
-        pLKLTYPE_Temp=NULL;
-        return ;
-    }
 
-    if(RSMV_wave_chlNum==7) //vol //111
-    {
-         if( (driver_619->getLKL(3,pLKLTYPE_Temp) == ERR_RIGHT) )
-         {
-             for(int i = 0; i < RSMV_wave_sampleCnt; i++ )
-             {
-                 RSMV_wave_axesY[0][i]= (*(pLKLTYPE_Temp->CH2))->elt[i];
-             }
-         }
-         if( (driver_619->getME(driver_619->pMETYPE_Data) == ERR_RIGHT) )
-         {
-           RSMV_arrayTemp[0] = search_maxDoubleValue(&RSMV_wave_axesY[0][0],RSMV_wave_sampleCnt)*1.414;
-           emit sig_RFT3_wave_update( driver_619->pMETYPE_Data->UL2); //vol
-
-         }
-    }
-    else
-    {
-        if( (driver_619->getLKL(24,pLKLTYPE_Temp) == ERR_RIGHT) )
-        {
-            for(int i = 0; i < RSMV_wave_sampleCnt; i++ )
-            {
-                RSMV_wave_axesY[0][i]= (*(pLKLTYPE_Temp->CH5))->elt[i];
-               // qDebug()<<QString ::number( RSMV_wave_axesY[0][i]);
-            }
-        }
-
-        if( (driver_619->getME(driver_619->pMETYPE_Data) == ERR_RIGHT) )
-        {
-            RSMV_arrayTemp[0] = search_maxDoubleValue(&RSMV_wave_axesY[0][0],RSMV_wave_sampleCnt)*1.414;
-            emit sig_RFT3_wave_update( driver_619->pMETYPE_Data->IL2); //cur
-        }
-    }
-
-    driver_619->deleteLKLBuf(pLKLTYPE_Temp);
-    pLKLTYPE_Temp=NULL;
 }
 
 

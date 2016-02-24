@@ -77,7 +77,7 @@ UINT8 xl618::readOneFrame(UINT32 sendToBufSize,char *frameHead,char *errorHead,c
     }while(readTimes<3);
 
     //qDebug()<<"readTimes"<<QString::number(readTimes)<<isSerRecAll;
-//    qDebug("recvBuf==%s\n",recvBuf);
+    //qDebug("recvBuf==%s\n",recvBuf);
 //    qDebug("intSerRecReturn==%d\n",intSerRecReturn);
    return intSerRecReturn;
 }
@@ -279,27 +279,11 @@ UINT8 xl618::getES(pESTYPE data)
     {//解析帧
         temp = strstr((char *)recvBuf,"PE;");
         if(temp)
-            data->PE = atof(&temp[3]);
+            data->PE = (FLOAT32)atof(&temp[sizeof("PE;")-1]);
 
-        temp = strstr((char *)recvBuf,"QE;");
+        temp = strstr((char *)recvBuf,"TE;");
         if(temp)
-            data->QE = atof(&temp[3]);
-
-        temp = strstr((char *)recvBuf,"FE;");
-        if(temp)
-            data->FE = atof(&temp[3]);
-
-        temp = strstr((char *)recvBuf,"AE;");
-        if(temp)
-            data->AE = atof(&temp[3]);
-
-        temp = strstr((char *)recvBuf,"PULNUM;");
-        if(temp)
-            data->PULNUM = atoi(&temp[7]);
-
-        temp = strstr((char *)recvBuf,"CE;");
-        if(temp)
-            data->CE = atof(&temp[3]);
+            data->TE = atof(&temp[sizeof("TE;")-1]);
     }
     return retValue;
 }
@@ -1041,170 +1025,12 @@ UINT8 xl618::setMPE(pMETYPE data,pMEable able)     //data，要设置的测量�
         else
                 pSend += sprintf(pSend,"0;NC"CR);
 
-        if(able->UL2)
-                pSend += sprintf(pSend,"1;%lE"CR,data->UL2);
+        if(able->IL1)
+                pSend += sprintf(pSend,"1;%lE"CR,data->IL1);
         else
                 pSend += sprintf(pSend,"1;NC"CR);
 
-        if(able->UL3)
-                pSend += sprintf(pSend,"2;%lE"CR,data->UL3);
-        else
-                pSend += sprintf(pSend,"2;NC"CR);
 
-        if(able->IL1)
-                pSend += sprintf(pSend,"3;%lE"CR,data->IL1);
-        else
-                pSend += sprintf(pSend,"3;NC"CR);
-
-        if(able->IL2)
-                pSend += sprintf(pSend,"4;%lE"CR,data->IL2);
-        else
-                pSend += sprintf(pSend,"4;NC"CR);
-
-        if(able->IL3)
-                pSend += sprintf(pSend,"5;%lE"CR,data->IL3);
-        else
-                pSend += sprintf(pSend,"5;NC"CR);
-
-        if(able->Phi1)
-                pSend += sprintf(pSend,"6;%lE"CR,data->Phi1);
-        else
-                pSend += sprintf(pSend,"6;NC"CR);
-
-        if(able->Phi2)
-                pSend += sprintf(pSend,"7;%lE"CR,data->Phi2);
-        else
-                pSend += sprintf(pSend,"7;NC"CR);
-
-        if(able->Phi3)
-                pSend += sprintf(pSend,"8;%lE"CR,data->Phi3);
-        else
-                pSend += sprintf(pSend,"8;NC"CR);
-
-        if(able->Phi4)
-                pSend += sprintf(pSend,"9;%lE"CR,data->Phi4);
-        else
-                pSend += sprintf(pSend,"9;NC"CR);
-
-        if(able->Phi5)
-                pSend += sprintf(pSend,"10;%lE"CR,data->Phi5);
-        else
-                pSend += sprintf(pSend,"10;NC"CR);
-
-        if(able->Phi6)
-                pSend += sprintf(pSend,"11;%lE"CR,data->Phi6);
-        else
-                pSend += sprintf(pSend,"11;NC"CR);
-
-        if(able->cos1)
-                pSend += sprintf(pSend,"12;%lE"CR,data->cos1);
-        else
-                pSend += sprintf(pSend,"12;NC"CR);
-
-        if(able->cos2)
-                pSend += sprintf(pSend,"13;%lE"CR,data->cos2);
-        else
-                pSend += sprintf(pSend,"13;NC"CR);
-
-        if(able->cos3)
-                pSend += sprintf(pSend,"14;%lE"CR,data->cos3);
-        else
-                pSend += sprintf(pSend,"14;NC"CR);
-
-        if(able->P1)
-                pSend += sprintf(pSend,"15;%lE"CR,data->P1);
-        else
-                pSend += sprintf(pSend,"15;NC"CR);
-
-        if(able->P2)
-                pSend += sprintf(pSend,"16;%lE"CR,data->P2);
-        else
-                pSend += sprintf(pSend,"16;NC"CR);
-
-        if(able->P3)
-                pSend += sprintf(pSend,"17;%lE"CR,data->P3);
-        else
-                pSend += sprintf(pSend,"17;NC"CR);
-
-        if(able->Q1)
-                pSend += sprintf(pSend,"18;%lE"CR,data->Q1);
-        else
-                pSend += sprintf(pSend,"18;NC"CR);
-
-        if(able->Q2)
-                pSend += sprintf(pSend,"19;%lE"CR,data->Q2);
-        else
-                pSend += sprintf(pSend,"19;NC"CR);
-
-        if(able->Q3)
-                pSend += sprintf(pSend,"20;%lE"CR,data->Q3);
-        else
-                pSend += sprintf(pSend,"20;NC"CR);
-
-        if(able->S1)
-                pSend += sprintf(pSend,"21;%lE"CR,data->S1);
-        else
-                pSend += sprintf(pSend,"21;NC"CR);
-
-        if(able->S2)
-                pSend += sprintf(pSend,"22;%lE"CR,data->S2);
-        else
-                pSend += sprintf(pSend,"22;NC"CR);
-
-        if(able->S3)
-                pSend += sprintf(pSend,"23;%lE"CR,data->S3);
-        else
-                pSend += sprintf(pSend,"23;NC"CR);
-
-        if(able->SP)
-                pSend += sprintf(pSend,"24;%lE"CR,data->SP);
-        else
-                pSend += sprintf(pSend,"24;NC"CR);
-
-        if(able->SQ)
-                pSend += sprintf(pSend,"25;%lE"CR,data->SQ);
-        else
-                pSend += sprintf(pSend,"25;NC"CR);
-
-        if(able->SS)
-                pSend += sprintf(pSend,"26;%lE"CR,data->SS);
-        else
-                pSend += sprintf(pSend,"26;NC"CR);
-
-        if(able->Freq)
-                pSend += sprintf(pSend,"27;%lE"CR,data->Freq);
-        else
-                pSend += sprintf(pSend,"27;NC"CR);
-
-        if(able->DC1)
-                pSend += sprintf(pSend,"28;%lE"CR,data->DC1);
-        else
-                pSend += sprintf(pSend,"28;NC"CR);
-
-        if(able->DC2)
-                pSend += sprintf(pSend,"29;%lE"CR,data->DC2);
-        else
-                pSend += sprintf(pSend,"29;NC"CR);
-
-        if(able->DC3)
-                pSend += sprintf(pSend,"30;%lE"CR,data->DC3);
-        else
-                pSend += sprintf(pSend,"30;NC"CR);
-
-        if(able->DC4)
-                pSend += sprintf(pSend,"31;%lE"CR,data->DC4);
-        else
-                pSend += sprintf(pSend,"31;NC"CR);
-
-        if(able->DC5)
-                pSend += sprintf(pSend,"32;%lE"CR,data->DC5);
-        else
-                pSend += sprintf(pSend,"32;NC"CR);
-
-        if(able->DC6)
-                pSend += sprintf(pSend,"33;%lE"CR,data->DC6);
-        else
-                pSend += sprintf(pSend,"33;NC"CR);
 
         UINT16 frameSize = pSend - (char*)sendBuf;
 
@@ -1215,8 +1041,6 @@ UINT8 xl618::setMPE(pMETYPE data,pMEable able)     //data，要设置的测量�
 
 UINT8 xl618::getME(pMETYPE data)
 {
-
-    qDebug()<<"hello getME";
     UINT8 retValue = ERR_UNIVERSAL;
     char *pSend = (char*)sendBuf;
     strcpy(pSend,STR_ME CR);
@@ -1233,135 +1057,19 @@ UINT8 xl618::getME(pMETYPE data)
 
                 temp = strstr((char*)recvBuf,"1;");
                 if(temp)
-                        data->UL2 = atof(&temp[2]);
+                        data->IL1 = atof(&temp[2]);
 
                 temp = strstr((char*)recvBuf,"2;");
                 if(temp)
-                        data->UL3 = atof(&temp[2]);
+                        data->P1 = atof(&temp[2]);
 
                 temp = strstr((char*)recvBuf,"3;");
                 if(temp)
-                        data->IL1 = atof(&temp[2]);
+                        data->Price = atof(&temp[2]);
 
                 temp = strstr((char*)recvBuf,"4;");
                 if(temp)
-                        data->IL2 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"5;");
-                if(temp)
-                        data->IL3 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"6;");
-                if(temp)
-                        data->Phi1 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"7;");
-                if(temp)
-                        data->Phi2 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"8;");
-                if(temp)
-                        data->Phi3 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"9;");
-                if(temp)
-                        data->Phi4 = atof(&temp[2]);
-
-                temp = strstr((char*)recvBuf,"10;");
-                if(temp)
-                        data->Phi5 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"11;");
-                if(temp)
-                        data->Phi6 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"12;");
-                if(temp)
-                        data->cos1 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"13;");
-                if(temp)
-                        data->cos2 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"14;");
-                if(temp)
-                        data->cos3 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"15;");
-                if(temp)
-                        data->P1 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"16;");
-                if(temp)
-                        data->P2 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"17;");
-                if(temp)
-                        data->P3= atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"18;");
-                if(temp)
-                        data->Q1 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"19;");
-                if(temp)
-                        data->Q2 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"20;");
-                if(temp)
-                        data->Q3 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"21;");
-                if(temp)
-                        data->S1 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"22;");
-                if(temp)
-                        data->S2 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"23;");
-                if(temp)
-                        data->S3 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"24;");
-                if(temp)
-                        data->SP = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"25;");
-                if(temp)
-                        data->SQ = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"26;");
-                if(temp)
-                        data->SS = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"27;");
-                if(temp)
-                        data->Freq = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"28;");
-                if(temp)
-                        data->DC1= atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"29;");
-                if(temp)
-                        data->DC2 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"30;");
-                if(temp)
-                        data->DC3 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"31;");
-                if(temp)
-                        data->DC4= atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"32;");
-                if(temp)
-                        data->DC5 = atof(&temp[3]);
-
-                temp = strstr((char*)recvBuf,"33;");
-                if(temp)
-                        data->DC6 = atof(&temp[3]);
+                        data->Time = atof(&temp[2]);
         }
 
 

@@ -94,9 +94,7 @@ void MainWidget:: startRS()
 //读取测量值ME
 void MainWidget:: startME()
 {
-    RSMV_phasorPaint->isUpdatePhasor=true;//刷新  界面
-    RSMV_phasorPaint->update();
-    timeThreadTimer.run(RSMV_RMS);
+    timeThreadTimer.run(ME);
 }
 
 //读取波形图数据,803r默认为256点

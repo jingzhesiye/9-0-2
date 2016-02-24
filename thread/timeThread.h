@@ -62,9 +62,9 @@ signals:
 
     void sig_SSMV_rms_update(pMETYPE) ;
 
-    void sig_RSMV_rms_update(pMETYPE) ;
-    void sig_RSMV_ES_update(pESTYPE) ;
-    void sig_RSMV_ESTD_update(pESTDTYPE);
+    void sig_ME_update(pMETYPE) ;
+    void sig_ES_update(pESTYPE) ;
+    void sig_ESTD_update(pESTDTYPE);
     void sig_ENERGY_PUL_update(pPULSEPOW);
     void sig_ENERGY_STD_update(pPULSEPOW);
     void sig_RSMV_wave_update() ;
@@ -81,7 +81,7 @@ signals:
     void sig_RMSG_FrameList_update(QStringList );
 private slots:
     void slt_SSMV_rms_timeDone();
-    void slt_RSMV_rms_timeDone();
+    void slt_ME_timeDone();
     void slt_RSMV_waveall_timeDone();
     void slt_RSMV_wave_timeDone();
     void slt_RSMV_phasor_timeDone();
@@ -90,8 +90,8 @@ private slots:
     void slt_RD_timeDone();
     void slt_RFT3_timeDone();
 
-    void slt_RSMV_ES_timeDone();
-    void slt_RSMV_ESTD_timeDone();
+    void slt_ES_timeDone();
+    void slt_ESTD_timeDone();
 
     void slt_ENERGY_PUL_timeDone();
     void slt_ENERGY_STD_timeDone();
@@ -102,9 +102,9 @@ private slots:
    {
         enableItem(SSMV_RMS);
    }
-   void set_RSMV_RMS_Arg()
+   void set_ME_Arg()
    {
-        enableItem(RSMV_RMS);
+        enableItem(ME);
    }
    void set_RSMV_WAVE_Arg()
    {
@@ -136,13 +136,13 @@ private slots:
         enableItem(RFT3_WAVE);
    }
 
-   void set_RSMV_ES_Arg()
+   void set_ES_Arg()
    {
-        enableItem(RSMV_ES);
+        enableItem(ES);
    }
-   void set_RSMV_ESTD_Arg()
+   void set_ESTD_Arg()
    {
-     enableItem(RSMV_ESTD);
+     enableItem(ESTD);
    }
 
    void set_ENERGY_PUL_Arg()
@@ -158,7 +158,7 @@ private slots:
     xl618      *driver_619;
 
     QTimer     *SSMV_RMS_Timer;
-    QTimer     *RSMV_RMS_Timer;
+    QTimer     *ME_Timer;
     QTimer     *RSMV_Wave_Timer;
     QTimer     *RSMV_Waveall_Timer;
     QTimer     *RSMV_Phasor_Timer ;
@@ -170,8 +170,8 @@ private slots:
 
     QTimer     *ENERGY_PUL_Timer;
     QTimer     *ENERGY_STD_Timer;
-    QTimer     *RSMV_ES_Timer;
-    QTimer     *RSMV_ESTD_Timer;
+    QTimer     *ES_Timer;
+    QTimer     *ESTD_Timer;
 
     QIntList strUpRow;
     QStringList strUpSerial;
@@ -195,7 +195,7 @@ private:
     int  RSMV_wave_sampleCnt;
 
     bool IsSSMV_RMS;
-    bool IsRSMV_RMS;
+    bool IsME;
     bool IsRSMV_WAVE;
     bool IsRSMV_WAVEALL;
     bool IsRSMV_PHASOR;
@@ -203,8 +203,8 @@ private:
     bool IsRSMV_HARMONIC;
     bool IsRD;
     bool IsRFT3;
-    bool IsRSMV_ES;
-    bool IsRSMV_ESTD;
+    bool IsES;
+    bool IsESTD;
     bool IsENERGY_PUL;
     bool IsENERGY_STD;
     UINT32 SMV_harmonic_ChlNum;

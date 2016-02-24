@@ -42,11 +42,11 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
         case 0:
                 clean_stackedWidgetIndex1();
                 startRD();
-                startRS();
-
-//                startME();   //√
+                startRS();//BMS
+                startES();//电能误差
+                startME(); //测量值
 //                startWAVE(); //√
-//                startES();//电能测试误差状态
+
 //                startENERGY_PUL();//脉冲//√
 //                startENERGY_STD();//标准//√
 //                startESTD();//读取电能表标准方差值s值//√

@@ -137,22 +137,25 @@ QStringList timeThread:: getRCR()
 }
 
 //ME
-void timeThread::slt_RSMV_rms_timeDone()
+void timeThread::slt_ME_timeDone()
 {
-
+    qDebug()<<"slt_ME_timeDone";
+#if 0
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"RSMV_rms_locked";
+        qDebug()<<"ME_locked";
         return ;
     }
+#endif
+
 #if 1
     if( driver_619->getME(driver_619->pMETYPE_Data) == ERR_RIGHT )
     {
-         //qDebug()<<"slt_SSMV_rms_timeDone2"<<QString ::number(driver_619->pMETYPE_Data->UL1);
-         emit sig_RSMV_rms_update(driver_619->pMETYPE_Data);
+         //qDebug()<<"slt_ME_timeDone"<<QString ::number(driver_619->pMETYPE_Data->UL1);
+         emit sig_ME_update(driver_619->pMETYPE_Data);
     }
 #endif
-    mutexUpdate.unlock();
+   // mutexUpdate.unlock();
  }
 
 
@@ -254,41 +257,43 @@ void timeThread::slt_RSMV_harmonic_timeDone()
  }
 
 
-void timeThread::slt_RSMV_ES_timeDone()
+void timeThread::slt_ES_timeDone()
 {
+    qDebug()<<"slt_ES_timeDone";
+#if 0
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"RSMV_rms_locked";
+        qDebug()<<"ME_locked";
         return ;
     }
-
+#endif
     pESTYPE   pESTYPE_Temp =NULL;
     pESTYPE_Temp=(pESTYPE)calloc(1,sizeof(ESTYPE));
-
 
 #if 1
     if( driver_619->getES(pESTYPE_Temp) == 1 )
     {
-         //qDebug()<<"getES"<<QString ::number(pESTYPE_Temp->PE);
-         emit sig_RSMV_ES_update(pESTYPE_Temp);
+        // qDebug()<<"getES"<<QString ::number(pESTYPE_Temp->TE);
+         emit sig_ES_update(pESTYPE_Temp);
     }
-#endif
+
 
     free(pESTYPE_Temp);
     pESTYPE_Temp=NULL;
      //timeThreadTimer.mutexUpdate.unlock();
-    mutexUpdate.unlock();
+   // mutexUpdate.unlock();
+#endif
 }
 
 
-void timeThread::slt_RSMV_ESTD_timeDone()
+void timeThread::slt_ESTD_timeDone()
 {
-    //qDebug()<<"slt_RSMV_ESTD_timeDone";
+    //qDebug()<<"slt_ESTD_timeDone";
 
 #if 1
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"slt_RSMV_ESTD_tryLock";
+        qDebug()<<"slt_ESTD_tryLock";
         return ;
     }
 
@@ -298,7 +303,7 @@ void timeThread::slt_RSMV_ESTD_timeDone()
     if( driver_619->getESTD(pESTDTYPE_Temp) == 1 )
     {
          //qDebug()<<"getES"<<QString ::number(pESTYPE_Temp->PE);
-         emit sig_RSMV_ESTD_update(pESTDTYPE_Temp);
+         emit sig_ESTD_update(pESTDTYPE_Temp);
     }
 
     free(pESTDTYPE_Temp);

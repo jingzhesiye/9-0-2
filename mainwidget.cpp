@@ -70,17 +70,22 @@ void MainWidget::init_timeThreadTimer_connect()
     connect(&timeThreadTimer, SIGNAL(sig_RS_update(pRSTYPE)),    this, SLOT(slt_RS_update(pRSTYPE)),Qt::DirectConnection);
     qRegisterMetaType<pRSTYPE>("pRSTYPE");
 
+    connect(&timeThreadTimer, SIGNAL(sig_ES_update(pESTYPE)),     this, SLOT(slt_ES_update(pESTYPE)));
+    qRegisterMetaType<pESTYPE>("pESTYPE");
+
+    connect(&timeThreadTimer, SIGNAL(sig_ME_update(pMETYPE)),    this, SLOT(slt_ME_update(pMETYPE)),Qt::DirectConnection);
+    qRegisterMetaType<pMETYPE>("pMETYPE");
+
     #if 0
-    connect(&timeThreadTimer, SIGNAL(sig_RSMV_rms_update(pMETYPE)),    this, SLOT(slt_RSMV_rms_update(pMETYPE)),Qt::DirectConnection);
-    connect(&timeThreadTimer, SIGNAL(sig_RSMV_ES_update(pESTYPE)),     this, SLOT(slt_RSMV_ES_update(pESTYPE)));
+
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_ESTD_update(pESTDTYPE)),   this, SLOT(slt_RSMV_ESTD_update(pESTDTYPE)));
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_PUL_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_PUL_update(pPULSEPOW)),Qt::DirectConnection);
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_STD_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_STD_update(pPULSEPOW)),Qt::DirectConnection);
 
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_wave_update()),          this, SLOT(slt_RSMV_wave_update()));
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_harmonic_update()),      this, SLOT(slt_RSMV_harmonic_update()));
-    qRegisterMetaType<pMETYPE>("pMETYPE");
-    qRegisterMetaType<pESTYPE>("pESTYPE");
+
+
     qRegisterMetaType<pESTDTYPE>("pESTDTYPE");
     qRegisterMetaType<QTextCursor>("QTextCursor");
     qRegisterMetaType<pPULSEPOW>("pPULSEPOW");

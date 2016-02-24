@@ -316,39 +316,10 @@ typedef struct
 typedef struct
 {
     FLOAT64 UL1;
-    FLOAT64 UL2;
-    FLOAT64 UL3;
     FLOAT64 IL1;
-    FLOAT64 IL2;
-    FLOAT64 IL3;
-    FLOAT64 Phi1;
-    FLOAT64 Phi2;
-    FLOAT64 Phi3;
-    FLOAT64 Phi4;
-    FLOAT64 Phi5;
-    FLOAT64 Phi6;
-    FLOAT64 cos1;
-    FLOAT64 cos2;
-    FLOAT64 cos3;
     FLOAT64 P1;
-    FLOAT64 P2;
-    FLOAT64 P3;
-    FLOAT64 Q1;
-    FLOAT64 Q2;
-    FLOAT64 Q3;
-    FLOAT64 S1;
-    FLOAT64 S2;
-    FLOAT64 S3;
-    FLOAT64 SP;
-    FLOAT64 SQ;
-    FLOAT64 SS;
-    FLOAT64 Freq;
-    FLOAT64 DC1;
-    FLOAT64 DC2;
-    FLOAT64 DC3;
-    FLOAT64 DC4;
-    FLOAT64 DC5;
-    FLOAT64 DC6;
+    FLOAT64 Price;
+    FLOAT64 Time;
 }METYPE,*pMETYPE,**ppMETYPE;
 
 typedef struct
@@ -494,12 +465,8 @@ typedef struct
 
 typedef struct
 {
-    FLOAT64 PE;
-    FLOAT64 QE;
-    FLOAT64 FE;
-    FLOAT64 AE;
-    UINT32 PULNUM;
-    FLOAT32 CE;
+    FLOAT32 PE;
+    FLOAT32 TE;
     //注意对齐
 }ESTYPE,*pESTYPE,**ppESTYPE;
 
@@ -681,22 +648,19 @@ typedef QList<int> QIntList;
 //定时器类型
 
 #define SSMV_RMS	       10
-#define RSMV_RMS	       30              //
 #define RSMV_WAVE	       31              //波形图
 #define RSMV_PHASOR 	       32          //相位
-
-
 #define RSMV_HARMONIC 	       35          //谐波
 #define RSMV_WAVEALL	       37          //解析
-
 #define RFT3_WAVE	       40           //FT3反馈
-#define RSMV_ES               50           //GSE扫描通道个数
-#define RSMV_ESTD         51           //GSE扫描报文APPID
-
+#define ESTD         51           //GSE扫描报文APPID
 #define ENERGY_PUL     60
 #define ENERGY_STD         61
 
+
+#define ES                 50
+#define ME	               30
 #define RD                 71
-#define RS	               72      //完整性
+#define RS	               72
 
 #endif // STDAFX_H
