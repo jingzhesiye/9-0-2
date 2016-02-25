@@ -116,26 +116,25 @@ private slots:
     void on_RSMV_zoomOut_PsBtn_clicked();
     void on_RSMV_zoomIn_PsBtn_clicked();
     void on_RSMV_wave_CkBox_clicked(bool checked);
-    void on_serPort_EVT_PsBtn_clicked();
+
     void on_serPort_portName_CbBox_activated(int index);
     void on_serPort_dataBit_CbBox_activated(int index);
     void on_serPort_baudRate_CbBox_activated(int index);
     void on_serPort_stopBit_CbBox_activated(int index);
     void on_serPort_parity_CbBox_activated(int index);
     void on_serPort_flowCtl_CbBox_activated(int index);
-    void on_serPort_METERCONST_LnEdit_textChanged(const QString &arg1);
-    void on_serPort_CONST_LnEdit_textChanged(const QString &arg1);
-    void on_serPort_CHECKNUM_LnEdit_textChanged(const QString &arg1);
-    void on_serPort_CHECKTYPE_CbBox_activated(int index);
-    void on_serPort_VR_CbBox_activated(int index);
-    void on_serPort_CR_CbBox_activated(int index);
-    void on_RSMV_energy_from_PsBtn_clicked();
+
     void on_RSMV_clearFrom_PsBtn_clicked();
     void on_RSMV_buildFrom_PsBtn_clicked();
 
     void on_RSMV_readFrom_PsBtn_clicked();
     void on_RSMV_keyBoard_PsBtn_clicked();
     void on_RSMV_saveFormMsg_PsBtn_clicked();
+
+private:
+    QComboBox       *SP_chargeType_cbbox;
+    QComboBox       *SP_loadType_cbbox;
+    QComboBox       *SP_measureType_cbbox;
 
 };
 

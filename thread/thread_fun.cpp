@@ -17,49 +17,6 @@ UINT8 timeThread::transmitsSimply (UINT8 *data)//串口快速发送
 }
 
 
-//METERCONST;0.000000
-//CHECKNUM;0
-//CONST;0.000000
-//CHECKTYPE;0
-bool timeThread:: setSP_part(QStringList  strList)
-{
-    bool isTrue=false;
-    pSPTYPE   pSPTYPE_Temp =NULL;
-    pSPTYPE_Temp=(pSPTYPE)calloc(1,sizeof(SPTYPE));
-
-    pISABLE_SP   pISABLE_SP_Temp =NULL;
-    pISABLE_SP_Temp=(pISABLE_SP)calloc(1,sizeof(ISABLE_SP));
-
-    memset(pISABLE_SP_Temp,0,sizeof(ISABLE_SP));
-
-    pSPTYPE_Temp->METERCONST =atof(strList.at(0).toLatin1().data());
-    pSPTYPE_Temp->CHECKNUM=atof(strList.at(1).toLatin1().data());
-    pSPTYPE_Temp->AMMETER_CONST=atof(strList.at(2).toLatin1().data());
-    pSPTYPE_Temp->CHECKTYPE=atof(strList.at(3).toLatin1().data());//有功0
-    pSPTYPE_Temp->SAMNUM=256;//有功0
-
-    pISABLE_SP_Temp->METERCONST =1;
-    pISABLE_SP_Temp->CHECKNUM=1;
-    pISABLE_SP_Temp->AMMETER_CONST=1;
-    pISABLE_SP_Temp->CHECKTYPE=1;
-    pISABLE_SP_Temp->SAMNUM=1;
-    if(driver_619->setSP_part(pSPTYPE_Temp,pISABLE_SP_Temp) == ERR_RIGHT)
-    {
-       isTrue =true;
-    }
-
-    free(pSPTYPE_Temp);
-    pSPTYPE_Temp=NULL;
-
-    free(pISABLE_SP_Temp);
-    pISABLE_SP_Temp=NULL;
-
-    //qDebug("free.retValue==%d\n",returnValue);
-
-    return isTrue;
-
-}
-
 QStringList timeThread:: getSP()
 {
     QStringList strList;
@@ -74,10 +31,10 @@ QStringList timeThread:: getSP()
         return strList;
     }
 
-    strList<<QString::number(pSPTYPE_Temp->METERCONST,'d',6);
-    strList<<QString::number(pSPTYPE_Temp->CHECKNUM);
-    strList<<QString::number(pSPTYPE_Temp->AMMETER_CONST,'d',6);
-    strList<<QString::number(pSPTYPE_Temp->CHECKTYPE);
+//    strList<<QString::number(pSPTYPE_Temp->METERCONST,'d',6);
+//    strList<<QString::number(pSPTYPE_Temp->CHECKNUM);
+//    strList<<QString::number(pSPTYPE_Temp->AMMETER_CONST,'d',6);
+//    strList<<QString::number(pSPTYPE_Temp->CHECKTYPE);
 
     free(pSPTYPE_Temp);
     pSPTYPE_Temp=NULL;

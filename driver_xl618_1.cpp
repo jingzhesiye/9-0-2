@@ -533,6 +533,7 @@ UINT8 xl618::setSP(pSPTYPE data)
     pSend += strlen(STR_SP CR);
         if(data)
         {
+#if 0
                 pSPTYPE p = data;
                 pSend += sprintf(pSend,"SAMNUM;%d"CR,p->SAMNUM);
                 pSend += sprintf(pSend,"DADDR;%d,%d,%d,%d,%d,%d"CR,p->DADDR[0],p->DADDR[1],p->DADDR[2],p->DADDR[3],p->DADDR[4],p->DADDR[5]);
@@ -580,7 +581,7 @@ UINT8 xl618::setSP(pSPTYPE data)
                 pSend += sprintf(pSend,"TRANSIENT;%d"CR,p->TRANSIENT);
                 pSend += sprintf(pSend,"VLANTYPE;0x%04x"CR,p->VLANTYPE);
                 pSend += sprintf(pSend,"VLAN;0x%04x"CR,p->VLAN);
-
+#endif
                 UINT16 frameSize = pSend - (char*)sendBuf;
                 retValue = readOneFrame(frameSize,(char*)"SP",NULL,(char*)"SPACK",0);
         }
@@ -603,33 +604,11 @@ UINT8 xl618::getSP(pSPTYPE data)
 
     if((retValue = readOneFrame(frameSize,(char*)"RP",NULL,(char*)"RPACK",500)) == ERR_RIGHT)
     {//atoi把字符串转换成整型数。
-        temp = strstr((char*)recvBuf,"SAMNUM;");
+#if 0
+        temp = strstr((char*)recvBuf,"SAMRATE;");
         if(temp)
             data->SAMNUM = atoi(&temp[strlen("SAMNUM;")]);
-        temp = strstr((char*)recvBuf,"DADDR;");
-        if(temp)
-        {
-            data->DADDR[0] = atoi(&temp[strlen("DADDR;")]);
-            temp = strstr(temp,",");
-            if(temp)
-                data->DADDR[1] = atoi(&temp[1]);
-            temp ++;
-            temp = strstr(temp,",");
-            if(temp)
-                data->DADDR[2] = atoi(&temp[1]);
-            temp ++;
-            temp = strstr(temp,",");
-            if(temp)
-                data->DADDR[3] = atoi(&temp[1]);
-            temp ++;
-            temp = strstr(temp,",");
-            if(temp)
-                data->DADDR[4] = atoi(&temp[1]);
-            temp ++;
-            temp = strstr(temp,",");
-            if(temp)
-                data->DADDR[5] = atoi(&temp[1]);
-        }
+
             temp = strstr((char*)recvBuf,"PRODUCT;");
         if(temp)
         {
@@ -670,75 +649,7 @@ UINT8 xl618::getSP(pSPTYPE data)
         if(temp)
             data->METERCONST = (FLOAT32)atof(&temp[strlen("METERCONST;")]);
         temp = strstr((char*)recvBuf,"CHECKNUM;");
-        if(temp)
-            data->CHECKNUM = atoi(&temp[strlen("CHECKNUM;")]);
-        temp = strstr((char*)recvBuf,"STYPE;");
-        if(temp)
-            data->STYPE = atoi(&temp[strlen("STYPE;")]);
-        temp = strstr((char*)recvBuf,"SNUM;");
-        if(temp)
-            data->SNUM = atoi(&temp[strlen("SNUM;")]);
-        temp = strstr((char*)recvBuf,"\nCONST;");
-        if(temp)
-            data->AMMETER_CONST = (FLOAT32)atof(&temp[strlen("\nCONST;")]);
-        temp = strstr((char*)recvBuf,"CHECKTYPE;");
-        if(temp)
-            data->CHECKTYPE = atoi(&temp[strlen("CHECKTYPE;")]);
-        temp = strstr((char*)recvBuf,"KB;");
-        if(temp)
-            data->KB = (FLOAT32)atof(&temp[strlen("KB;")]);
-        temp = strstr((char*)recvBuf,"KX;");
-        if(temp)
-            data->KX = (FLOAT32)atof(&temp[strlen("KX;")]);
-        temp = strstr((char*)recvBuf,"TRATED;");
-        if(temp)
-            data->TRATED = (FLOAT32)atof(&temp[strlen("TRATED;")]);
-        temp = strstr((char*)recvBuf,"TIMETRIGEDGE;");
-        if(temp)
-            data->TIMETRIGEDGE = atoi(&temp[strlen("TIMETRIGEDGE;")]);
-        temp = strstr((char*)recvBuf,"TRANMODETYPE;");
-        if(temp)
-            data->TRANMODETYPE = atoi(&temp[strlen("TRANMODETYPE;")]);
-        temp = strstr((char*)recvBuf,"SYNTYPE;");
-        if(temp)
-            data->SYNTYPE = atoi(&temp[strlen("SYNTYPE;")]);
-        temp = strstr((char*)recvBuf,"TRANSFORMERCH;");
-        if(temp)
-            data->TRANSFORMERCH = atoi(&temp[strlen("TRANSFORMERCH;")]);
-        temp = strstr((char*)recvBuf,"MESUREPROTECT;");
-        if(temp)
-            data->MESUREPROTECT = atoi(&temp[strlen("MESUREPROTECT;")]);
-        temp = strstr((char*)recvBuf,"2NVOLTAGERANGE;");
-        if(temp)
-            data->VOLTAGERANGE_2N = (FLOAT32)atof(&temp[strlen("2NVOLTAGERANGE;")]);
-        temp = strstr((char*)recvBuf,"2NCURRENTRANGE;");
-        if(temp)
-           data->CURRENTRANGE_2N = (FLOAT32)atof(&temp[strlen("2NCURRENTRANGE;")]);
-        temp = strstr((char*)recvBuf,"CURRENTINPUT;");
-        if(temp)
-           data->CURRENTINPUT = atoi(&temp[strlen("CURRENTINPUT;")]);
-        temp = strstr((char*)recvBuf,"IEC61850;");
-        if(temp)
-            data->IEC61850 = atoi(&temp[strlen("IEC61850;")]);
-        temp = strstr((char*)recvBuf,"IRIG_B;");
-        if(temp)
-            data->IRIG_B = atoi(&temp[strlen("IRIG_B;")]);
-        temp = strstr((char*)recvBuf,"TIMEDELAY;");
-        if(temp)
-            data->TIMEDELAY = atoi(&temp[strlen("TIMEDELAY;")]);
-        temp = strstr((char*)recvBuf,"COLLORNOSYN;");
-        if(temp)
-            data->COLLORNOSYN = atoi(&temp[strlen("COLLORNOSYN;")]);
 
-        temp = strstr((char*)recvBuf,"FT3OUT;");
-        if(temp)
-            data->FT3OUT = atoi(&temp[strlen("FT3OUT;")]);
-
-        temp = strstr((char*)recvBuf,"FT3CALDELAY;");/////////////////////////////////////
-       if(temp)
-            data->FT3CALDELAY = atoi(&temp[strlen("FT3CALDELAY;")]);
-
-#if 1
         temp = strstr((char*)recvBuf,"COMPOSITEERR;");
 
         if(temp)
@@ -771,114 +682,6 @@ UINT8 xl618::getSP(pSPTYPE data)
         return retValue;
 }
 
-UINT8 xl618::setSP_part(pSPTYPE data,pISABLE_SP isAble)
-{
-
-    UINT8 retValue = ERR_UNIVERSAL;
-    char *pSend = (char*)sendBuf;
-    strcpy(pSend,STR_SP CR);
-    pSend += strlen(STR_SP CR);
-    pSPTYPE p = data;
-    if(isAble->SAMNUM)
-            pSend += sprintf(pSend,"SAMNUM;%d"CR,p->SAMNUM);
-    if(isAble->DADDR)
-            pSend += sprintf(pSend,"DADDR;%d,%d,%d,%d,%d,%d"CR,p->DADDR[0],p->DADDR[1],p->DADDR[2],p->DADDR[3],p->DADDR[4],p->DADDR[5]);
-    if(isAble->PRODUCT)
-    {
-            if(p->PRODUCT == 1)
-                    pSend += sprintf(pSend,"PRODUCT;%s"CR,"XINGNING");
-            else if(p->PRODUCT == 2)
-                    pSend += sprintf(pSend,"PRODUCT;%s"CR,"XUJI");
-            else
-                    pSend += sprintf(pSend,"PRODUCT;%s"CR,"WEISHENG");
-    }
-    if(isAble->ASDUNUM)
-            pSend += sprintf(pSend,"ASDUNUM;%d"CR,p->ASDUNUM);
-    if(isAble->RATEDDELAY)
-            pSend += sprintf(pSend,"RATEDDELAY;%d"CR,p->RATEDDELAY);
-    if(isAble->ANALOGRATE_V)
-            pSend += sprintf(pSend,"ANALOGRATE_V;%f"CR,p->ANALOGRATE_V);
-    if(isAble->ANALOGRATE_I)
-            pSend += sprintf(pSend,"ANALOGRATE_I;%f"CR,p->ANALOGRATE_I);
-    if(isAble->VOLTAGERANGE)
-            pSend += sprintf(pSend,"VOLTAGERANGE;%f"CR,p->VOLTAGERANGE);
-    if(isAble->CURRENTRANGE)
-            pSend += sprintf(pSend,"CURRENTRANGE;%f"CR,p->CURRENTRANGE);
-    if(isAble->NETPORT)
-            pSend += sprintf(pSend,"NETPORT;%d"CR,p->NETPORT);
-    if(isAble->NETTYPE)
-            pSend += sprintf(pSend,"NETTYPE;%d"CR,p->NETTYPE);
-    if(isAble->METERCONST)
-            pSend += sprintf(pSend,"METERCONST;%f"CR,p->METERCONST);
-    if(isAble->CHECKNUM)
-            pSend += sprintf(pSend,"CHECKNUM;%d"CR,p->CHECKNUM);
-    if(isAble->STYPE)
-            pSend += sprintf(pSend,"STYPE;%d"CR,p->STYPE);
-    if(isAble->SNUM)
-            pSend += sprintf(pSend,"SNUM;%d"CR,p->SNUM);
-    if(isAble->AMMETER_CONST)
-            pSend += sprintf(pSend,"CONST;%f"CR,p->AMMETER_CONST);
-    if(isAble->CHECKTYPE)
-            pSend += sprintf(pSend,"CHECKTYPE;%d"CR,p->CHECKTYPE);
-    if(isAble->KB)
-            pSend += sprintf(pSend,"KB;%f"CR,p->KB);
-    if(isAble->KX)
-            pSend += sprintf(pSend,"KX;%f"CR,p->KX);
-    if(isAble->TRATED)
-            pSend += sprintf(pSend,"TRATED;%f"CR,p->TRATED);
-    if(isAble->TIMETRIGEDGE)
-            pSend += sprintf(pSend,"TIMETRIGEDGE;%d"CR,p->TIMETRIGEDGE);
-    if(isAble->TRANMODETYPE)
-            pSend += sprintf(pSend,"TRANMODETYPE;%d"CR,p->TRANMODETYPE);
-    if(isAble->SYNTYPE)
-            pSend += sprintf(pSend,"SYNTYPE;%d"CR,p->SYNTYPE);
-    if(isAble->TRANSFORMERCH)
-            pSend += sprintf(pSend,"TRANSFORMERCH;%d"CR,p->TRANSFORMERCH);
-    if(isAble->MESUREPROTECT)
-            pSend += sprintf(pSend,"MESUREPROTECT;%d"CR,p->MESUREPROTECT);
-    if(isAble->VOLTAGERANGE_2N)
-            pSend += sprintf(pSend,"2NVOLTAGERANGE;%f"CR,p->VOLTAGERANGE_2N);
-    if(isAble->CURRENTRANGE_2N)
-            pSend += sprintf(pSend,"2NCURRENTRANGE;%f"CR,p->CURRENTRANGE_2N);
-    if(isAble->CURRENTINPUT)
-            pSend += sprintf(pSend,"CURRENTINPUT;%d"CR,p->CURRENTINPUT);
-    if(isAble->IEC61850)
-            pSend += sprintf(pSend,"IEC61850;%d"CR,p->IEC61850);
-    if(isAble->IRIG_B)
-            pSend += sprintf(pSend,"IRIG_B;%d"CR,p->IRIG_B);
-    if(isAble->TIMEDELAY)
-            pSend += sprintf(pSend,"TIMEDELAY;%d"CR,p->TIMEDELAY);
-    if(isAble->COLLORNOSYN)
-            pSend += sprintf(pSend,"COLLORNOSYN;%d"CR,p->COLLORNOSYN);
-    if(isAble->FT3OUT)
-    {
-            pSend += sprintf(pSend,"FT3OUT;%d"CR,p->FT3OUT);
-    }
-
-
-    if(isAble->FT3CALDELAY)
-            pSend += sprintf(pSend,"FT3CALDELAY;%d"CR,p->FT3CALDELAY);
-    if(isAble->COMPOSITEERR)
-            pSend += sprintf(pSend,"COMPOSITEERR;%d"CR,p->COMPOSITEERR);
-    if(isAble->IBSEL)
-            pSend += sprintf(pSend,"IBSEL;%d"CR,p->IBSEL);
-    if(isAble->IXSELSMALL)
-            pSend += sprintf(pSend,"IXSELSMALL;%d"CR,p->IXSELSMALL);
-    if(isAble->TRANSIENT)
-            pSend += sprintf(pSend,"TRANSIENT;%d"CR,p->TRANSIENT);
-    if(isAble->VLANTYPE)
-            pSend += sprintf(pSend,"VLANTYPE;0x%04x"CR,p->VLANTYPE);
-    if(isAble->VLAN)
-            pSend += sprintf(pSend,"VLAN;0x%04x"CR,p->VLAN);
-
-    UINT16 frameSize = pSend - (char*)sendBuf;
-    //qDebug("sendBuf==%s\n",sendBuf);
-    //qDebug("frameSize==%d\n",frameSize);
-    retValue = readOneFrame(frameSize,(char*)"SP",NULL,(char*)"SPACK",500);
-    //qDebug("setSP_part.retValue==%d\n",retValue);
-
-    return retValue;
-}
 
 UINT8 xl618::startPowTest()
 {

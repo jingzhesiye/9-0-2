@@ -53,14 +53,12 @@ void MainWidget::init_serPort()
     ui->serPort_flowCtl_CbBox->setCurrentIndex(0); //Flow control none
 
 
-    serPort_shorCut_list.append(ui->serPort_IEC61850_PsBtn);  //监听按键CLICK
     serPort_shorCut_list.append(ui->serPort_RP_PsBtn);
-    serPort_shorCut_list.append(ui->serPort_VER_PsBtn);
+    serPort_shorCut_list.append(ui->serPort_AV_PsBtn);
     serPort_shorCut_list.append(ui->serPort_RSM_PsBtn);
     serPort_shorCut_list.append(ui->serPort_ME_PsBtn);
-    serPort_shorCut_list.append(ui->serPort_RUP_PsBtn);
-    serPort_shorCut_list.append(ui->serPort_RESETCPU_PsBtn);
-    serPort_shorCut_list.append(ui->serPort_RESETCPU_PsBtn);
+    serPort_shorCut_list.append(ui->serPort_RS_PsBtn);
+    serPort_shorCut_list.append(ui->serPort_RD_PsBtn);
 
     foreach (QPushButton *serPort_shorCut_PsBtn, serPort_shorCut_list) {
         connect(serPort_shorCut_PsBtn, SIGNAL(clicked()), this, SLOT(slot_serPort_shorCut_PsBtn()));
@@ -70,6 +68,28 @@ void MainWidget::init_serPort()
     connect(ui->serPort_Open_PsBtn, SIGNAL(clicked()),  this, SLOT(slot_serPort_open()));
     connect(ui->serPort_Close_PsBtn, SIGNAL(clicked()), this, SLOT(slot_serPort_close()));
     timeThreadTimer.driver_619->isToUI =false;
+
+    SP_chargeType_cbbox = new QComboBox;
+    SP_chargeType_cbbox->addItem(QString::fromUtf8("直流"));
+    SP_chargeType_cbbox->addItem(QString::fromUtf8("交流"));
+    SP_chargeType_cbbox->setCurrentIndex(0);
+
+    SP_loadType_cbbox = new QComboBox;
+    SP_loadType_cbbox->addItem(QString::fromUtf8("电动汽车"));
+    SP_loadType_cbbox->addItem(QString::fromUtf8("负载箱"));
+    SP_loadType_cbbox->setCurrentIndex(0);
+
+    SP_measureType_cbbox = new QComboBox;
+    SP_measureType_cbbox->addItem(QString::fromUtf8("手动"));
+    SP_measureType_cbbox->addItem(QString::fromUtf8("自动"));
+    SP_measureType_cbbox->addItem(QString::fromUtf8("半自动"));
+    SP_measureType_cbbox->setCurrentIndex(0);
+
+
+    ui->serPort_SP_TabWidget->setCellWidget(1,1,SP_chargeType_cbbox);
+    ui->serPort_SP_TabWidget->setCellWidget(1,3,SP_loadType_cbbox);
+  ui->serPort_SP_TabWidget->setCellWidget(4,3,SP_measureType_cbbox);
+
 }
 
 
@@ -180,17 +200,13 @@ void MainWidget::slot_serPort_shorCut_PsBtn()
     QString strTemp ;
     QPushButton *serPort_shorCut_PsBtn = qobject_cast<QPushButton *>(sender());
 
-    if(serPort_shorCut_PsBtn==ui->serPort_IEC61850_PsBtn)
-    {
-        strTemp  = "IEC61850";
-    }
-    else if(serPort_shorCut_PsBtn==ui->serPort_RP_PsBtn)
+    if(serPort_shorCut_PsBtn==ui->serPort_RP_PsBtn)
     {
         strTemp  = "RP";
     }
-    else if(serPort_shorCut_PsBtn==ui->serPort_VER_PsBtn)
+    else if(serPort_shorCut_PsBtn==ui->serPort_AV_PsBtn)
     {
-        strTemp  = "VER";
+        strTemp  = "AV";
     }
     else if(serPort_shorCut_PsBtn==ui->serPort_RSM_PsBtn)
     {
@@ -200,17 +216,13 @@ void MainWidget::slot_serPort_shorCut_PsBtn()
     {
         strTemp  = "ME";
     }
-    else if(serPort_shorCut_PsBtn==ui->serPort_RUP_PsBtn)
+    else if(serPort_shorCut_PsBtn==ui->serPort_RS_PsBtn)
     {
-        strTemp  = "RUP";
+        strTemp  = "RS";
     }
-    else if(serPort_shorCut_PsBtn==ui->serPort_RESETCPU_PsBtn)
+    else if(serPort_shorCut_PsBtn==ui->serPort_RD_PsBtn)
     {
-        strTemp  = "SMVIRTUALLOAD";//SMVIRTUALTEST
-    }
-    else if(serPort_shorCut_PsBtn==ui->serPort_RESETCPU_PsBtn)
-    {
-        strTemp  = "SMVIRTUALLOAD";//SMVIRTUALTEST
+        strTemp  = "RD";
     }
 
     ui->serPort_Send_TxEdit->setText(strTemp);

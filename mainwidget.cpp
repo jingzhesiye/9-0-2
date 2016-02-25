@@ -128,18 +128,8 @@ void MainWidget::on_serPort_write_SP_PsBtn_clicked()
 {
     QString  strTemp;
     QStringList strList;
-    strList<<ui->serPort_METERCONST_LnEdit->text();
-    strList<<ui->serPort_CHECKNUM_LnEdit->text();
-    strList<<ui->serPort_CONST_LnEdit->text();
-    strList<<QString::number(ui->serPort_CHECKTYPE_CbBox->currentIndex());
 
-    if(!timeThreadTimer.setSP_part(strList))
-    {
-       show_MsBox(QString::fromUtf8("基本参数设置失败"),3000);
-       return;
-    }
-
-    strTemp=tr("VR%1;").arg(ui->serPort_VR_CbBox->currentText());//电压量程
+    //strTemp=tr("VR%1;").arg(ui->serPort_VR_CbBox->currentText());//电压量程
 
     if(ERR_RIGHT!=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data()))
     {
@@ -147,7 +137,7 @@ void MainWidget::on_serPort_write_SP_PsBtn_clicked()
        return;
     }
 
-    strTemp=tr("CR%1;").arg(ui->serPort_CR_CbBox->currentText());//电流量程
+    //strTemp=tr("CR%1;").arg(ui->serPort_CR_CbBox->currentText());//电流量程
    // int reInt=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data());
 
   if(ERR_RIGHT!=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data()))
@@ -173,10 +163,10 @@ void MainWidget::on_serPort_read_SP_PsBtn_clicked()
         return;
     }
 
-    ui->serPort_METERCONST_LnEdit->setText(strList.at(0));
-    ui->serPort_CHECKNUM_LnEdit->setText(strList.at(1));
-    ui->serPort_CONST_LnEdit->setText(strList.at(2));
-    ui->serPort_CHECKTYPE_CbBox->setCurrentIndex(strList.at(3).toInt(0));
+//    ui->serPort_METERCONST_LnEdit->setText(strList.at(0));
+//    ui->serPort_CHECKNUM_LnEdit->setText(strList.at(1));
+//    ui->serPort_CONST_LnEdit->setText(strList.at(2));
+//    ui->serPort_CHECKTYPE_CbBox->setCurrentIndex(strList.at(3).toInt(0));
 #endif
 
     strList=timeThreadTimer.getRCR();
@@ -203,7 +193,7 @@ void MainWidget::on_serPort_read_SP_PsBtn_clicked()
     {
       index =3;
     }
-    ui->serPort_CR_CbBox->setCurrentIndex(index);
+    //ui->serPort_CR_CbBox->setCurrentIndex(index);
 
 
     strList=timeThreadTimer.getRVR();
@@ -230,24 +220,11 @@ void MainWidget::on_serPort_read_SP_PsBtn_clicked()
     {
       index =3;
     }
-    ui->serPort_VR_CbBox->setCurrentIndex(index);
+    //ui->serPort_VR_CbBox->setCurrentIndex(index);
    show_MsBox(QString::fromUtf8("读取成功"),3000);
 }
 
 
-//EVT用于通知DSP有新的测试点开始,DSP自动计算脉冲有效的时间.当脉冲有效时,PC下发EV命令,回送电能脉冲状态
-
-void MainWidget::on_serPort_EVT_PsBtn_clicked()
-{
-    QString  strTemp="EVT";//电压量程
-    if(1!=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data()))
-    {
-      show_MsBox(QString::fromUtf8("设置失败"),3000);
-      return;
-    }
-
-    show_MsBox(QString::fromUtf8("设置成功"),3000);
-}
 
 void MainWidget::on_RSMV_zoomOut_PsBtn_clicked()
 {
@@ -267,4 +244,5 @@ void MainWidget::on_RSMV_keyBoard_PsBtn_clicked()
     QProcess *myProcess = new QProcess();
      myProcess->start("./ScreenKeyboard.exe");//ScreenKeyboard
 }
+
 

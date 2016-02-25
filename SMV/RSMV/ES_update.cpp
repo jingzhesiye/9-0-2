@@ -86,7 +86,7 @@ void MainWidget::slt_ENERGY_STD_update(pPULSEPOW pPULSEPOW_Temp)
      // ui->RSMV_energy_error_LnEdit->setText(QString::(pulFloat - stdFloat)/stdFloat * 100);
     //ui->RSMV_energy_error_LnEdit->setText(QString::number((pulFloat - stdFloat)/stdFloat * 100,'d',5));
 }
-
+#if 0
 //将误差记录保存到报表
 void MainWidget::on_RSMV_energy_from_PsBtn_clicked()
 {
@@ -97,4 +97,4 @@ void MainWidget::on_RSMV_energy_from_PsBtn_clicked()
 
 //    ui->RSMV_from_TxEdit->append(strESTD+strPE);
 }
-
+#endif
