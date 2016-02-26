@@ -75,6 +75,7 @@ void MainWidget::init_timeThreadTimer_connect()
 
     connect(&timeThreadTimer, SIGNAL(sig_ME_update(pMETYPE)),    this, SLOT(slt_ME_update(pMETYPE)),Qt::DirectConnection);
     qRegisterMetaType<pMETYPE>("pMETYPE");
+    qRegisterMetaType<QTextCursor>("QTextCursor");
 
     #if 0
 
@@ -87,7 +88,7 @@ void MainWidget::init_timeThreadTimer_connect()
 
 
     qRegisterMetaType<pESTDTYPE>("pESTDTYPE");
-    qRegisterMetaType<QTextCursor>("QTextCursor");
+
     qRegisterMetaType<pPULSEPOW>("pPULSEPOW");
     #endif
 }
@@ -119,110 +120,7 @@ void MainWidget::show_MsBox(QString strMessages,int msec)
     QTimer::singleShot(msec,temp_MsBox,SLOT(hide()));
 }
 
-//METERCONST;0.000000 脉冲常数
-//CHECKNUM;0  校验圈数
-//CONST;0.000000  电表常数
-//CHECKTYPE;0  被检电能表检验类型
 
-void MainWidget::on_serPort_write_SP_PsBtn_clicked()
-{
-    QString  strTemp;
-    QStringList strList;
-
-    //strTemp=tr("VR%1;").arg(ui->serPort_VR_CbBox->currentText());//电压量程
-
-    if(ERR_RIGHT!=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data()))
-    {
-       show_MsBox(QString::fromUtf8("电压量程设置失败"),3000);
-       return;
-    }
-
-    //strTemp=tr("CR%1;").arg(ui->serPort_CR_CbBox->currentText());//电流量程
-   // int reInt=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data());
-
-  if(ERR_RIGHT!=timeThreadTimer.transmitsSimply((UINT8*)strTemp.toLatin1().data()))
-  {
-    show_MsBox(QString::fromUtf8("电流量程设置失败"),3000);
-    return;
-  }
-    show_MsBox(QString::fromUtf8("设置成功"),3000);
-
-}
-
-void MainWidget::on_serPort_read_SP_PsBtn_clicked()
-{
-    QStringList strList;
-    QString     strTemp;
-    int         index =0;
-    strList=timeThreadTimer.getSP();
-
-#if 1
-    if(strList.isEmpty())
-    {
-        show_MsBox(QString::fromUtf8("读取失败"),3000);
-        return;
-    }
-
-//    ui->serPort_METERCONST_LnEdit->setText(strList.at(0));
-//    ui->serPort_CHECKNUM_LnEdit->setText(strList.at(1));
-//    ui->serPort_CONST_LnEdit->setText(strList.at(2));
-//    ui->serPort_CHECKTYPE_CbBox->setCurrentIndex(strList.at(3).toInt(0));
-#endif
-
-    strList=timeThreadTimer.getRCR();
-
-    if(strList.isEmpty())
-    {
-        show_MsBox(QString::fromUtf8("电流量程读取失败"),3000);
-        return;
-    }
-    strTemp = strList.at(0);
-    if(strTemp =="0.2")
-    {
-      index =0;
-    }
-    else if(strTemp =="1")
-    {
-      index =1;
-    }
-    else if(strTemp =="5")
-    {
-      index =2;
-    }
-    else if(strTemp =="10")
-    {
-      index =3;
-    }
-    //ui->serPort_CR_CbBox->setCurrentIndex(index);
-
-
-    strList=timeThreadTimer.getRVR();
-
-    if(strList.isEmpty())
-    {
-        show_MsBox(QString::fromUtf8("电压量程读取失败"),3000);
-        return;
-    }
-    strTemp = strList.at(0);
-    if(strTemp =="57.7")
-    {
-      index =0;
-    }
-    else if(strTemp =="100")
-    {
-      index =1;
-    }
-    else if(strTemp =="220")
-    {
-      index =2;
-    }
-    else if(strTemp =="380")
-    {
-      index =3;
-    }
-    //ui->serPort_VR_CbBox->setCurrentIndex(index);
-   show_MsBox(QString::fromUtf8("读取成功"),3000);
-}
 
 
 

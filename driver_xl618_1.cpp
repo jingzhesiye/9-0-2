@@ -77,7 +77,7 @@ UINT8 xl618::readOneFrame(UINT32 sendToBufSize,char *frameHead,char *errorHead,c
     }while(readTimes<3);
 
     //qDebug()<<"readTimes"<<QString::number(readTimes)<<isSerRecAll;
-    //qDebug("recvBuf==%s\n",recvBuf);
+    qDebug("recvBuf==%s\n",recvBuf);
 //    qDebug("intSerRecReturn==%d\n",intSerRecReturn);
    return intSerRecReturn;
 }
@@ -526,64 +526,25 @@ UINT8 xl618::getRSM(UINT8 *smMode)
 
 UINT8 xl618::setSP(pSPTYPE data)
 {
-
     UINT8 retValue = ERR_UNIVERSAL;
     char *pSend = (char*)sendBuf;
     strcpy(pSend,STR_SP CR);
     pSend += strlen(STR_SP CR);
         if(data)
         {
-#if 0
                 pSPTYPE p = data;
-                pSend += sprintf(pSend,"SAMNUM;%d"CR,p->SAMNUM);
-                pSend += sprintf(pSend,"DADDR;%d,%d,%d,%d,%d,%d"CR,p->DADDR[0],p->DADDR[1],p->DADDR[2],p->DADDR[3],p->DADDR[4],p->DADDR[5]);
-                if(p->PRODUCT == 1)
-                        pSend += sprintf(pSend,"PRODUCT;%s"CR,"XINGNING");
-                else if(p->PRODUCT == 2)
-                        pSend += sprintf(pSend,"PRODUCT;%s"CR,"XUJI");
-                else
-                        pSend += sprintf(pSend,"PRODUCT;%s"CR,"WEISHENG");
-
-                pSend += sprintf(pSend,"ASDUNUM;%d"CR,p->ASDUNUM);
-                pSend += sprintf(pSend,"RATEDDELAY;%d"CR,p->RATEDDELAY);
-                pSend += sprintf(pSend,"ANALOGRATE_V;%f"CR,p->ANALOGRATE_V);
-                pSend += sprintf(pSend,"ANALOGRATE_I;%f"CR,p->ANALOGRATE_I);
+                pSend += sprintf(pSend,"SAMRATE;%f"CR,p->SAMRATE);
+                pSend += sprintf(pSend,"PRODUCT;%s"CR,p->PRODUCT);
+                pSend += sprintf(pSend,"CHARGETYPE;%d"CR,p->CHARGETYPE);
+                pSend += sprintf(pSend,"LOADTYPE;%d"CR,p->LOADTYPE);
                 pSend += sprintf(pSend,"VOLTAGERANGE;%f"CR,p->VOLTAGERANGE);
                 pSend += sprintf(pSend,"CURRENTRANGE;%f"CR,p->CURRENTRANGE);
-                pSend += sprintf(pSend,"NETPORT;%d"CR,p->NETPORT);
-                pSend += sprintf(pSend,"NETTYPE;%d"CR,p->NETTYPE);
                 pSend += sprintf(pSend,"METERCONST;%f"CR,p->METERCONST);
-                pSend += sprintf(pSend,"CHECKNUM;%d"CR,p->CHECKNUM);
-                pSend += sprintf(pSend,"STYPE;%d"CR,p->STYPE);
-                pSend += sprintf(pSend,"SNUM;%d"CR,p->SNUM);
-                pSend += sprintf(pSend,"CONST;%f"CR,p->AMMETER_CONST);
-                pSend += sprintf(pSend,"CHECKTYPE;%d"CR,p->CHECKTYPE);
-                pSend += sprintf(pSend,"KB;%f"CR,p->KB);
-                pSend += sprintf(pSend,"KX;%f"CR,p->KX);
-                pSend += sprintf(pSend,"TRATED;%f"CR,p->TRATED);
-                pSend += sprintf(pSend,"TIMETRIGEDGE;%d"CR,p->TIMETRIGEDGE);
-                pSend += sprintf(pSend,"TRANMODETYPE;%d"CR,p->TRANMODETYPE);
-                pSend += sprintf(pSend,"SYNTYPE;%d"CR,p->SYNTYPE);
-                pSend += sprintf(pSend,"TRANSFORMERCH;%d"CR,p->TRANSFORMERCH);
-                pSend += sprintf(pSend,"MESUREPROTECT;%d"CR,p->MESUREPROTECT);
-                pSend += sprintf(pSend,"2NVOLTAGERANGE;%f"CR,p->VOLTAGERANGE_2N);
-                pSend += sprintf(pSend,"2NCURRENTRANGE;%f"CR,p->CURRENTRANGE_2N);
-                pSend += sprintf(pSend,"CURRENTINPUT;%d"CR,p->CURRENTINPUT);
-                pSend += sprintf(pSend,"IEC61850;%d"CR,p->IEC61850);
-                pSend += sprintf(pSend,"IRIG_B;%d"CR,p->IRIG_B);
-                pSend += sprintf(pSend,"TIMEDELAY;%d"CR,p->TIMEDELAY);
-                pSend += sprintf(pSend,"COLLORNOSYN;%d"CR,p->COLLORNOSYN);
-                pSend += sprintf(pSend,"FT3OUT;%d"CR,p->FT3OUT);
-                pSend += sprintf(pSend,"FT3CALDELAY;%d"CR,p->FT3CALDELAY);
-                pSend += sprintf(pSend,"COMPOSITEERR;%d"CR,p->COMPOSITEERR);
-                pSend += sprintf(pSend,"IBSEL;%d"CR,p->IBSEL);
-                pSend += sprintf(pSend,"IXSELSMALL;%d"CR,p->IXSELSMALL);
-                pSend += sprintf(pSend,"TRANSIENT;%d"CR,p->TRANSIENT);
-                pSend += sprintf(pSend,"VLANTYPE;0x%04x"CR,p->VLANTYPE);
-                pSend += sprintf(pSend,"VLAN;0x%04x"CR,p->VLAN);
-#endif
+                pSend += sprintf(pSend,"CONST1;%f"CR,p->CONST1);
+                pSend += sprintf(pSend,"PRICE;%f"CR,p->PRICE);
+                pSend += sprintf(pSend,"MEASURETYPE;%d"CR,p->MEASURETYPE);
                 UINT16 frameSize = pSend - (char*)sendBuf;
-                retValue = readOneFrame(frameSize,(char*)"SP",NULL,(char*)"SPACK",0);
+                retValue = readOneFrame(frameSize,(char*)"SP",NULL,(char*)"SPACK",500);
         }
 
         return retValue;
@@ -598,90 +559,67 @@ UINT8 xl618::getSP(pSPTYPE data)
     strcpy(pSend,STR_RP CR);
     pSend += strlen(STR_RP CR);
     UINT16 frameSize = pSend - (char*)sendBuf;
-    char product[10];
-    pSPTYPE p = data;
     char *temp;
+    char *temp1;
 
     if((retValue = readOneFrame(frameSize,(char*)"RP",NULL,(char*)"RPACK",500)) == ERR_RIGHT)
     {//atoi把字符串转换成整型数。
-#if 0
+        //qDebug("xxxx--->%s",recvBuf);
+
         temp = strstr((char*)recvBuf,"SAMRATE;");
         if(temp)
-            data->SAMNUM = atoi(&temp[strlen("SAMNUM;")]);
+            data->SAMRATE = atoi(&temp[strlen("SAMRATE;")]);
 
-            temp = strstr((char*)recvBuf,"PRODUCT;");
+        temp = strstr((char*)recvBuf,"PRODUCT;");
         if(temp)
         {
-            data->PRODUCT = sscanf(&temp[strlen("PRODUCT;")],"%10s",product);
-            if(strcmp(product,"XINGNING") == 0)
-                    p->PRODUCT = 1;
-            else if(strcmp(product,"XUJI") == 0)
-                    p->PRODUCT = 2;
-            else
-                    p->PRODUCT = 0;
+            temp1 =strstr((char*)recvBuf,"CHARGETYPE;");
+            memcpy(data->PRODUCT, temp+strlen("PRODUCT;"),temp1-temp-strlen("PRODUCT;")-1);
+
+            //qDebug("temp=%s", &temp[temp1-temp-strlen("PRODUCT;")-1]);
+            //qDebug("11111=%s", data->PRODUCT);
         }
-        temp = strstr((char*)recvBuf,"ASDUNUM;");
+            //sscanf(&temp[strlen("PRODUCT;")-1],"%s",product);
+            //
+
+      #if 1
+        temp = strstr((char*)recvBuf,"CHARGETYPE;");
         if(temp)
-            data->ASDUNUM = atoi(&temp[strlen("ASDUNUM;")]);
-        temp = strstr((char*)recvBuf,"RATEDDELAY;");
+            data->CHARGETYPE = (UINT8)atoi(&temp[strlen("CHARGETYPE;")]);
+
+        temp = strstr((char*)recvBuf,"LOADTYPE;");
         if(temp)
-            data->RATEDDELAY = atoi(&temp[strlen("RATEDDELAY;")]);
-        temp = strstr((char*)recvBuf,"ANALOGRATE_V;");
-        if(temp)
-            data->ANALOGRATE_V = (FLOAT32)atof(&temp[strlen("ANALOGRATE_V;")]);
-        temp = strstr((char*)recvBuf,"ANALOGRATE_I;");
-        if(temp)
-            data->ANALOGRATE_I = (FLOAT32)atof(&temp[strlen("ANALOGRATE_I;")]);
+            data->LOADTYPE = (UINT8)atoi(&temp[strlen("LOADTYPE;")]);
+
         temp = strstr((char*)recvBuf,"VOLTAGERANGE;");
         if(temp)
             data->VOLTAGERANGE = (FLOAT32)atof(&temp[strlen("VOLTAGERANGE;")]);
-        temp = strstr((char*)recvBuf,"CURRENTRANGE;");
 
+        temp = strstr((char*)recvBuf,"CURRENTRANGE;");
         if(temp)
             data->CURRENTRANGE = (FLOAT32)atof(&temp[strlen("CURRENTRANGE;")]);
-        temp = strstr((char*)recvBuf,"NETPORT;");
-        if(temp)
-            data->NETPORT = atoi(&temp[strlen("NETPORT;")]);
-        temp = strstr((char*)recvBuf,"NETTYPE;");
-        if(temp)
-            data->NETTYPE = atoi(&temp[strlen("NETTYPE;")]);
+
         temp = strstr((char*)recvBuf,"METERCONST;");
         if(temp)
             data->METERCONST = (FLOAT32)atof(&temp[strlen("METERCONST;")]);
-        temp = strstr((char*)recvBuf,"CHECKNUM;");
 
-        temp = strstr((char*)recvBuf,"COMPOSITEERR;");
+        temp = strstr(temp+strlen("METERCONST;"),"CONST;");              //METERCONST带有CONST，所以要跳过
+        if(temp)
+            data->CONST1 = (FLOAT32)atof(&temp[strlen("CONST;")]);
 
+        temp = strstr((char*)recvBuf,"PRICE;");
         if(temp)
-            data->COMPOSITEERR = atoi(&temp[strlen("COMPOSITEERR;")]);
+            data->PRICE = (FLOAT32)atof(&temp[strlen("PRICE;")]);
 
-        temp = strstr((char*)recvBuf,"IBSEL;");
+        temp = strstr((char*)recvBuf,"MEASURETYPE;");
         if(temp)
-            data->IBSEL = atoi(&temp[strlen("IBSEL;")]);
-        temp = strstr((char*)recvBuf,"IXSELSMALL;");
-        if(temp)
-            data->IXSELSMALL = atoi(&temp[strlen("IXSELSMALL;")]);
-        temp = strstr((char*)recvBuf,"TRANSIENT;");
-        if(temp)
-            data->TRANSIENT = atoi(&temp[strlen("TRANSIENT;")]);
-        temp = strstr((char*)recvBuf,"VLANTYPE;");
-        if(temp)
-        {
-            //sscanf(&temp[strlen("VLANTYPE;")],"%d",&(data->VLANTYPE));
-            data->VLANTYPE = (UINT16)(atof(&temp[strlen("VLANTYPE;")]) +  0.5);
-        }
-        temp = strstr((char*)recvBuf,"VLAN;");
-        if(temp)
-        {
-            //sscanf(&temp[strlen("VLAN;")],"%d",&(data->VLAN));
-            data->VLAN = (UINT16)(atof(&temp[strlen("VLAN;")]) +  0.5);
-        }
+            data->MEASURETYPE = (UINT8)atoi(&temp[strlen("MEASURETYPE;")]);
+
  #endif
      }
 
         return retValue;
 }
-
 
 UINT8 xl618::startPowTest()
 {

@@ -17,30 +17,27 @@ UINT8 timeThread::transmitsSimply (UINT8 *data)//串口快速发送
 }
 
 
-QStringList timeThread:: getSP()
+bool timeThread::setSP(pSPTYPE pSPTYPE_Temp)
 {
-    QStringList strList;
-
-    pSPTYPE   pSPTYPE_Temp =NULL;
-    pSPTYPE_Temp=(pSPTYPE)calloc(1,sizeof(SPTYPE));
-
-    memset(pSPTYPE_Temp,0,sizeof(ISABLE_SP));
-
-    if(driver_619->getSP(pSPTYPE_Temp) != ERR_RIGHT)
+    if(driver_619->setSP(pSPTYPE_Temp) != ERR_RIGHT)
     {
-        return strList;
+        return false;
     }
 
-//    strList<<QString::number(pSPTYPE_Temp->METERCONST,'d',6);
-//    strList<<QString::number(pSPTYPE_Temp->CHECKNUM);
-//    strList<<QString::number(pSPTYPE_Temp->AMMETER_CONST,'d',6);
-//    strList<<QString::number(pSPTYPE_Temp->CHECKTYPE);
-
-    free(pSPTYPE_Temp);
-    pSPTYPE_Temp=NULL;
-
-    return strList;
+    return true;
 }
+
+
+bool timeThread:: getSP(pSPTYPE pSPTYPE_Temp)
+{
+    if(driver_619->getSP(pSPTYPE_Temp) != ERR_RIGHT)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 //QStringList getRCR();
 //QStringList getRVR();
 

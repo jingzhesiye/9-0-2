@@ -171,6 +171,7 @@ void MainWidget::on_serPort_Send_PsBtn_clicked()
 #if 1
 void  MainWidget::slt_serPort_RecDataToUI(const QByteArray &dataReceived,int intReturn)
 {
+     //ui->serPort_Rec_TxEdit-
     //qDebug()<<"slot_serPort_RecData";
     //timeThreadTimer.driver_619->serRecAllBtArray += dataReceived;
     ui->serPort_Rec_TxEdit->moveCursor(QTextCursor::End,  QTextCursor::MoveAnchor);
@@ -180,6 +181,7 @@ void  MainWidget::slt_serPort_RecDataToUI(const QByteArray &dataReceived,int int
     in.setCodec(codec);
     QString decodedStr = in.readAll();
 
+    //ui->serPort_Rec_TxEdit->clear();
     ui->serPort_Rec_TxEdit->insertPlainText(decodedStr);
 }
 #endif

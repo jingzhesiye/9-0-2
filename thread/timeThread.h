@@ -48,7 +48,8 @@ public:
     bool setSP_part(QStringList);
     UINT8 transmitsSimply (UINT8 *data);//串口快速发送
 
-   QStringList getSP();
+   bool getSP(pSPTYPE);
+   bool setSP(pSPTYPE );
    QStringList getRCR();
    QStringList getRVR();
 public slots:

@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     RD_update.cpp \
     SMV/RSMV/ME_update.cpp \
     SMV/RSMV/ES_update.cpp \
-    RS_charger.cpp
+    RS_charger.cpp \
+    SP.cpp
 
 HEADERS  += \
     mainwidget.h \
