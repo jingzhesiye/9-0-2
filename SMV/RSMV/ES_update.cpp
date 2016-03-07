@@ -10,7 +10,7 @@ void MainWidget:: startES()
     timeThreadTimer.run(ES);
 }
 
-void MainWidget:: startESTD()//标准方差 s值
+void MainWidget:: startESTD()//标准方差s值
 {
     //timeThreadTimer.runTimeCal =  0;
     ESTD_PolygonF.clear();

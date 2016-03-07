@@ -42,6 +42,20 @@ void MainWidget::on_serPort_write_SP_PsBtn_clicked()
 
     show_MsBox(QString::fromUtf8("设置成功"),3000);
 
+    write_ini("SP/SAMRATE",ui->serPort_SP_TabWidget->item(0,1)->text());
+    write_ini("SP/PRODUCT",ui->serPort_SP_TabWidget->item(0,3)->text());
+
+    write_ini("SP/VOLTAGERANGE",ui->serPort_SP_TabWidget->item(2,1)->text());
+    write_ini("SP/CURRENTRANGE",ui->serPort_SP_TabWidget->item(2,3)->text());
+
+    write_ini("SP/METERCONST",ui->serPort_SP_TabWidget->item(3,1)->text());
+    write_ini("SP/CONST",ui->serPort_SP_TabWidget->item(3,3)->text());
+    write_ini("SP/PRICE",ui->serPort_SP_TabWidget->item(4,1)->text());
+
+    write_ini("SP/CHARGETYPE",QString::number(SP_chargeType_cbbox->currentIndex()));
+    write_ini("SP/LOADTYPE",QString::number(SP_loadType_cbbox->currentIndex()));
+    write_ini("SP/MEASURETYPE",QString::number(SP_measureType_cbbox->currentIndex()));
+
 }
 
 void MainWidget::on_serPort_read_SP_PsBtn_clicked()

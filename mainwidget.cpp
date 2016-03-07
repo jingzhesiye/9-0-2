@@ -5,6 +5,7 @@
 #include "QWheelEvent"
 #include <qwt_plot_canvas.h>
 #include "QProcess"
+#include "tabstyle.h"
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
@@ -22,6 +23,17 @@ MainWidget::MainWidget(QWidget *parent) :
     init_ESTD_wave();    //标准偏差波形图
     init_elapseTime();   //运行时间
 
+
+    //QTabBar * tabBar = new QTabBar;
+    //tabBar->setStyle(new TabStyle());
+    //setTabBar(tabBar);
+    //ui->tabWidget->setTabBar(tabBar);
+    //ui->
+    //    ui.
+    //    QTabBar * tabBar = new QTabBar;
+    //    tabBar->setStyle(new TabStyle(orientation));
+    //    setTabBar(tabBar);
+    // t->setStyle(new CustomTabStyle);
 }
 
 MainWidget::~MainWidget()
@@ -124,23 +136,34 @@ void MainWidget::show_MsBox(QString strMessages,int msec)
 
 
 
-void MainWidget::on_RSMV_zoomOut_PsBtn_clicked()
+void MainWidget::on_ES_PE_zoomOut_PsBtn_clicked()
 {
+
     QWheelEvent event(QPoint(150, 80),-120, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent( ui->RSMV_energyError_QwtPlot->canvas(), &event);
+    QApplication::sendEvent( ui->ES_PE_QwtPlot->canvas(), &event);
 
 }
 
-void MainWidget::on_RSMV_zoomIn_PsBtn_clicked()
+void MainWidget::on_ES_PE_zoomIn_PsBtn_clicked()
 {
     QWheelEvent event(QPoint(150, 80),120, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent( ui->RSMV_energyError_QwtPlot->canvas(), &event);
+    QApplication::sendEvent( ui->ES_PE_QwtPlot->canvas(), &event);
 }
 
-void MainWidget::on_RSMV_keyBoard_PsBtn_clicked()
+void MainWidget::on_keyBoard_PsBtn_clicked()
 {
     QProcess *myProcess = new QProcess();
      myProcess->start("./ScreenKeyboard.exe");//ScreenKeyboard
 }
 
 
+
+void MainWidget::on_ES_insertForm_PsBtn_clicked()
+{
+    QString strESTD,strPE;
+
+    strESTD  = QString::fromUtf8("电能误差记录(%): ")+ui->ES_PE_LnEdit->text()+"\n\r";
+    strPE   = QString::fromUtf8("时钟误差(%): ")+ui->ES_TE_LnEdit->text()+"\n\r";
+
+     ui->RSMV_from_TxEdit->append(strESTD+strPE);
+}

@@ -20,7 +20,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_1->click();
+    ui->sideBar_TlBtn_3->click();
 }
 
 
@@ -28,7 +28,7 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
 {
     if(!checked)
     {
-      ui->sideBarRight_Page->setDisabled(false);
+      ui->sideBar_right_Page->setDisabled(false);
       timeThreadTimer.stop();
       elapseTimer->stop();
       return;
@@ -36,11 +36,11 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
 
      //startELAPSETIME();//计算运行时间
 
-    switch(ui->stackedWidget->currentIndex())
+    switch(ui->main_skWidget->currentIndex())
     {
 
         case 0:
-                clean_stackedWidgetIndex1();
+                clean_main_skWidget_1();//清除界面1的数据
                 startRD();
                 startRS();//BMS
                 startES();//电能误差
@@ -59,7 +59,7 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
         default:
         break;
     }
-     ui->sideBarRight_Page->setDisabled(true);
+     ui->sideBar_right_Page->setDisabled(true);
 }
 /**************************************************************
 // 用按钮的current属性来控制被按下按钮的外观.
@@ -81,22 +81,33 @@ void MainWidget::changeButtonStatus() {
 
     if(source==ui->sideBar_TlBtn_1)
     {
-        set_TblWdiget_Header( ui->RSMV_phasor_TblWidget ,false,false);
-        ui->RSMV_phasor_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
-        ui->charger_RS_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
-        ui->stackedWidget->setCurrentIndex(0);
+        set_TblWdiget_Header( ui->BMS_RD_TblWidget ,false,false);
+        //ui->BMS_RD_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+
+        ui->RS_charger_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+        ui->ES_standard_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+
+
+        ui->BMS_RD_TblWidget->setColumnWidth(0,150);
+        ui->BMS_RD_TblWidget->setColumnWidth(1,100);
+        ui->BMS_RD_TblWidget->setColumnWidth(2,140);
+        ui->BMS_RD_TblWidget->setColumnWidth(3,100);
+        ui->BMS_RD_TblWidget->setColumnWidth(4,135);
+        ui->BMS_RD_TblWidget->setColumnWidth(5,100);
+
+        ui->main_skWidget->setCurrentIndex(0);
     }
     if(source==ui->sideBar_TlBtn_2)
     {
         set_TblWdiget_Header( ui->RSMV_Harmonic_TblWidget ,true,true);
-        ui->stackedWidget->setCurrentIndex(1);
+        ui->main_skWidget->setCurrentIndex(1);
     }
     if(source==ui->sideBar_TlBtn_3)
     {
-        ui->stackedWidget->setCurrentIndex(2);
+        ui->main_skWidget->setCurrentIndex(2);
     }
     if(source==ui->sideBar_TlBtn_4)
     {
-        ui->stackedWidget->setCurrentIndex(3);
+        ui->main_skWidget->setCurrentIndex(3);
     }
 }

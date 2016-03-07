@@ -72,7 +72,7 @@ private:
     void startELAPSETIME();
     void startENERGY_PUL();
     void startENERGY_STD();
-    void clean_stackedWidgetIndex1();
+    void clean_main_skWidget_1();
 
     QString getTemplatePath();
     void fillReplaceDocStructList(replaceDocTypeList *list, QString searchStr, QString replaceStr) ;
@@ -113,9 +113,6 @@ private slots:
 
     void on_serPort_write_SP_PsBtn_clicked();
     void on_serPort_read_SP_PsBtn_clicked();
-    void on_RSMV_zoomOut_PsBtn_clicked();
-    void on_RSMV_zoomIn_PsBtn_clicked();
-    void on_RSMV_wave_CkBox_clicked(bool checked);
 
     void on_serPort_portName_CbBox_activated(int index);
     void on_serPort_dataBit_CbBox_activated(int index);
@@ -128,8 +125,13 @@ private slots:
     void on_RSMV_buildFrom_PsBtn_clicked();
 
     void on_RSMV_readFrom_PsBtn_clicked();
-    void on_RSMV_keyBoard_PsBtn_clicked();
+
     void on_RSMV_saveFormMsg_PsBtn_clicked();
+    void on_ES_PE_zoomIn_PsBtn_clicked();
+    void on_ES_PE_zoomOut_PsBtn_clicked();
+    void on_keyBoard_PsBtn_clicked();
+
+    void on_ES_insertForm_PsBtn_clicked();
 
 private:
     QComboBox       *SP_chargeType_cbbox;

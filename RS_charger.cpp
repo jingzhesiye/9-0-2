@@ -4,13 +4,13 @@
 void MainWidget:: slt_RS_update(pRSTYPE pRSTYPE_Temp)
 {
    // qDebug()<<"11111111111slt_RS_update";
-    ui->charger_RS_TblWidget->item(0,1)->setText(QString::number(pRSTYPE_Temp->VOLTAGEOUT,'d',1));
-    ui->charger_RS_TblWidget->item(1,1)->setText(QString::number(pRSTYPE_Temp->CURRENCEOUT,'d',1));//实时电流输出.A
+    ui->RS_charger_TblWidget->item(0,1)->setText(QString::number(pRSTYPE_Temp->VOLTAGEOUT*0.1,'d',1));
+    ui->RS_charger_TblWidget->item(1,1)->setText(QString::number(pRSTYPE_Temp->CURRENCEOUT*0.1,'d',1));//实时电流输出.A
 
-    ui->RSMV_phasor_TblWidget->item(2,1)->setText(QString::number(pRSTYPE_Temp->VOLTAGENEED,'d',1));//充电电压需求.v
-    ui->RSMV_phasor_TblWidget->item(3,1)->setText(QString::number(pRSTYPE_Temp->CURRENCENEED,'d',1));//充电电流需求.A
+    ui->BMS_RD_TblWidget->item(2,1)->setText(QString::number(pRSTYPE_Temp->VOLTAGENEED*0.1,'d',1));//充电电压需求.v
+    ui->BMS_RD_TblWidget->item(3,1)->setText(QString::number(pRSTYPE_Temp->CURRENCENEED*0.1,'d',1));//充电电流需求.A
 
-    ui->RSMV_phasor_TblWidget->item(2,3)->setText(QString::number(pRSTYPE_Temp->CHARGETIME,'d',1));//累计充电时间
+    ui->BMS_RD_TblWidget->item(2,3)->setText(QString::number(pRSTYPE_Temp->CHARGETIME,'d',1));//累计充电时间
 
 
     if(pRSTYPE_Temp->STATE==0)

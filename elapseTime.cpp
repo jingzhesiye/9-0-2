@@ -25,6 +25,6 @@ void MainWidget:: slt_elapseTimer_timeout()
 {
     QTime timeTmp;
     QString elapsedTime = timeTmp.addMSecs(elapseTime.elapsed()).toString("hh:mm:ss");
-    ui->RSMV_runTime_LnEdit->setText(elapsedTime);
+    ui->runTime_LnEdit->setText(elapsedTime);
     elapseTimeCal++;
 }

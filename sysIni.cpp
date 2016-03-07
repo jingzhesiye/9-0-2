@@ -55,56 +55,92 @@ void MainWidget::read_ini()
        strTemp=QString::fromUtf8("0");
        write_ini("serPort/flowCtl",strTemp);
     }
-//    ui->serPort_flowCtl_CbBox->setCurrentIndex(strTemp.toInt(0,10));
+    ui->serPort_flowCtl_CbBox->setCurrentIndex(strTemp.toInt(0,10));
 
-    strTemp =configIniRead->value("SP/METERCONST").toString();
+    strTemp =configIniRead->value("SP/SAMRATE").toString();
     if(strTemp.isEmpty())
     {
-       strTemp=QString::fromUtf8("20000");
+       strTemp=QString::fromUtf8("2");
+       write_ini("SP/SAMRATE",strTemp);
+    }
+    ui->serPort_SP_TabWidget->item(0,1)->setText(strTemp);
+
+
+    strTemp =configIniRead->value("SP/PRODUCT").toString();
+    if(strTemp.isEmpty())
+    {
+       strTemp=QString::fromUtf8("AOTEXUN");
+       write_ini("SP/PRODUCT",strTemp);
+    }
+    ui->serPort_SP_TabWidget->item(0,3)->setText(strTemp);
+
+
+    strTemp =configIniRead->value("SP/VOLTAGERANGE").toString();
+    if(strTemp.isEmpty())
+    {
+       strTemp=QString::fromUtf8("750.0");
+       write_ini("SP/VOLTAGERANGE",strTemp);
+    }
+     ui->serPort_SP_TabWidget->item(2,1)->setText(strTemp);
+
+    strTemp =configIniRead->value("SP/CURRENTRANGE").toString();
+    if(strTemp.isEmpty())
+    {
+       strTemp=QString::fromUtf8("500.0");
+       write_ini("SP/CURRENTRANGE",strTemp);
+    }
+
+    ui->serPort_SP_TabWidget->item(2,3)->setText(strTemp);
+
+    strTemp =configIniRead->value("SP/2000.0").toString();
+    if(strTemp.isEmpty())
+    {
+       strTemp=QString::fromUtf8("1");
        write_ini("SP/METERCONST",strTemp);
     }
-    //ui->serPort_METERCONST_LnEdit->setText(strTemp);
+    ui->serPort_SP_TabWidget->item(3,1)->setText(strTemp);
 
-
-    strTemp =configIniRead->value("SP/CONST").toString();
+    strTemp =configIniRead->value("SP/CONST1").toString();
     if(strTemp.isEmpty())
     {
-       strTemp=QString::fromUtf8("20000");
-       write_ini("SP/CONST",strTemp);
+       strTemp=QString::fromUtf8("3600.0");
+       write_ini("SP/CONST1",strTemp);
     }
-    //ui->serPort_CONST_LnEdit->setText(strTemp);
+    ui->serPort_SP_TabWidget->item(3,3)->setText(strTemp);
 
-    strTemp =configIniRead->value("SP/CHECKNUM").toString();
+    strTemp =configIniRead->value("SP/PRICE").toString();
     if(strTemp.isEmpty())
     {
-       strTemp=QString::fromUtf8("5");
-       write_ini("SP/CHECKNUM",strTemp);
+       strTemp=QString::fromUtf8("1.0");
+       write_ini("SP/PRICE",strTemp);
     }
-    //ui->serPort_CHECKNUM_LnEdit->setText(strTemp);
+    ui->serPort_SP_TabWidget->item(4,1)->setText(strTemp);
 
-    strTemp =configIniRead->value("SP/CHECKTYPE").toString();
-    if(strTemp.isEmpty())
-    {
-       strTemp=QString::fromUtf8("0");
-       write_ini("SP/CHECKTYPE",strTemp);
-    }
-   // ui->serPort_CHECKTYPE_CbBox->setCurrentIndex(strTemp.toInt(0,10));
-
-    strTemp =configIniRead->value("RANGE/VR").toString();
+    strTemp =configIniRead->value("SP/CHARGETYPE").toString();
     if(strTemp.isEmpty())
     {
        strTemp=QString::fromUtf8("1");
-       write_ini("RANGE/VR",strTemp);
+       write_ini("SP/CHARGETYPE",strTemp);
     }
-    //ui->serPort_VR_CbBox->setCurrentIndex(strTemp.toInt(0,10));
+    SP_chargeType_cbbox->setCurrentIndex(strTemp.toInt(0,10));
 
-    strTemp =configIniRead->value("RANGE/CR").toString();
+    strTemp =configIniRead->value("SP/LOADTYPE").toString();
     if(strTemp.isEmpty())
     {
        strTemp=QString::fromUtf8("1");
-       write_ini("RANGE/CR",strTemp);
+       write_ini("SP/LOADTYPE",strTemp);
     }
-    //ui->serPort_CR_CbBox->setCurrentIndex(strTemp.toInt(0,10));
+    SP_loadType_cbbox->setCurrentIndex(strTemp.toInt(0,10));
+
+
+    strTemp =configIniRead->value("SP/MEASURETYPE").toString();
+    if(strTemp.isEmpty())
+    {
+       strTemp=QString::fromUtf8("1");
+       write_ini("SP/MEASURETYPE",strTemp);
+    }
+    SP_measureType_cbbox->setCurrentIndex(strTemp.toInt(0,10));
+
 }
 
 

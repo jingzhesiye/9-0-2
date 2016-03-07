@@ -23,14 +23,26 @@ void MainWidget::slt_ME_update(pMETYPE  pMETYPE_Temp)
 }
 
 //清空数据
-void MainWidget::clean_stackedWidgetIndex1()
+void MainWidget::clean_main_skWidget_1()
 {
       for(int i =0;i<3;i++)
       {
-          ui->RSMV_phasor_TblWidget->item(i,1)->setText("0");
-          ui->RSMV_phasor_TblWidget->item(i,3)->setText("0");
-          ui->RSMV_phasor_TblWidget->item(i,5)->setText("0");
+          ui->BMS_RD_TblWidget->item(i,1)->setText("0");
+          ui->BMS_RD_TblWidget->item(i,3)->setText("0");
+          ui->BMS_RD_TblWidget->item(i,5)->setText("0");
       }
+
+      for(int i =0;i<1;i++)
+      {
+          ui->RS_charger_TblWidget->item(i,1)->setText("0");
+          ui->RS_charger_TblWidget->item(i,3)->setText("0");
+          ui->RS_charger_TblWidget->item(i,5)->setText("0");
+      }
+
+        ui->ES_standard_TblWidget->item(0,1)->setText("0");
+        ui->ES_standard_TblWidget->item(0,3)->setText("0");
+        ui->ES_standard_TblWidget->item(0,3)->setText("0");
+
 
     ui->ES_PE_LnEdit->setText("0");
     ui->ES_TE_LnEdit->setText("0");
@@ -38,6 +50,6 @@ void MainWidget::clean_stackedWidgetIndex1()
 
     ESTD_PolygonF.clear();
     RSMV.wave_ESTD_curve->setSamples( ESTD_PolygonF );
-    ui->RSMV_energyError_QwtPlot->replot();
+    ui->ES_PE_QwtPlot->replot();
 
 }

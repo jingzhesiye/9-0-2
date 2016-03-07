@@ -37,9 +37,9 @@
         <file>pic/Btn_close.png</file>
         <file>pic/Btn_zoomIn.png</file>
         <file>pic/Btn_zoomOut.png</file>
-        <file>pic/measuredValue.png</file>
         <file>pic/from.png</file>
-        <file>pic/harmonic.png</file>
         <file>pic/settting.png</file>
+        <file>pic/ripple.png</file>
+        <file>pic/measuredValue.png</file>
     </qresource>
 </RCC>

@@ -118,20 +118,6 @@ void MainWidget:: startWAVE()
     timeThreadTimer.run(RSMV_WAVE);
 }
 
-void MainWidget::on_RSMV_wave_CkBox_clicked(bool checked)
-{
-    if(!checked)
-    {
-        timeThreadTimer.RSMV_wave_setArg(7,256);                 //电压通道7 =111 =123
-        ui->RSMV_wave_CkBox->setText(QString::fromUtf8("电压波形"));
-    }
-    else
-    {
-       timeThreadTimer.RSMV_wave_setArg(56,256);                 //电流   56 =111 000 =456
-       ui->RSMV_wave_CkBox->setText(QString::fromUtf8("电流波形"));
-    }
-
-}
 
 void MainWidget::slt_RSMV_wave_update( )
 {

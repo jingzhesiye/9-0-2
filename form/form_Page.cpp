@@ -82,11 +82,13 @@ void MainWidget::on_RSMV_readFrom_PsBtn_clicked()
 void MainWidget::on_RSMV_buildFrom_PsBtn_clicked()
 {
     QString strPath=getTemplatePath();
+    QFile   file(strPath);
 
-    if(strPath.isEmpty())  //判断路径是否存在
+   //qDebug()<<strPath;
+
+    if (!file.exists())
     {
         show_MsBox(QString::fromUtf8("找不到报表模板路径"),3000);
-        return;
     }
 
 #if 1

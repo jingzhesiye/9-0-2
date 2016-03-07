@@ -9,7 +9,8 @@ QString MainWidget::getTemplatePath()
 {
     QDir    dirTemp;
     QString strPath=dirTemp.currentPath();//当前路径
-    strPath.append("/templet/AC_template_verifiedRecord.doc");
+    //qDebug()<<"asd"<<strPath;
+    strPath.append("/templet/DC_template_verifiedRecord.doc");
     return strPath;
 }
 
