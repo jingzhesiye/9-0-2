@@ -38,21 +38,6 @@ void MainWidget::slt_ES_update(pESTYPE pESTYPE_Temp)//电能测试误差状态
 //B2;1.0E-3<CR>	备用
 //ESTDACK
 
-void MainWidget::slt_ESTD_update(pESTDTYPE pESTDTYPE_Temp) //电能表标准方差值 S值
-{
-//   qDebug()<<"slt_ESTD_update"<<QString::number(pESTDTYPE_Temp->valid,'d',5);
-//   if(pESTDTYPE_Temp->valid==1)
-//   {
-//      ui->RSMV_energy_ESTD_LnEdit->setText(QString::number(pESTDTYPE_Temp->s,'d',5));
-//   }
-//   else
-//   {
-//       ui->RSMV_energy_ESTD_LnEdit->setText(QString::fromUtf8("无效"));
-//   }
-
-
-}
-
 
 void MainWidget:: startENERGY_PUL()//电能脉冲
 {
@@ -95,6 +80,6 @@ void MainWidget::on_RSMV_energy_from_PsBtn_clicked()
 //   strESTD  = QString::fromUtf8("电能误差记录(%): ")+ui->RSMV_energy_ESTD_LnEdit->text()+"\n\r";
 //   strPE   = QString::fromUtf8("标准偏差记录(%): ")+ui->RSMV_energy_ES_PE_LnEdit->text()+"\n\r";
 
-//    ui->RSMV_from_TxEdit->append(strESTD+strPE);
+//    ui->from_error_TxEdit->append(strESTD+strPE);
 }
 #endif

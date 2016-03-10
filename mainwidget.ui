@@ -45,8 +45,287 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="1" column="0" rowspan="3">
-    <widget class="QStackedWidget" name="main_skWidget">
+   <item row="0" column="0" colspan="2">
+    <widget class="QFrame" name="sideBar_up_Frame">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>800</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Narrow</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#sideBar_up_Frame{
+ border: 1px solid rgb(18, 220, 200);
+    background: qlineargradient(spread:reflect,
+        x1:0, y1:0, x2:1, y2:0,
+        stop:0 rgba(7, 85, 75, 255),
+        stop:1 rgba(18, 220, 200, 255));
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_14">
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="3">
+       <widget class="QLabel" name="runTime_Label">
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>运行时间:  </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="runTime_LnEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>00:00:00</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <widget class="QLabel" name="BMS_cntState_tag_Label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::NoContextMenu</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>链接状态: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QLabel" name="BMS_cntState_Label">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>断开</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <spacer name="sideBar_up_HlSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>95</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="12">
+       <spacer name="sideBar_up_HlSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>26</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="8">
+       <spacer name="sideBar_up_HlSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="13">
+       <widget class="QLabel" name="battery_Label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>29</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>25</width>
+          <height>33</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/pic/battery_1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="BMS_chargeMode_tag_Label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>   充电模式: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="BMS_chargeMode_Label">
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string>恒流</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <spacer name="sideBar_up_HlSpacer_1">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="keyBoard_PsBtn">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>键盘</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2">
+    <widget class="QStackedWidget" name="main_SkWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
        <horstretch>0</horstretch>
@@ -69,9 +348,9 @@
       <number>0</number>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="RSMV_wave_Page">
+     <widget class="QWidget" name="test_power_Page">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -656,13 +935,13 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>210</height>
+           <height>205</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>210</height>
+           <height>205</height>
           </size>
          </property>
          <property name="font">
@@ -692,13 +971,13 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>75</height>
+              <height>73</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>165</width>
-              <height>221</height>
+              <height>216</height>
              </size>
             </property>
             <property name="font">
@@ -898,7 +1177,7 @@ QTabBar::tab:!selected
              <enum>QTabWidget::Rounded</enum>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <property name="iconSize">
              <size>
@@ -1063,7 +1342,7 @@ background-color: rgb(0, 0, 0);</string>
                <number>0</number>
               </property>
               <item row="0" column="0">
-               <widget class="QwtPlot" name="RSMV_wave_vol_QwtPlot">
+               <widget class="QwtPlot" name="ES_wave_QwtPlot">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -1202,7 +1481,7 @@ background-color: rgb(0, 0, 0);</string>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>125</height>
+           <height>127</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1230,7 +1509,7 @@ background-color: rgb(0, 0, 0);</string>
           <bool>false</bool>
          </attribute>
          <attribute name="verticalHeaderDefaultSectionSize">
-          <number>30</number>
+          <number>31</number>
          </attribute>
          <row>
           <property name="text">
@@ -1461,7 +1740,7 @@ background-color: rgb(0, 0, 0);</string>
          </item>
          <item row="2" column="3">
           <property name="text">
-           <string>00:00:00</string>
+           <string>0</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -1483,7 +1762,7 @@ background-color: rgb(0, 0, 0);</string>
          </item>
          <item row="2" column="5">
           <property name="text">
-           <string>00:00:00</string>
+           <string>0</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -1529,7 +1808,7 @@ background-color: rgb(0, 0, 0);</string>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="RSMV_harmonic_Page">
+     <widget class="QWidget" name="test_ripple_Page">
       <layout class="QGridLayout" name="gridLayout_11">
        <property name="margin">
         <number>0</number>
@@ -1537,13 +1816,24 @@ background-color: rgb(0, 0, 0);</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <item row="0" column="0" colspan="4">
-        <widget class="QwtPlot" name="RSMV_Harmonic_QwtPlot">
+       <item row="0" column="0">
+        <widget class="QwtPlot" name="ripple_wave_QwtPlot">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>232</height>
+           <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Kalinga</family>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(0, 170, 255);
@@ -1551,8 +1841,8 @@ background-color: rgb(0, 0, 0);</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="4">
-        <widget class="QFrame" name="RSMV_harmonic_Frame">
+       <item row="1" column="0">
+        <widget class="QFrame" name="RRF_ripple_Frame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -1562,17 +1852,17 @@ background-color: rgb(0, 0, 0);</string>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>45</height>
+           <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>48</height>
+           <height>40</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#RSMV_harmonic_Frame{
+          <string notr="true">#RRF_ripple_Frame{
  border: 1px solid rgb(18, 220, 200);
     background: qlineargradient(spread:reflect,
         x1:0, y1:0, x2:1, y2:0,
@@ -1594,7 +1884,7 @@ background-color: rgb(0, 0, 0);</string>
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <widget class="QLabel" name="RSMV_Harmonic_Phase_Label">
+           <widget class="QLabel" name="RRF_ripple_chl_Label">
             <property name="font">
              <font>
               <family>Kalinga</family>
@@ -1610,7 +1900,7 @@ background-color: rgb(0, 0, 0);</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="RSMV_Harmonic_Phase_CbBox">
+           <widget class="QComboBox" name="RRF_ripple_chl_CbBox">
             <property name="minimumSize">
              <size>
               <width>60</width>
@@ -1635,208 +1925,18 @@ QScrollBar:vertical
             </property>
             <item>
              <property name="text">
-              <string>Ua</string>
+              <string>电压</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Ub</string>
+              <string>电流</string>
              </property>
             </item>
-            <item>
-             <property name="text">
-              <string>Uc</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ia</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ib</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ic</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="RSMV_Harmonic_Times_Label">
-            <property name="font">
-             <font>
-              <family>Kalinga</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>谐波次数:  </string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="QComboBox" name="RSMV_Harmonic_Times_CbBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Kalinga</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">
-QScrollBar:vertical
-{
-	width:26px;
-	background:rgba(0,0,0,10%);
-    border-radius:4px;
-}
-</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>21</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>32</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>40</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="7">
-           <widget class="QLabel" name="RSMV_Harmonic_Range_Label">
-            <property name="font">
-             <font>
-              <family>Kalinga</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>阀值(%):  </string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="8">
-           <widget class="QSlider" name="RSMV_Harmonic_Range_HSlider">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Kalinga</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="maximum">
-             <number>100</number>
-            </property>
-            <property name="singleStep">
-             <number>0</number>
-            </property>
-            <property name="value">
-             <number>1</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>30</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="6">
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>180</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="10">
-           <widget class="QLineEdit" name="RSMV_Harmonic_LnEdit_Range">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Kalinga</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>0.1</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <spacer name="horizontalSpacer_11">
+           <spacer name="RRF_ripple_HlSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1848,24 +1948,11 @@ QScrollBar:vertical
             </property>
            </spacer>
           </item>
-          <item row="0" column="9">
-           <spacer name="horizontalSpacer_12">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>30</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QTableWidget" name="RSMV_harmonic_rms_TblWidget">
+       <item row="2" column="0">
+        <widget class="QTableWidget" name="RRF_ripple_TblWidget">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -1879,9 +1966,7 @@ QScrollBar:vertical
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">gridline-color: rgb(18, 220, 200);
-background-color: rgb(0, 0, 0);
-</string>
+          <string notr="true"/>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -1893,7 +1978,7 @@ background-color: rgb(0, 0, 0);
           <bool>false</bool>
          </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>112</number>
+          <number>120</number>
          </attribute>
          <attribute name="horizontalHeaderHighlightSections">
           <bool>true</bool>
@@ -1902,28 +1987,23 @@ background-color: rgb(0, 0, 0);
           <bool>false</bool>
          </attribute>
          <attribute name="verticalHeaderDefaultSectionSize">
-          <number>57</number>
+          <number>43</number>
          </attribute>
          <row>
           <property name="text">
            <string>1</string>
           </property>
          </row>
-         <row>
+         <column>
           <property name="text">
-           <string>2</string>
+           <string>项目</string>
           </property>
-         </row>
-         <row>
+         </column>
+         <column>
           <property name="text">
-           <string>3</string>
+           <string>值</string>
           </property>
-         </row>
-         <row>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </row>
+         </column>
          <column>
           <property name="text">
            <string>项目</string>
@@ -1946,7 +2026,7 @@ background-color: rgb(0, 0, 0);
          </column>
          <item row="0" column="0">
           <property name="text">
-           <string>Ua(V)</string>
+           <string>纹波系数.%</string>
           </property>
           <property name="font">
            <font>
@@ -1960,8 +2040,8 @@ background-color: rgb(0, 0, 0);
           <property name="foreground">
            <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -1986,8 +2066,8 @@ background-color: rgb(0, 0, 0);
           <property name="foreground">
            <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -1998,7 +2078,7 @@ background-color: rgb(0, 0, 0);
          </item>
          <item row="0" column="2">
           <property name="text">
-           <string>Ia(A)</string>
+           <string>纹波大小.V</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -2006,8 +2086,8 @@ background-color: rgb(0, 0, 0);
           <property name="foreground">
            <brush brushstyle="NoBrush">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -2023,302 +2103,61 @@ background-color: rgb(0, 0, 0);
           <property name="foreground">
            <brush brushstyle="NoBrush">
             <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </property>
+         </item>
+         <item row="0" column="4">
+          <property name="text">
+           <string>基波大小.V</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+          </property>
+          <property name="foreground">
+           <brush brushstyle="NoBrush">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </property>
+         </item>
+         <item row="0" column="5">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+          </property>
+          <property name="background">
+           <brush brushstyle="NoBrush">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
-             <blue>0</blue>
+             <blue>255</blue>
             </color>
            </brush>
-          </property>
-         </item>
-         <item row="1" column="0">
-          <property name="text">
-           <string>Ub(V)</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
           </property>
           <property name="foreground">
            <brush brushstyle="NoBrush">
             <color alpha="255">
              <red>0</red>
-             <green>255</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="1" column="1">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>255</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="1" column="2">
-          <property name="text">
-           <string>Ib(A)</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>255</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-         </item>
-         <item row="1" column="3">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>255</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-         </item>
-         <item row="2" column="0">
-          <property name="text">
-           <string>Uc(V)</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>250</red>
              <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
           </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
          </item>
-         <item row="2" column="1">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>250</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="2" column="2">
-          <property name="text">
-           <string>Ic(A)</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>250</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="2" column="3">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>250</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="3" column="0">
-          <property name="text">
-           <string>频率</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
-         </item>
-         <item row="3" column="1">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </property>
-         </item>
-         <item row="3" column="2">
-          <property name="text">
-           <string>谐波总含有率</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </property>
-         </item>
-         <item row="3" column="3">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
-          <property name="foreground">
-           <brush brushstyle="NoBrush">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QTableWidget" name="RSMV_Harmonic_TblWidget">
-         <property name="styleSheet">
-          <string notr="true">color: rgb(0, 170, 255);
-gridline-color: rgb(18, 220, 200);
-background-color: rgb(0, 0, 0);
-</string>
-         </property>
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOn</enum>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::NoSelection</enum>
-         </property>
-         <attribute name="horizontalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>117</number>
-         </attribute>
-         <attribute name="horizontalHeaderHighlightSections">
-          <bool>true</bool>
-         </attribute>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>30</number>
-         </attribute>
-         <row>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </row>
-         <row>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </row>
-         <row>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </row>
-         <column>
-          <property name="text">
-           <string>次数</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>含有率(%)</string>
-          </property>
-         </column>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="RSMV_from_Page">
+     <widget class="QWidget" name="from_Page">
       <layout class="QGridLayout" name="gridLayout_26">
        <property name="margin">
         <number>0</number>
@@ -2327,7 +2166,7 @@ background-color: rgb(0, 0, 0);
         <number>0</number>
        </property>
        <item row="2" column="0">
-        <widget class="QFrame" name="RSMV_wave_Frame_2">
+        <widget class="QFrame" name="from_information_Frame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -2353,7 +2192,7 @@ background-color: rgb(0, 0, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#RSMV_wave_Frame_2
+          <string notr="true">#from_information_Frame
 {
  border: 1px solid rgb(18, 220, 200);
     background: qlineargradient(spread:reflect,
@@ -2380,7 +2219,7 @@ background-color: rgb(0, 0, 0);
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="from_information_Label">
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -2390,7 +2229,7 @@ background-color: rgb(0, 0, 0);
            </widget>
           </item>
           <item row="0" column="1">
-           <spacer name="horizontalSpacer_14">
+           <spacer name="from_information_HlSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2406,7 +2245,7 @@ background-color: rgb(0, 0, 0);
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="from_ctl_GpBox">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -2515,7 +2354,7 @@ background-color: rgb(0, 0, 0);
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QFrame" name="RSMV_wave_Frame_3">
+        <widget class="QFrame" name="from_error_Frame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -2541,7 +2380,7 @@ background-color: rgb(0, 0, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#RSMV_wave_Frame_3
+          <string notr="true">#from_error_Frame
 {
  border: 1px solid rgb(18, 220, 200);
     background: qlineargradient(spread:reflect,
@@ -2568,7 +2407,7 @@ background-color: rgb(0, 0, 0);
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="from_error_Label">
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -2578,7 +2417,7 @@ background-color: rgb(0, 0, 0);
            </widget>
           </item>
           <item row="0" column="1">
-           <spacer name="horizontalSpacer_13">
+           <spacer name="from_error_HlSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2594,18 +2433,18 @@ background-color: rgb(0, 0, 0);
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QTableWidget" name="from_TbWidget">
+        <widget class="QTableWidget" name="from_information_TbWidget">
          <property name="verticalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOn</enum>
          </property>
          <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOn</enum>
+          <enum>Qt::ScrollBarAsNeeded</enum>
          </property>
          <attribute name="horizontalHeaderVisible">
           <bool>false</bool>
          </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>177</number>
+          <number>176</number>
          </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
@@ -2931,7 +2770,7 @@ background-color: rgb(0, 0, 0);
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QTextEdit" name="RSMV_from_TxEdit">
+        <widget class="QTextEdit" name="from_error_TxEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -3767,348 +3606,6 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="start_PsBtn">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>80</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>80</width>
-       <height>80</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Narrow</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-	border-image: url(:/pic/Btn_ON.png);
-	color:black;
-}
-
-QPushButton:pressed
-{
-	border-image: url(:/pic/Btn_OFF.png);
-	color:beige;
-}
-
-QPushButton:checked
-{
-	border-image: url(:/pic/Btn_OFF.png);
-	color:black;
-}
-
-QPushButton:pressed:checked
-{
-	border-image: url(:/pic/Btn_ON.png);
-	color:beige;
-}
-
-QPushButton:flat {
-     border: none;
-}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QFrame" name="sideBar_up_Frame">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>800</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>800</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial Narrow</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#sideBar_up_Frame{
- border: 1px solid rgb(18, 220, 200);
-    background: qlineargradient(spread:reflect,
-        x1:0, y1:0, x2:1, y2:0,
-        stop:0 rgba(7, 85, 75, 255),
-        stop:1 rgba(18, 220, 200, 255));
-}
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_14">
-      <property name="margin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item row="0" column="3">
-       <widget class="QLabel" name="runTime_Label">
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string>运行时间:  </string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLineEdit" name="runTime_LnEdit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>00:00:00</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QLabel" name="BMS_cntState_tag_Label">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string>链接状态: </string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="10">
-       <widget class="QLabel" name="BMS_cntState_Label">
-        <property name="minimumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 255, 0);</string>
-        </property>
-        <property name="text">
-         <string>断开</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <spacer name="sideBar_up_HlSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>95</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="12">
-       <spacer name="sideBar_up_HlSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>26</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="8">
-       <spacer name="sideBar_up_HlSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="13">
-       <widget class="QLabel" name="battery_Label">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>45</width>
-          <height>29</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/pic/battery_1.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="BMS_chargeMode_tag_Label">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string>   充电模式: </string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QLabel" name="BMS_chargeMode_Label">
-        <property name="font">
-         <font>
-          <family>Arial Narrow</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 255, 127);</string>
-        </property>
-        <property name="text">
-         <string>恒流</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <spacer name="sideBar_up_HlSpacer_1">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="keyBoard_PsBtn">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>键盘</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="1" column="1">
     <widget class="QWidget" name="sideBar_right_Page" native="true">
      <property name="sizePolicy">
@@ -4337,6 +3834,69 @@ QPushButton:flat {
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="start_PsBtn">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>80</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Narrow</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+	border-image: url(:/pic/Btn_ON.png);
+	color:black;
+}
+
+QPushButton:pressed
+{
+	border-image: url(:/pic/Btn_OFF.png);
+	color:beige;
+}
+
+QPushButton:checked
+{
+	border-image: url(:/pic/Btn_OFF.png);
+	color:black;
+}
+
+QPushButton:pressed:checked
+{
+	border-image: url(:/pic/Btn_ON.png);
+	color:beige;
+}
+
+QPushButton:flat {
+     border: none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>

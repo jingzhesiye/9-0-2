@@ -13,7 +13,7 @@
 
 void MainWidget::on_RSMV_clearFrom_PsBtn_clicked()
 {
-    ui->RSMV_from_TxEdit->clear();
+    ui->from_error_TxEdit->clear();
 }
 
 void MainWidget::on_RSMV_saveFormMsg_PsBtn_clicked()
@@ -47,7 +47,7 @@ void MainWidget::on_RSMV_saveFormMsg_PsBtn_clicked()
         }
 
         QTextStream streamTemp(&fileTemp);
-        streamTemp<<ui->RSMV_from_TxEdit->toPlainText();
+        streamTemp<<ui->from_error_TxEdit->toPlainText();
         fileTemp.close();
         show_MsBox(QString::fromUtf8("保存成功"),3000);
 #endif
@@ -69,7 +69,7 @@ void MainWidget::on_RSMV_readFrom_PsBtn_clicked()
     if (file.open(QIODevice::ReadOnly| QIODevice::Text))
     {
        QTextStream floStream(&file);
-       ui->RSMV_from_TxEdit->setText(floStream.readAll());
+       ui->from_error_TxEdit->setText(floStream.readAll());
        file.close();
     }
     else
@@ -120,7 +120,7 @@ void MainWidget::on_RSMV_buildFrom_PsBtn_clicked()
     list2.append(QVariant());//15
 
     replaceDocTypeList replaceDocTypeList_Data;                            //装载搜索内容和替换内容的列表
-    fillReplaceDocTypeList(ui->from_TbWidget,&replaceDocTypeList_Data);
+    fillReplaceDocTypeList(ui->from_information_TbWidget,&replaceDocTypeList_Data);
 
     for (int i = 0; i < replaceDocTypeList_Data.count(); i++)
     {

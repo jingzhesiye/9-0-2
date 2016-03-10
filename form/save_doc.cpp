@@ -24,24 +24,24 @@ void MainWidget::fillReplaceDocStructList(replaceDocTypeList *list, QString sear
 }
 
 //替换数据列表的内容
-void MainWidget::fillReplaceDocTypeList( QTableWidget *from_TbWidget, replaceDocTypeList *replaceDocTypeList_Data)
+void MainWidget::fillReplaceDocTypeList( QTableWidget *from_information_TbWidget, replaceDocTypeList *replaceDocTypeList_Data)
 {
-    QString cUserName           = from_TbWidget->item(0, 1)->text(); //送检单位
-    QString cUserAddr           = from_TbWidget->item(0, 3)->text(); //送检单位地址
-    QString cMeterTypeName      = from_TbWidget->item(1, 1)->text(); //仪器名称
-    QString manufactoryName     = from_TbWidget->item(1, 3)->text(); //制造厂名
-    QString cMeterTypeNum       = from_TbWidget->item(2, 1)->text(); //型号
-    QString cMeterTypeDate      = from_TbWidget->item(2, 3)->text(); //生产日期
-    QString manufactoryNum      = from_TbWidget->item(3, 1)->text(); //出厂编号
-    QString cClassGrade         = from_TbWidget->item(3, 3)->text(); //精度等级
-    QString voltageView         = from_TbWidget->item(4, 1)->text(); //额定电压
-    QString currentView         = from_TbWidget->item(4, 3)->text(); //额定电流
-    QString constView           = from_TbWidget->item(5, 1)->text(); //额定常数
-    QString cCheckCase          = from_TbWidget->item(5, 3)->text(); //检定依据
-    QString checkDate           = from_TbWidget->item(5, 1)->text(); //检定日期
-    QString nextCheckDate       = from_TbWidget->item(5, 3)->text(); //有 效 期
-    QString fTemperature        = from_TbWidget->item(6, 1)->text(); //温度
-    QString fHumidity           = from_TbWidget->item(6, 3)->text(); //湿度
+    QString cUserName           = from_information_TbWidget->item(0, 1)->text(); //送检单位
+    QString cUserAddr           = from_information_TbWidget->item(0, 3)->text(); //送检单位地址
+    QString cMeterTypeName      = from_information_TbWidget->item(1, 1)->text(); //仪器名称
+    QString manufactoryName     = from_information_TbWidget->item(1, 3)->text(); //制造厂名
+    QString cMeterTypeNum       = from_information_TbWidget->item(2, 1)->text(); //型号
+    QString cMeterTypeDate      = from_information_TbWidget->item(2, 3)->text(); //生产日期
+    QString manufactoryNum      = from_information_TbWidget->item(3, 1)->text(); //出厂编号
+    QString cClassGrade         = from_information_TbWidget->item(3, 3)->text(); //精度等级
+    QString voltageView         = from_information_TbWidget->item(4, 1)->text(); //额定电压
+    QString currentView         = from_information_TbWidget->item(4, 3)->text(); //额定电流
+    QString constView           = from_information_TbWidget->item(5, 1)->text(); //额定常数
+    QString cCheckCase          = from_information_TbWidget->item(5, 3)->text(); //检定依据
+    QString checkDate           = from_information_TbWidget->item(5, 1)->text(); //检定日期
+    QString nextCheckDate       = from_information_TbWidget->item(5, 3)->text(); //有 效 期
+    QString fTemperature        = from_information_TbWidget->item(6, 1)->text(); //温度
+    QString fHumidity           = from_information_TbWidget->item(6, 3)->text(); //湿度
 
     fillReplaceDocStructList(replaceDocTypeList_Data, "{cUserName}"        ,cUserName);            //送检单位
     fillReplaceDocStructList(replaceDocTypeList_Data, "{cUserAddr}"        ,cUserAddr);            //送检单位地址

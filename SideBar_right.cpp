@@ -6,17 +6,17 @@
 #include "QMessageBox"
 #include "QTimer"
 
-
-//初始化
+ //将按钮放在一个list
 void MainWidget::init_sideBar()
 {
-    // 把按钮放在一个list里为了方便管理
+
     sideBar_BtnList.append(ui->sideBar_TlBtn_1);
     sideBar_BtnList.append(ui->sideBar_TlBtn_2);
     sideBar_BtnList.append(ui->sideBar_TlBtn_3);
     sideBar_BtnList.append(ui->sideBar_TlBtn_4);
 
-    foreach (QToolButton *b, sideBar_BtnList) {
+    foreach (QToolButton *b, sideBar_BtnList)
+    {
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
@@ -33,28 +33,21 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
       elapseTimer->stop();
       return;
     }
-
-     //startELAPSETIME();//计算运行时间
-
-    switch(ui->main_skWidget->currentIndex())
+    switch(ui->main_SkWidget->currentIndex())
     {
 
         case 0:
-                clean_main_skWidget_1();//清除界面1的数据
+                clean_main_SkWidget_1();//清除界面1的数据
                 startRD();
                 startRS();//BMS
                 startES();//电能误差
                 startME(); //测量值
-//                startWAVE(); //√
-
-//                startENERGY_PUL();//脉冲//√
-//                startENERGY_STD();//标准//√
-//                startESTD();//读取电能表标准方差值s值//√
+                startELAPSETIME();
         break;
 
         case 1:
                 startME();
-                startHR();//谐波
+
         break;
         default:
         break;
@@ -93,21 +86,21 @@ void MainWidget::changeButtonStatus() {
         ui->BMS_RD_TblWidget->setColumnWidth(2,140);
         ui->BMS_RD_TblWidget->setColumnWidth(3,100);
         ui->BMS_RD_TblWidget->setColumnWidth(4,135);
-        ui->BMS_RD_TblWidget->setColumnWidth(5,100);
+        ui->BMS_RD_TblWidget->setColumnWidth(5,95);
 
-        ui->main_skWidget->setCurrentIndex(0);
+        ui->main_SkWidget->setCurrentIndex(0);
     }
     if(source==ui->sideBar_TlBtn_2)
     {
-        set_TblWdiget_Header( ui->RSMV_Harmonic_TblWidget ,true,true);
-        ui->main_skWidget->setCurrentIndex(1);
+
+        ui->main_SkWidget->setCurrentIndex(1);
     }
     if(source==ui->sideBar_TlBtn_3)
     {
-        ui->main_skWidget->setCurrentIndex(2);
+        ui->main_SkWidget->setCurrentIndex(2);
     }
     if(source==ui->sideBar_TlBtn_4)
     {
-        ui->main_skWidget->setCurrentIndex(3);
+        ui->main_SkWidget->setCurrentIndex(3);
     }
 }

@@ -1,18 +1,15 @@
 #ifndef WIDGET_H
 #define WIDGET_H
-
-#include <QWidget>
-#include "QToolButton"
-#include "stdafx.h"
-#include "xl618.h"
-
 #include "ui_mainwidget.h"
 #include "thread/timeThread.h"
-#include "SMV/RSMV/RSMV_option.h"
+#include"testPower/RSMV_option.h"
+#include "xl618.h"
+#include <QWidget>
+#include "QToolButton"
 #include "QTimer"
 
 class QextSerialPort;
-class Histogram;
+
 
 namespace Ui {
 class MainWidget;
@@ -26,11 +23,11 @@ public:
     explicit MainWidget(QWidget *parent = 0);
     ~MainWidget();
     
-    void  show_MsBox(QString strMessages,int msec);//提示框
+    void  show_MsBox(QString strMessages,int msec);                        //提示框
     void  set_TblWdiget_Header(QTableWidget *TblWiget,bool H,bool V);
     void  remove_TblWdiget_Row(QTableWidget *TblWiget);
 
-    void  init_serPort();                //初始化串口界面
+    void  init_serPort();                                                  //初始化串口界面
     void  init_timeThreadTimer_connect();
     void  write_ini(QString path,QString arg);
     void  read_ini();
@@ -47,18 +44,16 @@ private:
     QTime   elapseTime;   //运行时间
     int   elapseTimeCal;
     timeThread        timeThreadTimer ;
-    ReceiveSMV        RSMV;
-    Histogram         *RSMV_harmonic_histogram;
     QPolygonF         ESTD_PolygonF;//坐标点
 
     double            xval[300];  //波形图目前这样设置不会有问题
 
 
-    void init_RSMV_wave();
+    void init_ES_wave();
+    void init_ripple_wave();
     void init_ESTD_wave();
-    void init_RSMV_harmonic();
+
     void init_elapseTime();//定时器时间
-    void set_RSMV_harmonic_histogram( uint numValues, const double *values);
 
     void init_rms_harmonic();
 
@@ -66,13 +61,12 @@ private:
     void startRS();
     void startME();
     void startWAVE();
-    void startHR();
     void startES();
     void startESTD();
     void startELAPSETIME();
     void startENERGY_PUL();
     void startENERGY_STD();
-    void clean_main_skWidget_1();
+    void clean_main_SkWidget_1();
 
     QString getTemplatePath();
     void fillReplaceDocStructList(replaceDocTypeList *list, QString searchStr, QString replaceStr) ;
@@ -97,19 +91,12 @@ private slots:
 
     void slt_ME_update(pMETYPE);
     void slt_ES_update(pESTYPE );
-    void slt_ESTD_update(pESTDTYPE );
     void slt_ENERGY_PUL_update(pPULSEPOW );
     void slt_ENERGY_STD_update(pPULSEPOW );
     void slt_RSMV_wave_update();
-    void slt_RSMV_harmonic_update();
 
     void slt_elapseTimer_timeout();
     void on_start_PsBtn_clicked(bool checked);
-
-
-    void on_RSMV_Harmonic_Phase_CbBox_activated(int index);
-    void on_RSMV_Harmonic_Times_CbBox_activated(int index);
-    void on_RSMV_Harmonic_Range_HSlider_valueChanged(int value);
 
     void on_serPort_write_SP_PsBtn_clicked();
     void on_serPort_read_SP_PsBtn_clicked();
@@ -138,6 +125,7 @@ private:
     QComboBox       *SP_loadType_cbbox;
     QComboBox       *SP_measureType_cbbox;
 
+    ReceiveSMV  RSMV;
 };
 
 #endif // WIDGET_H

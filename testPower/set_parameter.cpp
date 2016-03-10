@@ -1,12 +1,7 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 
-
-//METERCONST;0.000000 脉冲常数
-//CHECKNUM;0  校验圈数
-//CONST;0.000000  电表常数
-//CHECKTYPE;0  被检电能表检验类型
-
+//设置参数
 void MainWidget::on_serPort_write_SP_PsBtn_clicked()
 {
 

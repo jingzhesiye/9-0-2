@@ -7,7 +7,7 @@
 
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
-#include "SMV/RSMV/RSMV_option.h"
+#include "testPower/RSMV_option.h"
 
 //从线程源，接收报文同时刷性界面
 void MainWidget::slt_ME_update(pMETYPE  pMETYPE_Temp)
@@ -23,7 +23,7 @@ void MainWidget::slt_ME_update(pMETYPE  pMETYPE_Temp)
 }
 
 //清空数据
-void MainWidget::clean_main_skWidget_1()
+void MainWidget::clean_main_SkWidget_1()
 {
       for(int i =0;i<3;i++)
       {
@@ -46,7 +46,7 @@ void MainWidget::clean_main_skWidget_1()
 
     ui->ES_PE_LnEdit->setText("0");
     ui->ES_TE_LnEdit->setText("0");
-    ui->RSMV_wave_vol_QwtPlot->replot();
+    ui->ES_wave_QwtPlot->replot();
 
     ESTD_PolygonF.clear();
     RSMV.wave_ESTD_curve->setSamples( ESTD_PolygonF );

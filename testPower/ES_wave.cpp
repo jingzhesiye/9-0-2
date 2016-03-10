@@ -4,7 +4,7 @@
 *******************************************************************************/
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
-#include "SMV/RSMV/RSMV_option.h"
+#include "testPower/RSMV_option.h"
 #include <qwt_symbol.h>
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot.h>
@@ -12,18 +12,18 @@
 #include <qwt_plot_magnifier.h>
 #include <qwt_plot_panner.h>
 
-void MainWidget::init_RSMV_wave(void)
+void MainWidget::init_ES_wave(void)
 {
-    ui->RSMV_wave_vol_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,3.0);
-    ui->RSMV_wave_vol_QwtPlot->setAxisScale(QwtPlot::yLeft  , -150,150,150);
-    ui->RSMV_wave_vol_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
-    ui->RSMV_wave_vol_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
+    ui->ES_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,3.0);
+    ui->ES_wave_QwtPlot->setAxisScale(QwtPlot::yLeft  , -150,150,150);
+    ui->ES_wave_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
+    ui->ES_wave_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
 
     RSMV.wave_vol_grid = new QwtPlotGrid;   //设置网格         //电压
     RSMV.wave_vol_grid->setMajPen( QPen(QColor(0, 170, 255, 255), 0, Qt::SolidLine ) );
     RSMV.wave_vol_grid->enableY(true);
     RSMV.wave_vol_grid->enableX(false);
-    RSMV.wave_vol_grid->attach( ui->RSMV_wave_vol_QwtPlot );
+    RSMV.wave_vol_grid->attach( ui->ES_wave_QwtPlot );
 
     RSMV.wave_vmid_marker = new QwtPlotMarker();
     RSMV.wave_vmid_marker->setLabel( QString::number(0) );
@@ -31,7 +31,7 @@ void MainWidget::init_RSMV_wave(void)
     RSMV.wave_vmid_marker->setLineStyle( QwtPlotMarker::HLine );
     RSMV.wave_vmid_marker->setYValue( 0.0 );
     RSMV.wave_vmid_marker->setLinePen( QColor(0, 170, 255, 255));
-    RSMV.wave_vmid_marker->attach(  ui->RSMV_wave_vol_QwtPlot );
+    RSMV.wave_vmid_marker->attach(  ui->ES_wave_QwtPlot );
 
     RSMV.wave_vmax_marker = new QwtPlotMarker();
     RSMV.wave_vmax_marker->setLabelAlignment( Qt::AlignLeft | Qt::AlignBottom ); //AlignRight
@@ -39,7 +39,7 @@ void MainWidget::init_RSMV_wave(void)
     RSMV.wave_vmax_marker->setLabel(  QString::number(100) );
     RSMV.wave_vmax_marker->setYValue( 150 );
     RSMV.wave_vmax_marker->setLinePen( QColor(0, 170, 255, 255));
-    RSMV.wave_vmax_marker->attach(  ui->RSMV_wave_vol_QwtPlot );
+    RSMV.wave_vmax_marker->attach(  ui->ES_wave_QwtPlot );
 
     RSMV.wave_vmin_marker = new QwtPlotMarker();
     RSMV.wave_vmin_marker->setLabelAlignment( Qt::AlignLeft | Qt::AlignTop ); //AlignRight
@@ -47,7 +47,7 @@ void MainWidget::init_RSMV_wave(void)
     RSMV.wave_vmin_marker->setLabel(  QString::number(-100) );
     RSMV.wave_vmin_marker->setYValue( -150 );
     RSMV.wave_vmin_marker->setLinePen( QColor(0, 170, 255, 255));
-    RSMV.wave_vmin_marker->attach(  ui->RSMV_wave_vol_QwtPlot );
+    RSMV.wave_vmin_marker->attach(  ui->ES_wave_QwtPlot );
 
     RSMV.wave_Ua_curve = new QwtPlotCurve("wave_Ua_curve");//设置曲线
     RSMV.wave_Ua_curve->setRenderHint(QwtPlotItem::RenderAntialiased);
@@ -73,9 +73,9 @@ void MainWidget::init_RSMV_wave(void)
     RSMV.wave_Uc_curve->setPen( QColor( Qt::red ) );
     RSMV.wave_Uc_curve->setCurveAttribute( QwtPlotCurve::Fitted );
 
-    RSMV.wave_Ua_curve ->attach(ui->RSMV_wave_vol_QwtPlot);
-    RSMV.wave_Ub_curve ->attach(ui->RSMV_wave_vol_QwtPlot);
-    RSMV.wave_Uc_curve ->attach(ui->RSMV_wave_vol_QwtPlot);
+    RSMV.wave_Ua_curve ->attach(ui->ES_wave_QwtPlot);
+    RSMV.wave_Ub_curve ->attach(ui->ES_wave_QwtPlot);
+    RSMV.wave_Uc_curve ->attach(ui->ES_wave_QwtPlot);
 }
 
 void MainWidget:: startRD()
@@ -104,7 +104,7 @@ void MainWidget:: startWAVE()
     RSMV.wave_Ub_curve ->setRawSamples( 0,0, 0);
     RSMV.wave_Uc_curve ->setRawSamples( 0,0, 0);
 
-    ui->RSMV_wave_vol_QwtPlot->replot();
+    ui->ES_wave_QwtPlot->replot();
 
 
     UINT16 sampleCnt = 256 ;                   //采样数目
@@ -125,7 +125,7 @@ void MainWidget::slt_RSMV_wave_update( )
 #if 1
     UINT16 sampleCnt = 256 ;
 
-    ui->RSMV_wave_vol_QwtPlot->setAxisScale(QwtPlot::yLeft  ,-timeThreadTimer.RSMV_arrayTemp[3]*1.5,timeThreadTimer.RSMV_arrayTemp[3]*1.5,timeThreadTimer.RSMV_arrayTemp[3]*1.5);
+    ui->ES_wave_QwtPlot->setAxisScale(QwtPlot::yLeft  ,-timeThreadTimer.RSMV_arrayTemp[3]*1.5,timeThreadTimer.RSMV_arrayTemp[3]*1.5,timeThreadTimer.RSMV_arrayTemp[3]*1.5);
 
     RSMV.wave_vmax_marker->setLabel(QString::number(timeThreadTimer.RSMV_arrayTemp[3]));
     RSMV.wave_vmin_marker->setLabel(QString::number(-timeThreadTimer.RSMV_arrayTemp[3]));
@@ -142,7 +142,7 @@ void MainWidget::slt_RSMV_wave_update( )
 //    {
 //        qDebug("%d",timeThreadTimer.RSMV_wave_axesY[0][i]);
 //    }
-    ui->RSMV_wave_vol_QwtPlot->replot();
+    ui->ES_wave_QwtPlot->replot();
     //timeThreadTimer.mutexUpdate.unlock();
 #endif
 

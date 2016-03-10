@@ -5,7 +5,7 @@
 #include "QWheelEvent"
 #include <qwt_plot_canvas.h>
 #include "QProcess"
-#include "tabstyle.h"
+
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
@@ -18,22 +18,11 @@ MainWidget::MainWidget(QWidget *parent) :
 
     init_timeThreadTimer_connect();
 
-    init_RSMV_wave();   //波形图
-    init_RSMV_harmonic();//柱状图
+    init_ES_wave();       //波形图
+    init_ripple_wave();    //纹波
     init_ESTD_wave();    //标准偏差波形图
     init_elapseTime();   //运行时间
 
-
-    //QTabBar * tabBar = new QTabBar;
-    //tabBar->setStyle(new TabStyle());
-    //setTabBar(tabBar);
-    //ui->tabWidget->setTabBar(tabBar);
-    //ui->
-    //    ui.
-    //    QTabBar * tabBar = new QTabBar;
-    //    tabBar->setStyle(new TabStyle(orientation));
-    //    setTabBar(tabBar);
-    // t->setStyle(new CustomTabStyle);
 }
 
 MainWidget::~MainWidget()
@@ -94,19 +83,14 @@ void MainWidget::init_timeThreadTimer_connect()
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_ESTD_update(pESTDTYPE)),   this, SLOT(slt_RSMV_ESTD_update(pESTDTYPE)));
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_PUL_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_PUL_update(pPULSEPOW)),Qt::DirectConnection);
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_STD_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_STD_update(pPULSEPOW)),Qt::DirectConnection);
-
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_wave_update()),          this, SLOT(slt_RSMV_wave_update()));
-    connect(&timeThreadTimer, SIGNAL(sig_RSMV_harmonic_update()),      this, SLOT(slt_RSMV_harmonic_update()));
-
 
     qRegisterMetaType<pESTDTYPE>("pESTDTYPE");
-
     qRegisterMetaType<pPULSEPOW>("pPULSEPOW");
     #endif
 }
 
 //fun:用于清除表格
-
 void MainWidget::remove_TblWdiget_Row(QTableWidget *TblWiget)
 {
     int numTemp=TblWiget->rowCount();
@@ -132,13 +116,8 @@ void MainWidget::show_MsBox(QString strMessages,int msec)
     QTimer::singleShot(msec,temp_MsBox,SLOT(hide()));
 }
 
-
-
-
-
 void MainWidget::on_ES_PE_zoomOut_PsBtn_clicked()
 {
-
     QWheelEvent event(QPoint(150, 80),-120, Qt::LeftButton, Qt::NoModifier);
     QApplication::sendEvent( ui->ES_PE_QwtPlot->canvas(), &event);
 
@@ -156,8 +135,6 @@ void MainWidget::on_keyBoard_PsBtn_clicked()
      myProcess->start("./ScreenKeyboard.exe");//ScreenKeyboard
 }
 
-
-
 void MainWidget::on_ES_insertForm_PsBtn_clicked()
 {
     QString strESTD,strPE;
@@ -165,5 +142,5 @@ void MainWidget::on_ES_insertForm_PsBtn_clicked()
     strESTD  = QString::fromUtf8("电能误差记录(%): ")+ui->ES_PE_LnEdit->text()+"\n\r";
     strPE   = QString::fromUtf8("时钟误差(%): ")+ui->ES_TE_LnEdit->text()+"\n\r";
 
-     ui->RSMV_from_TxEdit->append(strESTD+strPE);
+    ui->from_error_TxEdit->append(strESTD+strPE);
 }

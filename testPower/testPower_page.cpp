@@ -1,6 +1,6 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
-#include "SMV/RSMV/RSMV_option.h"
+#include "testPower/RSMV_option.h"
 #include <qwt_symbol.h>
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot.h>
@@ -10,8 +10,6 @@
 
 
 #if 1
-
-
  void MainWidget::init_ESTD_wave(void)//标准偏差
  {
      //ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);

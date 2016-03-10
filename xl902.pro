@@ -22,22 +22,21 @@ SOURCES += main.cpp \
     SerialPort/serPort_Page.cpp \
     thread/thread_fun.cpp \
     thread/thread_init.cpp \
-    SMV/RSMV/RSMV_option.cpp \
-    SMV/RSMV/RSMV_wave.cpp \
-    SMV/RSMV/RSMV_harmonic.cpp \
     elapseTime.cpp \
-    SMV/RSMV/RSMV_init_Harmonic.cpp \
     sysIni.cpp \
-    driver_xl618_2.cpp \
-    driver_xl618_1.cpp \
-    form/buildWord.cpp \
-    form/form_Page.cpp \
-    RD_update.cpp \
-    SMV/RSMV/ME_update.cpp \
-    SMV/RSMV/ES_update.cpp \
-    RS_charger.cpp \
-    SP.cpp \
-    SideBar_right.cpp
+    form/save_doc.cpp \
+    form/edit_form.cpp \
+    ripple/ripple.cpp \
+    testPower/ME_update.cpp \
+    testPower/ES_update.cpp \
+    testPower/RD_update.cpp \
+    sideBar_right.cpp \
+    testPower/ES_wave.cpp \
+    testPower/testPower_page.cpp \
+    interface_xl618_1.cpp \
+    interface_xl618_2.cpp \
+    testPower/set_parameter.cpp \
+    testPower/read_BMS.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -48,8 +47,7 @@ HEADERS  += \
     SerialPort/qextserialbase.h \
     SerialPort/ManageSerialPort.h \
     thread/timeThread.h \
-    SMV/RSMV/RSMV_initHarmonic.h \
-    tabstyle.h
+    testPower/RSMV_option.h
 
 FORMS    += \
     mainwidget.ui
