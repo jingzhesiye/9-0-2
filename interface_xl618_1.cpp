@@ -77,7 +77,7 @@ UINT8 xl618::readOneFrame(UINT32 sendToBufSize,char *frameHead,char *errorHead,c
     }while(readTimes<3);
 
     //qDebug()<<"readTimes"<<QString::number(readTimes)<<isSerRecAll;
-    qDebug("recvBuf==%s\n",recvBuf);
+//    qDebug("recvBuf==%s\n",recvBuf);
 //    qDebug("intSerRecReturn==%d\n",intSerRecReturn);
    return intSerRecReturn;
 }
@@ -261,6 +261,30 @@ UINT8 xl618::getRCR(pVRCRTYPE CRtype)
             CRtype->L3 = (FLOAT32)atof(&temp[3]);
     }
 
+    return retValue;
+}
+
+
+UINT8 xl618::getRRF(pRRFTYPE data)
+{
+    UINT8 retValue = ERR_UNIVERSAL;
+    char *pSend = (char*)sendBuf;
+    strcpy(pSend,STR_RRF CR);
+    pSend += strlen(STR_RRF CR);
+    char *temp;
+
+    UINT16 frameSize = pSend - (char*)sendBuf;
+
+    if((retValue = readOneFrame(frameSize,(char*)"RRF",NULL,(char*)"RRFACK",500)) == ERR_RIGHT)
+    {//解析帧
+        temp = strstr((char *)recvBuf,"RF;");
+        if(temp)
+            data->RF = (FLOAT32)atof(&temp[sizeof("RF;")-1]);
+
+        temp = strstr((char *)recvBuf,"RV;");
+        if(temp)
+            data->RV = (FLOAT32)atof(&temp[sizeof("RV;")-1]);
+    }
     return retValue;
 }
 

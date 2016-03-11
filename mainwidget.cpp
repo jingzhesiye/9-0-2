@@ -78,14 +78,18 @@ void MainWidget::init_timeThreadTimer_connect()
     qRegisterMetaType<pMETYPE>("pMETYPE");
     qRegisterMetaType<QTextCursor>("QTextCursor");
 
+    connect(&timeThreadTimer, SIGNAL(sig_RRF_update(pRRFTYPE)),   this, SLOT(slt_RRF_update(pRRFTYPE)),Qt::DirectConnection);
+    qRegisterMetaType<pRRFTYPE>("pRRFTYPE");
+
+    connect(&timeThreadTimer, SIGNAL(sig_wave_update()),          this, SLOT(slt_wave_update()));
+
     #if 0
 
     connect(&timeThreadTimer, SIGNAL(sig_RSMV_ESTD_update(pESTDTYPE)),   this, SLOT(slt_RSMV_ESTD_update(pESTDTYPE)));
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_PUL_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_PUL_update(pPULSEPOW)),Qt::DirectConnection);
     connect(&timeThreadTimer, SIGNAL(sig_ENERGY_STD_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_STD_update(pPULSEPOW)),Qt::DirectConnection);
-    connect(&timeThreadTimer, SIGNAL(sig_RSMV_wave_update()),          this, SLOT(slt_RSMV_wave_update()));
 
-    qRegisterMetaType<pESTDTYPE>("pESTDTYPE");
+
     qRegisterMetaType<pPULSEPOW>("pPULSEPOW");
     #endif
 }

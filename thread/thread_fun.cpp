@@ -116,98 +116,82 @@ void timeThread::slt_ME_timeDone()
 
 void timeThread::slt_RSMV_wave_timeDone()
 {
-    if(mutexUpdate.tryLock()==false)
+    qDebug()<<"slt_RSMV_wave_timeDone"<<QString::number(wave_chlNum)<<QString::number(wave_sampleCnt);
+
+//    if(mutexUpdate.tryLock()==false)
+//    {
+//        qDebug()<<"RSMV_wave_locked";
+//        return ;
+//    }
+
+    pRKLTYPE      pRKLTYPE_Temp=NULL;
+
+    if((pRKLTYPE_Temp=(pRKLTYPE)calloc(1,sizeof(RKLTYPE)))==NULL)
     {
-        qDebug()<<"RSMV_wave_locked";
+        free(pRKLTYPE_Temp);
+        pRKLTYPE_Temp=NULL;
         return ;
     }
-    qDebug()<<"slt_RSMV_wave_timeDone";
 
-    pKLTYPE      pKLTYPE_Temp=NULL;
-    if((pKLTYPE_Temp=driver_619->newKLBuf(63,256))==NULL)
+
+    if( (driver_619->getKL(wave_chlNum,pRKLTYPE_Temp) == ERR_RIGHT) )
     {
-        free(pKLTYPE_Temp);
-        pKLTYPE_Temp=NULL;
-        return ;
-    }
-
-//    memset(&((*(pKLTYPE_Temp->CH1))->elt[0]),0,4*256);
-//    memset(&((*(pKLTYPE_Temp->CH2))->elt[0]),0,4*256);
-//    memset(&((*(pKLTYPE_Temp->CH3))->elt[0]),0,4*256);
-
-//    memset(&((*(pKLTYPE_Temp->CH4))->elt[0]),0,4*256);
-//    memset(&((*(pKLTYPE_Temp->CH5))->elt[0]),0,4*256);
-//    memset(&((*(pKLTYPE_Temp->CH6))->elt[0]),0,4*256);
-
-    if( (driver_619->getKL(RSMV_wave_chlNum,pKLTYPE_Temp) == ERR_RIGHT) )
-    {
-
 #if 1
-        for(int i = 0; i < RSMV_wave_sampleCnt; i++ )
+        for(int i = 0; i <wave_sampleCnt; i++ )  //wave_sampleCnt
         {
-            if(RSMV_wave_chlNum  == 7)
-            {
-                RSMV_wave_axesY[0][i]= (*(pKLTYPE_Temp->CH1))->elt[i];//Ua
-                RSMV_wave_axesY[1][i]= (*(pKLTYPE_Temp->CH2))->elt[i];//Ub
-                RSMV_wave_axesY[2][i]= (*(pKLTYPE_Temp->CH3))->elt[i];//Uv
-            }
-            else
-            {
-                RSMV_wave_axesY[0][i]= (*(pKLTYPE_Temp->CH4))->elt[i];//Ia
-                RSMV_wave_axesY[1][i]= (*(pKLTYPE_Temp->CH5))->elt[i];//Ib
-                RSMV_wave_axesY[2][i]= (*(pKLTYPE_Temp->CH6))->elt[i];//Ic
-            }
-            //qDebug("%lf",RSMV_wave_axesY[0][i]);
+
+           RSMV_wave_axesY[0][i]= pRKLTYPE_Temp->U1R[i];//Ua
+//         RSMV_wave_axesY[1][i]= (*(pKLTYPE_Temp->CH2))->elt[i];//Ub
+//         RSMV_wave_axesY[2][i]= (*(pKLTYPE_Temp->CH3))->elt[i];//Uv
+
+            qDebug("xxxx--%2f",pRKLTYPE_Temp->U1R[i]);
         }
-#endif
-#if 1
-            RSMV_arrayTemp[0] = search_maxDoubleValue(&RSMV_wave_axesY[0][0],RSMV_wave_sampleCnt);
-            RSMV_arrayTemp[1] = search_maxDoubleValue(&RSMV_wave_axesY[1][0],RSMV_wave_sampleCnt);
-            RSMV_arrayTemp[2] = search_maxDoubleValue(&RSMV_wave_axesY[2][0],RSMV_wave_sampleCnt);
+
+            RSMV_arrayTemp[0] = search_maxDoubleValue(&RSMV_wave_axesY[0][0],wave_sampleCnt);
+//          RSMV_arrayTemp[1] = search_maxDoubleValue(&RSMV_wave_axesY[1][0],RSMV_wave_sampleCnt);
+//          RSMV_arrayTemp[2] = search_maxDoubleValue(&RSMV_wave_axesY[2][0],RSMV_wave_sampleCnt);
             RSMV_arrayTemp[3] = search_maxDoubleValue(&RSMV_arrayTemp[0],3);
+
+           emit  sig_wave_update();
 #endif
-            //qDebug("%lf",RSMV_arrayTemp[0]);
-            emit  sig_RSMV_wave_update();
         }
 
     //qDebug()<<QString::number((*(pKLTYPE_Temp->CH1))->elt[0]);
 
-    driver_619->deleteKLBuf(pKLTYPE_Temp);
-    pKLTYPE_Temp=NULL;
-    mutexUpdate.unlock();
+    free(pRKLTYPE_Temp);
+    pRKLTYPE_Temp=NULL;
+//    mutexUpdate.unlock();
 
  }
 
-void timeThread::slt_RSMV_harmonic_timeDone()
+void timeThread::slt_RRF_timeDone()
 {
+    qDebug()<<"slt_RRF_timeDone";
+
+#if 0
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"slt_RSMV_harmonic_lock";
+        qDebug()<<"ME_locked";
         return ;
     }
-    pHARMONIC_TYPE       pHARMONIC_TYPE_Temp;
-    pHARMONIC_TYPE_Temp= driver_619->newHRNBuf(45);
-    if( pHARMONIC_TYPE_Temp != NULL )
-    {
+#endif
+    pRRFTYPE   pRRFTYPE_Temp =NULL;
+    pRRFTYPE_Temp=(pRRFTYPE)calloc(1,sizeof(RRFTYPE));
 
-        //int t =driver_619->getHRN( SMV_harmonic_ChlNum, pHARMONIC_TYPE_Temp, SMV_harmonic_H1, SMV_harmonic_H2);
-        //qDebug()<<QString::number(t);
-        if( (driver_619->getHRN( SMV_harmonic_ChlNum, pHARMONIC_TYPE_Temp, SMV_harmonic_H1, SMV_harmonic_H2) == ERR_RIGHT) )
-        {
-            RSMV_arrayTemp[0]=0;
-            RSMV_arrayTemp[1]=100;
-            for( uint i=0;i<(SMV_harmonic_H2-2);i++)
-            {
-              RSMV_arrayTemp[i+2]=(*(pHARMONIC_TYPE_Temp->fN))->elt[i];
-               //qDebug("RSMV_arrayTemp==%f",RSMV_arrayTemp[i+2]);
-            }
-            emit sig_RSMV_harmonic_update();
-         }
+#if 1
+    if( driver_619->getRRF(pRRFTYPE_Temp) == 1 )
+    {
+         // qDebug()<<"slt_RRF_timeDone"<<QString ::number(pRRFTYPE_Temp->RV,'d',4);
+          emit sig_RRF_update(pRRFTYPE_Temp);
     }
 
-    driver_619->deleteHRNBuf(pHARMONIC_TYPE_Temp);
-    pHARMONIC_TYPE_Temp=NULL;
-    mutexUpdate.unlock();
+
+    free(pRRFTYPE_Temp);
+    pRRFTYPE_Temp=NULL;
+     //timeThreadTimer.mutexUpdate.unlock();
+   // mutexUpdate.unlock();
+#endif
+
  }
 
 
@@ -227,7 +211,7 @@ void timeThread::slt_ES_timeDone()
 #if 1
     if( driver_619->getES(pESTYPE_Temp) == 1 )
     {
-        // qDebug()<<"getES"<<QString ::number(pESTYPE_Temp->TE);
+
          emit sig_ES_update(pESTYPE_Temp);
     }
 

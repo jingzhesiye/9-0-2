@@ -42,7 +42,8 @@ private:
 
     QTimer *elapseTimer;
     QTime   elapseTime;   //运行时间
-    int   elapseTimeCal;
+    int     elapseTimeCal;
+
     timeThread        timeThreadTimer ;
     QPolygonF         ESTD_PolygonF;//坐标点
 
@@ -54,7 +55,6 @@ private:
     void init_ESTD_wave();
 
     void init_elapseTime();//定时器时间
-
     void init_rms_harmonic();
 
     void startRD();
@@ -63,6 +63,7 @@ private:
     void startWAVE();
     void startES();
     void startESTD();
+    void startRRF();
     void startELAPSETIME();
     void startENERGY_PUL();
     void startENERGY_STD();
@@ -79,9 +80,7 @@ private slots:
     //串口
     void  slot_serPort_open();
     void  slot_serPort_close();
-
     void  slt_serPort_RecDataToUI(const QByteArray &,int);
-
     void on_serPort_CleanRec_PsBtn_clicked();
     void on_serPort_CleanSend_PsBtn_clicked();
     void on_serPort_Send_PsBtn_clicked();
@@ -93,7 +92,9 @@ private slots:
     void slt_ES_update(pESTYPE );
     void slt_ENERGY_PUL_update(pPULSEPOW );
     void slt_ENERGY_STD_update(pPULSEPOW );
-    void slt_RSMV_wave_update();
+    void slt_wave_update();
+
+    void slt_RRF_update(pRRFTYPE);
 
     void slt_elapseTimer_timeout();
     void on_start_PsBtn_clicked(bool checked);

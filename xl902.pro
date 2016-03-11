@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     interface_xl618_1.cpp \
     interface_xl618_2.cpp \
     testPower/set_parameter.cpp \
-    testPower/read_BMS.cpp
+    testPower/read_BMS.cpp \
+    ripple/ripple_wave.cpp
 
 HEADERS  += \
     mainwidget.h \

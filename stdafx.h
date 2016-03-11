@@ -184,6 +184,15 @@ typedef struct
 
 typedef struct
 {
+    FLOAT32 U1[256];
+    FLOAT32 I1[256];
+    FLOAT32 U1R[256];
+    FLOAT32 I1R[256];
+
+}RKLTYPE,*pRKLTYPE,**ppRKLTYPE;
+
+typedef struct
+{
         FLOAT32 rms;//有效值
         FLOAT32 rms1;//基波有效值
         UINT32 samdot;//采样点数
@@ -441,6 +450,15 @@ typedef struct
     //注意对齐
 }ESTYPE,*pESTYPE,**ppESTYPE;
 
+
+typedef struct
+{
+    FLOAT32 RF;
+    FLOAT32 RV;
+    //注意对齐
+}RRFTYPE,*pRRFTYPE,**ppRRFTYPE;
+
+
 typedef struct
 {
     FLOAT32 s;
@@ -483,6 +501,7 @@ typedef struct
 #define STR_EB			"EB"
 #define STR_EE			"EE"
 #define STR_ES			"ES"
+#define STR_RRF			"RRF"
 #define STR_RD			"RD"
 #define STR_RS			"RS"
 #define STR_EV			"EV"
@@ -621,9 +640,9 @@ typedef QList<int> QIntList;
 #define SSMV_RMS	       10
 #define RSMV_WAVE	       31              //波形图
 #define RSMV_PHASOR 	       32          //相位
-#define RSMV_HARMONIC 	       35          //谐波
+
 #define RSMV_WAVEALL	       37          //解析
-#define RFT3_WAVE	       40           //FT3反馈
+#define RFT3_WAVE	       40             //FT3反馈
 #define ESTD         51           //GSE扫描报文APPID
 #define ENERGY_PUL     60
 #define ENERGY_STD         61
@@ -633,5 +652,7 @@ typedef QList<int> QIntList;
 #define ME	               30
 #define RD                 71
 #define RS	               72
+
+#define RRF 	           35          //谐波
 
 #endif // STDAFX_H

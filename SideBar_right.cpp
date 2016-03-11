@@ -20,7 +20,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_3->click();
+    ui->sideBar_TlBtn_2->click();
 }
 
 
@@ -46,8 +46,10 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
         break;
 
         case 1:
-                startME();
-
+               // startRRF();
+                startWAVE();
+               //ripple
+                //startRIPPLE();
         break;
         default:
         break;

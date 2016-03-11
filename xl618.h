@@ -29,7 +29,9 @@ public:
     UINT8 getRD(pRDTYPE data);                                                                            //读取数据
     UINT8 getRS(pRSTYPE data);
 
+    UINT8 getRRF(pRRFTYPE data);
     UINT8 getES(pESTYPE data);
+
     UINT8 getESTD(pESTDTYPE data);
     UINT8 getEnergyPul(pPULSEPOW pulse);
     UINT8 getMeterenrgy(pPULSEPOW pulse);
@@ -53,7 +55,7 @@ public:
     pLKLTYPE newLKLBuf(UINT8 type,UINT16 cnt);
     void  deleteLKLBuf(pLKLTYPE lkl);
 
-    UINT8 getKL(UINT8 type,pKLTYPE data);  //type:0~5位分别表示通道1~6，位置1表示读取该通道
+    UINT8 getKL(UINT8 type,pRKLTYPE data);  //type:0~5位分别表示通道1~6，位置1表示读取该通道
     pKLTYPE newKLBuf(UINT8 type,UINT16 cnt); //type:0~5位分别表示通道1~6，cnt：采样点数
     void  deleteKLBuf(pKLTYPE lkl);
 

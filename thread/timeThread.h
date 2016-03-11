@@ -15,8 +15,7 @@ class timeThread : public QThread
 
 public:
     timeThread();
-    void  RSMV_harmonic_setArg(const bool, const UINT32 channelTemp,const  UINT32 H1Temp, const UINT32 H2Temp);
-    void  RSMV_wave_setArg(const int ,const int);
+    void  RRF_setArg(const bool, const UINT32 channelTemp,const  UINT32 H1Temp, const UINT32 H2Temp);
     void  Serial_getFD(const int fdSerial);
 
 
@@ -68,12 +67,11 @@ signals:
     void sig_ESTD_update(pESTDTYPE);
     void sig_ENERGY_PUL_update(pPULSEPOW);
     void sig_ENERGY_STD_update(pPULSEPOW);
-    void sig_RSMV_wave_update() ;
+    void sig_wave_update() ;
     void sig_RSMV_waveall_update();
     void sig_RSMV_phasor_update(pMETYPE) ;
 
-    void sig_RSMV_harmonic_update();
-    void sig_SSMV_harmonic_update();
+    void sig_RRF_update(pRRFTYPE);
     void sig_RD_update(pRDTYPE);
     void sig_RS_update(pRSTYPE);
 
@@ -87,7 +85,7 @@ private slots:
     void slt_RSMV_wave_timeDone();
     void slt_RSMV_phasor_timeDone();
     void slt_RS_timeDone();
-    void slt_RSMV_harmonic_timeDone();
+    void slt_RRF_timeDone();
     void slt_RD_timeDone();
     void slt_RFT3_timeDone();
 
@@ -124,9 +122,9 @@ private slots:
    {
         enableItem(RS);
    }
-   void set_RSMV_HARMONIC_Arg()
+   void set_RRF_Arg()
    {
-        enableItem(RSMV_HARMONIC);
+        enableItem(RRF);
    }
    void set_RD_Arg()
    {
@@ -164,7 +162,7 @@ private slots:
     QTimer     *RSMV_Waveall_Timer;
     QTimer     *RSMV_Phasor_Timer ;
 
-    QTimer     *RSMV_Harmonic_Timer ;
+    QTimer     *RRF_Timer ;
     QTimer     *RD_Timer ;
     QTimer     *RFT3_Timer;
     QTimer     *RS_Timer ;
@@ -192,8 +190,7 @@ private slots:
 
     //goose
 private:
-    int  RSMV_wave_chlNum;
-    int  RSMV_wave_sampleCnt;
+
 
     bool IsSSMV_RMS;
     bool IsME;
@@ -201,7 +198,7 @@ private:
     bool IsRSMV_WAVEALL;
     bool IsRSMV_PHASOR;
     bool IsRS;
-    bool IsRSMV_HARMONIC;
+    bool IsRRF;
     bool IsRD;
     bool IsRFT3;
     bool IsES;
@@ -216,6 +213,8 @@ private:
     int runType;
 
 public:
-     QMutex mutexUpdate;
+     QMutex     mutexUpdate;
+     char       wave_chlNum;     //通道号
+     short int  wave_sampleCnt;  //采样点
 };
 #endif // SYSTHREAD_H

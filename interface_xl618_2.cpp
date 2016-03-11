@@ -2,81 +2,65 @@
 #include "stdio.h"
 #include "QDebug"
 #if 1
-UINT8 xl618::getKL(UINT8 type,pKLTYPE data)
+UINT8 xl618::getKL(UINT8 type,pRKLTYPE data)
 {
+    FLOAT32 *fData;
     UINT8 retValue = ERR_UNIVERSAL;
     if(type)
     {
 
         char *pSend = (char*)sendBuf;
-        strcpy(pSend,STR_KL);
-        pSend += strlen(STR_KL);
-        UINT8 i;
-        for(i= 0; i < 6; i ++)
-        {
-            if(type & (1 << i))
-            {
-                *pSend = (i + '1');
-                pSend += 1;
-            }
-        }
-        strcpy(pSend,";"CR);
-        pSend += strlen(";"CR);
+//        strcpy(pSend,STR_KL);
+//        pSend += strlen(STR_KL);
+
+        strcpy(pSend,"KL\n\rCHANNAL;U1R"CR);
+        pSend += strlen("KL\n\rCHANNAL;U1R"CR);
 
         UINT16 frameSize = pSend - (char*)sendBuf;
-
-        FloHandle pH;
-        FLOAT32 *fData;
-        INT32 fSize;
         char *temp;
 
         if((retValue = readOneFrame(frameSize,(char*)"KL",NULL,(char*)"KLACK",800)) == ERR_RIGHT)
         {//解析帧
-            temp = strstr((char*)recvBuf,(char*)"CH");
-            for(i = 0; i < 6; i ++)
+
+            temp = strstr((char*)recvBuf,"U1;");
+            if(temp)
             {
-                if(temp)
+                 memcpy((char *)&(data->U1), temp,sizeof(float)*256);
+
+            }
+
+            temp = strstr((char*)recvBuf,"I1;");
+            if(temp)
+            {
+                 memcpy((char *)&(data->I1), temp,sizeof(float)*256);
+            }
+
+            temp = strstr((char*)recvBuf,"U1R;");
+            if(temp)
+            {
+//                memcpy(data->PRODUCT, temp+strlen("PRODUCT;"),temp1-temp-strlen("PRODUCT;")-1);
+
+//                qDebug()<<QString::number(strlen(temp)-strlen("KLACK;"));
+//                memcpy((char *)&(data->U1R), (char *)temp,(sizeof(float)+2)*);
+
+//                qDebug("xxxx%s",temp);
+
+                //temp++;
+                for(UINT32 j = 0; j < 256; j ++)
                 {
-                    if((type & (1 << i)) == 0)
-                        continue;
-
-                    if(temp[2] == '1')
-                        pH = data->CH1;
-                    else if(temp[2] == '2')
-                        pH = data->CH2;
-                    else if(temp[2] == '3')
-                        pH = data->CH3;
-                    else if(temp[2] == '4')
-                        pH = data->CH4;
-                    else if(temp[2] == '5')
-                        pH = data->CH5;
-                    else if(temp[2] == '6')
-                        pH = data->CH6;
-                    else
-                    {
-                        retValue = ERR_KLDATA;
-                        //return retValue;
-                    }
-                    temp += 6;//"CHx;"CR
-
-                    if(pH && *pH)
-                    {
-                        fData = (*pH)->elt;
-                        fSize = (*pH)->dimSize;
-                        for(INT32 j = 0; j < fSize; j ++)
-                        {
-                            sscanf(temp,"%E"CR,&fData[j]);
-                            while(*(temp++) != '\n');
-                        }
-                    }else
-                    {
-                        retValue = ERR_BUFFER;
-                    }
-                    temp = strstr(temp,"CH");
+                    sscanf(temp,"%E"CR,&data->U1R[j]); //取到指定字符集为止的字符串
+                    while(*(temp++) != '\n');
+                   // qDebug("xxxx%d==%f\n",j,data->U1R[j]);
                 }
+
+            }
+
+            temp = strstr((char*)recvBuf,"I1R;");
+            if(temp)
+            {
+                 memcpy((char *)&(data->I1R), temp,sizeof(float)*256);
             }
         }
-
     }else
         retValue = ERR_RIGHT;
 

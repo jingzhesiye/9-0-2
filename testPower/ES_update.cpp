@@ -17,7 +17,6 @@ void MainWidget:: startESTD()//标准方差s值
     timeThreadTimer.run(ESTD);
 }
 
-
 //PE;1.0E-3<CR>	有功误差
 //QE;1.0E-3<CR> 无功误差
 //FE;1.0E-3<CR> 比值误差

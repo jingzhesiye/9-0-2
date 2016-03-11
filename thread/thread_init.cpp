@@ -29,8 +29,8 @@ timeThread::timeThread()
     RS_Timer =new QTimer(this);
     connect(RS_Timer, SIGNAL(timeout()), this, SLOT(set_RS_Arg()) );
 
-    RSMV_Harmonic_Timer =new QTimer(this);
-    connect(RSMV_Harmonic_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_HARMONIC_Arg()) );
+    RRF_Timer =new QTimer(this);
+    connect(RRF_Timer, SIGNAL(timeout()), this, SLOT(set_RRF_Arg()) );
 
     RD_Timer =new QTimer(this);
     connect(RD_Timer, SIGNAL(timeout()), this, SLOT(set_RD_Arg()) );
@@ -58,7 +58,7 @@ timeThread::timeThread()
     IsRSMV_WAVEALL            = false;
     IsRSMV_PHASOR             = false;
     IsRS               = false;
-    IsRSMV_HARMONIC           = false;
+    IsRRF           = false;
     IsRD                      = false;
 
     IsENERGY_STD              = false;
@@ -74,16 +74,12 @@ void timeThread::Serial_getFD(const int fdSerial)  //每次发送需要知道串
     driver_619->fdSerial= fdSerial;
 }
 
-void timeThread ::RSMV_wave_setArg(const int chlNum,const int sampleCnt)//通道选择
-{
-    RSMV_wave_chlNum = chlNum;
-    RSMV_wave_sampleCnt   = sampleCnt;
-}
+
 /*******************************************************************************************************
 *Function:     线程谐波参数设置,收发公用
 *Description:  type 模式，channelTemp，第几通道；H1Temp：开始；结束：H2Temp；
 *******************************************************************************************************/
-void timeThread::RSMV_harmonic_setArg( const bool mode,const UINT32 chlNum,const  UINT32 H1, const UINT32 H2)
+void timeThread::RRF_setArg( const bool mode,const UINT32 chlNum,const  UINT32 H1, const UINT32 H2)
 {
      SMV_harmonic_mode=mode;
      SMV_harmonic_ChlNum=chlNum;
@@ -101,7 +97,7 @@ void timeThread::enableItem(int Item)
         case RSMV_WAVEALL:              this->IsRSMV_WAVEALL           = true; break;
         case RSMV_PHASOR:               this->IsRSMV_PHASOR                     = true; break;
         case RS:                 this->IsRS                       = true; break;
-        case RSMV_HARMONIC:             this->IsRSMV_HARMONIC                   = true; break;
+        case RRF:             this->IsRRF                   = true; break;
         case RD:                        this->IsRD              = true; break;
         case RFT3_WAVE:                this->IsRFT3                        = true; break;
         case ES:                   this->IsES             = true; break;
@@ -150,10 +146,10 @@ void timeThread::run()
             IsRS = false;
             slt_RS_timeDone();
         }
-        if (IsRSMV_HARMONIC == true)
+        if (IsRRF == true)
         {
-            IsRSMV_HARMONIC = false;
-            slt_RSMV_harmonic_timeDone();
+            IsRRF = false;
+            slt_RRF_timeDone();
         }
         if (IsRD == true)
         {
@@ -244,11 +240,11 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
 
             }
         break;
-        case RSMV_HARMONIC:
+        case RRF:
             {
                 timerNum = 0;
-                RSMV_Harmonic_Timer->setInterval(1500);
-                RSMV_Harmonic_Timer->start();
+                RRF_Timer->setInterval(1500);
+                RRF_Timer->start();
 
             }
         break;
@@ -348,9 +344,9 @@ void timeThread::close_timer(int timerNum)
                        //
      break;
 
-     case RSMV_HARMONIC:
-                        RSMV_Harmonic_Timer->stop();
-                        IsRSMV_HARMONIC= false;
+     case RRF:
+                        RRF_Timer->stop();
+                        IsRRF= false;
                        //
      break;
 
@@ -390,7 +386,7 @@ void timeThread::close_timer(int timerNum)
     RSMV_Waveall_Timer->stop();
     RSMV_Phasor_Timer->stop();
     RS_Timer->stop();
-    RSMV_Harmonic_Timer->stop();
+    RRF_Timer->stop();
     RD_Timer->stop();
     RFT3_Timer->stop();
     ES_Timer->stop();
@@ -404,7 +400,7 @@ void timeThread::close_timer(int timerNum)
     IsRSMV_WAVE       = false;
     IsRSMV_PHASOR     = false;
     IsRS       = false;
-    IsRSMV_HARMONIC   = false;
+    IsRRF   = false;
     IsRD = false;
     IsRFT3            = false;
     IsES    = false;
