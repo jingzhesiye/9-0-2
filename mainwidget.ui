@@ -348,7 +348,7 @@
       <number>0</number>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="test_power_Page">
       <property name="sizePolicy">
