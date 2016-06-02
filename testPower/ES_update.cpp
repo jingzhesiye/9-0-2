@@ -54,7 +54,6 @@ void MainWidget::slt_ENERGY_PUL_update(pPULSEPOW pPULSEPOW_Temp)
    // ui->RSMV_energy_pul_LnEdit->setText(QString::number(pPULSEPOW_Temp->WP,'d',5));
 }
 
-
 void MainWidget:: startENERGY_STD()//电能脉冲
 {
     timeThreadTimer.run(ENERGY_STD);

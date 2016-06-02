@@ -85,6 +85,7 @@ private slots:
     void on_serPort_CleanSend_PsBtn_clicked();
     void on_serPort_Send_PsBtn_clicked();
 
+    void slt_battery_update(QString str);
     void slt_RD_update(pRDTYPE);
     void slt_RS_update(pRSTYPE);
 
@@ -116,6 +117,7 @@ private slots:
 
     void on_RSMV_saveFormMsg_PsBtn_clicked();
     void on_ES_PE_zoomIn_PsBtn_clicked();
+
     void on_ES_PE_zoomOut_PsBtn_clicked();
     void on_keyBoard_PsBtn_clicked();
 

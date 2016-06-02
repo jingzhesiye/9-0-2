@@ -50,6 +50,11 @@ timeThread::timeThread()
     ENERGY_STD_Timer =new QTimer(this);
     connect(ENERGY_STD_Timer, SIGNAL(timeout()), this, SLOT(set_ENERGY_STD_Arg()) );
 
+    get_battery_Timer=new QTimer(this);
+    connect(get_battery_Timer, SIGNAL(timeout()), this, SLOT(slt_battery_timeDone()) );     //定时接收数据
+    get_battery_Timer->setInterval(1*60*1000);//5分钟读一次
+    get_battery_Timer->start();
+
     runType = 0;
 
     IsSSMV_RMS                = false;
@@ -527,9 +532,10 @@ void timeThread::slt_RS_timeDone()
         return ;
     }
 
+    //qDebug()<<QString::number(sizeof(RSTYPE));
     if( driver_619->getRS(pRSTYPE_Temp) == ERR_RIGHT )
     {
-//        qDebug()<<"slt_RS_timeDone"<<QString::number(pRSTYPE_Temp->CURRENCEOUT,'d',4);
+        //qDebug()<<"slt_RS_timeDone"<<QString::number(pRSTYPE_Temp->VOLTAGENEED,'d',4);
         emit sig_RS_update(pRSTYPE_Temp);
     }
 

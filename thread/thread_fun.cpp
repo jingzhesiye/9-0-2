@@ -16,6 +16,22 @@ UINT8 timeThread::transmitsSimply (UINT8 *data)//串口快速发送
     return retValue;
 }
 
+void timeThread::slt_battery_timeDone()
+{
+    if(mutexUpdate.tryLock()==false)
+    {
+        qDebug()<<"ME_locked";
+        return ;
+    }
+
+    QString str;
+    if(driver_619->getRBAT(str) == ERR_RIGHT)
+    {
+        emit sig_battery_update(str);
+    }
+
+    mutexUpdate.unlock();
+}
 
 bool timeThread::setSP(pSPTYPE pSPTYPE_Temp)
 {
@@ -93,7 +109,7 @@ QStringList timeThread:: getRCR()
 //ME
 void timeThread::slt_ME_timeDone()
 {
-    qDebug()<<"slt_ME_timeDone";
+//    qDebug()<<"slt_ME_timeDone";
 #if 0
     if(mutexUpdate.tryLock()==false)
     {

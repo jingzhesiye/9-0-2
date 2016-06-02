@@ -84,6 +84,27 @@ UINT8 xl618::readOneFrame(UINT32 sendToBufSize,char *frameHead,char *errorHead,c
 
 #endif
 
+UINT8 xl618::getRBAT(QString &str)
+{
+    UINT8 retValue = ERR_UNIVERSAL;
+
+    char *pSend = (char*)sendBuf;
+
+    pSend += sprintf(pSend,"RBAT\n\r" CR);
+
+    UINT16 frameSize = pSend - (char*)sendBuf;
+
+    if((retValue = readOneFrame(frameSize,(char*)"RBAT",NULL,(char*)"RBATACK",300)) == ERR_RIGHT)
+    {
+        char *temp;
+        temp = strstr((char*)recvBuf,(char*)"LEFT;");
+        if(temp)
+            str= QString::number(atof(&temp[sizeof("LEFT;")-1]));
+            //qDebug()<<str;
+    }
+
+    return retValue;
+}
 
 UINT8 xl618::sendOther(UINT8 *writeBuf,UINT32 writeSize,UINT8 *readBuf,UINT32 *readSize)
 {
@@ -785,15 +806,15 @@ UINT8 xl618::setMPE(pMETYPE data,pMEable able)     //data，要设置的测量�
         strcpy(pSend,STR_MPE CR);
         pSend += strlen(STR_MPE CR);
 
-        if(able->UL1)
-                pSend += sprintf(pSend,"0;%lE"CR,data->UL1);
-        else
-                pSend += sprintf(pSend,"0;NC"CR);
+//        if(able->UL1)
+//                pSend += sprintf(pSend,"0;%lE"CR,data->UL1);
+//        else
+//                pSend += sprintf(pSend,"0;NC"CR);
 
-        if(able->IL1)
-                pSend += sprintf(pSend,"1;%lE"CR,data->IL1);
-        else
-                pSend += sprintf(pSend,"1;NC"CR);
+//        if(able->IL1)
+//                pSend += sprintf(pSend,"1;%lE"CR,data->IL1);
+//        else
+//                pSend += sprintf(pSend,"1;NC"CR);
 
 
 
@@ -810,34 +831,36 @@ UINT8 xl618::getME(pMETYPE data)
     char *pSend = (char*)sendBuf;
     strcpy(pSend,STR_ME CR);
     pSend += strlen(STR_ME CR);
-    char* temp;
 
         UINT16 frameSize = pSend - (char*)sendBuf;
-
         if((retValue = readOneFrame(frameSize,(char*)"ME",NULL,(char*)"MEACK",500)) == ERR_RIGHT)
         {//解析帧
-                temp = strstr((char*)recvBuf,"0;");
-                if(temp)
-                        data->UL1 = atof(&temp[2]);
+            char *temp;
+            temp = strstr((char*)recvBuf,(char*)"U1;");
+                //qDebug("recvBuf==%s\n",recvBuf);
+            if(temp)
+                data->U1 = (FLOAT32)atof(&temp[sizeof("U1;")-1]);
 
-                temp = strstr((char*)recvBuf,"1;");
-                if(temp)
-                        data->IL1 = atof(&temp[2]);
+            temp = strstr((char*)recvBuf,(char*)"I1;");
+            if(temp)
+                data->I1 = (FLOAT32)atof(&temp[sizeof("I1;")-1]);
 
-                temp = strstr((char*)recvBuf,"2;");
-                if(temp)
-                        data->P1 = atof(&temp[2]);
+            temp = strstr((char*)recvBuf,(char*)"W1;");
+            if(temp)
+                data->W1 = (FLOAT32)atof(&temp[sizeof("W1;")-1]);
 
-                temp = strstr((char*)recvBuf,"3;");
-                if(temp)
-                        data->Price = atof(&temp[2]);
+            temp = strstr((char*)recvBuf,(char*)"W1C;");
+            if(temp)
+                data->W1C = (FLOAT32)atof(&temp[sizeof("W1C;")-1]);
 
-                temp = strstr((char*)recvBuf,"4;");
-                if(temp)
-                        data->Time = atof(&temp[2]);
+            temp = strstr((char*)recvBuf,(char*)"Time;");
+            if(temp)
+                data->Time = (FLOAT32)atof(&temp[sizeof("Time;")-1]);
+
+            temp = strstr((char*)recvBuf,(char*)"P1;");
+            if(temp)
+                data->P1 = (FLOAT32)atof(&temp[sizeof("P1;")-1]);
         }
-
-
         return retValue;
 }
 

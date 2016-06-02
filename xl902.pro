@@ -29,7 +29,6 @@ SOURCES += main.cpp \
     ripple/ripple.cpp \
     testPower/ME_update.cpp \
     testPower/ES_update.cpp \
-    testPower/RD_update.cpp \
     sideBar_right.cpp \
     testPower/ES_wave.cpp \
     testPower/testPower_page.cpp \
@@ -37,7 +36,8 @@ SOURCES += main.cpp \
     interface_xl618_2.cpp \
     testPower/set_parameter.cpp \
     testPower/read_BMS.cpp \
-    ripple/ripple_wave.cpp
+    ripple/ripple_wave.cpp \
+    testPower/RD_update.cpp
 
 HEADERS  += \
     mainwidget.h \

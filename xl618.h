@@ -25,7 +25,7 @@ public:
     UINT8 sendOther(UINT8 *writeBuf,UINT32 writeSize,UINT8 *readBuf,UINT32 *readSize);                    //串口直接发送
     UINT8 readOneFrame(UINT32 sendToBufSize,char *frameHead,char *errorHead,char *frameTail,int readTime);//解析底层的信息
 
-
+    UINT8 getRBAT(QString &str);
     UINT8 getRD(pRDTYPE data);                                                                            //读取数据
     UINT8 getRS(pRSTYPE data);
 

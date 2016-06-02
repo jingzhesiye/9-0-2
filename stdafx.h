@@ -324,11 +324,12 @@ typedef struct
 
 typedef struct
 {
-    FLOAT64 UL1;
-    FLOAT64 IL1;
-    FLOAT64 P1;
-    FLOAT64 Price;
+    FLOAT64 U1;
+    FLOAT64 I1;
+    FLOAT64 W1;
+    FLOAT64 W1C;
     FLOAT64 Time;
+    FLOAT64 P1;
 }METYPE,*pMETYPE,**ppMETYPE;
 
 typedef struct

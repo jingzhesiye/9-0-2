@@ -13,13 +13,16 @@
 void MainWidget::slt_ME_update(pMETYPE  pMETYPE_Temp)
 {
       //qDebug()<<QString::number(pMETYPE_Temp->Price);
-    ui->ES_standard_TblWidget->item(0,1)->setText(QString::number(pMETYPE_Temp->UL1,'d',1));
-    ui->ES_standard_TblWidget->item(0,3)->setText(QString::number(pMETYPE_Temp->IL1,'d',1));
-    ui->ES_standard_TblWidget->item(0,5)->setText(QString::number(pMETYPE_Temp->P1,'d',1));
-    ui->ES_standard_TblWidget->item(0,7)->setText(QString::number(pMETYPE_Temp->Price,'d',1));
-    ui->ES_standard_TblWidget->item(0,9)->setText(QString::number(pMETYPE_Temp->Time,'d',1));
+    ui->ES_standard_TblWidget->item(0,1)->setText(QString::number(pMETYPE_Temp->U1,'d',1));
+    ui->ES_standard_TblWidget->item(0,3)->setText(QString::number(pMETYPE_Temp->P1,'d',1));
+    ui->ES_standard_TblWidget->item(0,5)->setText(QString::number(pMETYPE_Temp->W1,'d',1));
 
-      //timeThreadTimer.mutexUpdate.unlock();
+    ui->ES_standard_TblWidget->item(1,1)->setText(QString::number(pMETYPE_Temp->I1,'d',1));
+    ui->ES_standard_TblWidget->item(1,3)->setText(QString::number(pMETYPE_Temp->Time,'d',1));
+    ui->ES_standard_TblWidget->item(1,5)->setText(QString::number(pMETYPE_Temp->W1C,'d',1));
+
+
+    //  timeThreadTimer.mutexUpdate.unlock();
 }
 
 //清空数据

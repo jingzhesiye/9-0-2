@@ -83,15 +83,11 @@ void MainWidget::init_timeThreadTimer_connect()
 
     connect(&timeThreadTimer, SIGNAL(sig_wave_update()),          this, SLOT(slt_wave_update()));
 
-    #if 0
 
-    connect(&timeThreadTimer, SIGNAL(sig_RSMV_ESTD_update(pESTDTYPE)),   this, SLOT(slt_RSMV_ESTD_update(pESTDTYPE)));
-    connect(&timeThreadTimer, SIGNAL(sig_ENERGY_PUL_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_PUL_update(pPULSEPOW)),Qt::DirectConnection);
-    connect(&timeThreadTimer, SIGNAL(sig_ENERGY_STD_update(pPULSEPOW)),   this, SLOT(slt_ENERGY_STD_update(pPULSEPOW)),Qt::DirectConnection);
+    connect(&timeThreadTimer, SIGNAL(sig_battery_update(QString )),  this, SLOT(slt_battery_update(QString )));
+    qRegisterMetaType<QString>("QString");
 
-
-    qRegisterMetaType<pPULSEPOW>("pPULSEPOW");
-    #endif
+    timeThreadTimer.slt_battery_timeDone();//开机读取一次
 }
 
 //fun:用于清除表格
@@ -104,6 +100,8 @@ void MainWidget::remove_TblWdiget_Row(QTableWidget *TblWiget)
        TblWiget->removeRow(i);
     }
 }
+
+
 
 void MainWidget::set_TblWdiget_Header(QTableWidget *TblWiget,bool H,bool V)
 {
@@ -139,6 +137,38 @@ void MainWidget::on_keyBoard_PsBtn_clicked()
      myProcess->start("./ScreenKeyboard.exe");//ScreenKeyboard
 }
 
+void MainWidget::slt_battery_update(QString str)
+{
+    int value =str.toInt();
+   //qDebug("%d",value);
+     if(value>80)
+     {
+       ui->battery_Label->setStyleSheet(QString::fromUtf8("background-image: url(:);\n"
+       "image: url(:/pic/battery_1.png);background-color:rgb(0, 0, 0, 0)"));
+     }
+     else if((value>45) && (value<80))//10反抖动
+     {
+        // qDebug("fasdf");
+       ui->battery_Label->setStyleSheet(QString::fromUtf8("background-image: url(:);\n"
+       "image: url(:/pic/battery_2.png);background-color:rgb(0, 0, 0, 0)"));
+     }
+     else if((value>10) && (value<45))
+     {
+       ui->battery_Label->setStyleSheet(QString::fromUtf8("background-image: url(:);\n"
+       "image: url(:/pic/battery_3.png);background-color:rgb(0, 0, 0, 0)"));
+     }
+
+    if(value<10 )
+    {
+      ui->battery_Label->setStyleSheet(QString::fromUtf8("background-image: url(:);\n"
+       "image: url(:/pic/battery_4.png);background-color:rgb(0, 0, 0, 0)"));
+      show_MsBox(QString::fromUtf8("电池即将没电,请及时充电"),3000);
+    }
+
+     ui->battery_Label->update();
+     qDebug()<<str;
+}
+
 void MainWidget::on_ES_insertForm_PsBtn_clicked()
 {
     QString strESTD,strPE;
@@ -148,3 +178,4 @@ void MainWidget::on_ES_insertForm_PsBtn_clicked()
 
     ui->from_error_TxEdit->append(strESTD+strPE);
 }
+

@@ -53,7 +53,7 @@ public:
    QStringList getRVR();
 public slots:
     void  stop();
-
+    void slt_battery_timeDone();
 protected:
 
 signals:
@@ -62,6 +62,7 @@ signals:
 
     void sig_SSMV_rms_update(pMETYPE) ;
 
+    void sig_battery_update(QString str);
     void sig_ME_update(pMETYPE) ;
     void sig_ES_update(pESTYPE) ;
     void sig_ESTD_update(pESTDTYPE);
@@ -171,6 +172,7 @@ private slots:
     QTimer     *ENERGY_STD_Timer;
     QTimer     *ES_Timer;
     QTimer     *ESTD_Timer;
+    QTimer     *get_battery_Timer;
 
     QIntList strUpRow;
     QStringList strUpSerial;

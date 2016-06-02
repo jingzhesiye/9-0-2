@@ -9,7 +9,6 @@
  //将按钮放在一个list
 void MainWidget::init_sideBar()
 {
-
     sideBar_BtnList.append(ui->sideBar_TlBtn_1);
     sideBar_BtnList.append(ui->sideBar_TlBtn_2);
     sideBar_BtnList.append(ui->sideBar_TlBtn_3);
@@ -20,7 +19,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_2->click();
+    ui->sideBar_TlBtn_1->click();
 }
 
 
@@ -38,9 +37,9 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
 
         case 0:
                 clean_main_SkWidget_1();//清除界面1的数据
-                startRD();
+//                startRD();
                 startRS();//BMS
-                startES();//电能误差
+//                startES();//电能误差
                 startME(); //测量值
                 startELAPSETIME();
         break;
@@ -79,22 +78,35 @@ void MainWidget::changeButtonStatus() {
         set_TblWdiget_Header( ui->BMS_RD_TblWidget ,false,false);
         //ui->BMS_RD_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
 
-        ui->RS_charger_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
-        ui->ES_standard_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//        ui->RS_charger_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//        ui->ES_standard_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Interactive);
+
+        ui->RS_charger_TblWidget->setColumnWidth(0,110);
+        ui->RS_charger_TblWidget->setColumnWidth(1,110);
+        ui->RS_charger_TblWidget->setColumnWidth(2,130);
+        ui->RS_charger_TblWidget->setColumnWidth(3,120);
+        ui->RS_charger_TblWidget->setColumnWidth(4,130);
+        ui->RS_charger_TblWidget->setColumnWidth(5,120);
+
+        ui->ES_standard_TblWidget->setColumnWidth(0,80);
+        ui->ES_standard_TblWidget->setColumnWidth(1,80);
+        ui->ES_standard_TblWidget->setColumnWidth(2,110);
+        ui->ES_standard_TblWidget->setColumnWidth(3,80);
+        ui->ES_standard_TblWidget->setColumnWidth(4,110);
+        ui->ES_standard_TblWidget->setColumnWidth(5,80);
 
 
-        ui->BMS_RD_TblWidget->setColumnWidth(0,150);
+        ui->BMS_RD_TblWidget->setColumnWidth(0,160);
         ui->BMS_RD_TblWidget->setColumnWidth(1,100);
-        ui->BMS_RD_TblWidget->setColumnWidth(2,140);
+        ui->BMS_RD_TblWidget->setColumnWidth(2,130);
         ui->BMS_RD_TblWidget->setColumnWidth(3,100);
-        ui->BMS_RD_TblWidget->setColumnWidth(4,135);
-        ui->BMS_RD_TblWidget->setColumnWidth(5,95);
+        ui->BMS_RD_TblWidget->setColumnWidth(4,130);
+        ui->BMS_RD_TblWidget->setColumnWidth(5,100);
 
         ui->main_SkWidget->setCurrentIndex(0);
     }
     if(source==ui->sideBar_TlBtn_2)
     {
-
         ui->main_SkWidget->setCurrentIndex(1);
     }
     if(source==ui->sideBar_TlBtn_3)
@@ -104,5 +116,6 @@ void MainWidget::changeButtonStatus() {
     if(source==ui->sideBar_TlBtn_4)
     {
         ui->main_SkWidget->setCurrentIndex(3);
+        //ui->serPort_read_SP_PsBtn->click();
     }
 }

@@ -59,6 +59,7 @@ void MainWidget::init_serPort()
     serPort_shorCut_list.append(ui->serPort_ME_PsBtn);
     serPort_shorCut_list.append(ui->serPort_RS_PsBtn);
     serPort_shorCut_list.append(ui->serPort_RD_PsBtn);
+    serPort_shorCut_list.append(ui->serPort_RBAT_PsBtn);
 
     foreach (QPushButton *serPort_shorCut_PsBtn, serPort_shorCut_list) {
         connect(serPort_shorCut_PsBtn, SIGNAL(clicked()), this, SLOT(slot_serPort_shorCut_PsBtn()));
@@ -80,8 +81,8 @@ void MainWidget::init_serPort()
     SP_loadType_cbbox->setCurrentIndex(0);
 
     SP_measureType_cbbox = new QComboBox;
-    SP_measureType_cbbox->addItem(QString::fromUtf8("手动"));
     SP_measureType_cbbox->addItem(QString::fromUtf8("自动"));
+    SP_measureType_cbbox->addItem(QString::fromUtf8("手动"));
     SP_measureType_cbbox->addItem(QString::fromUtf8("半自动"));
     SP_measureType_cbbox->setCurrentIndex(0);
 
@@ -154,6 +155,7 @@ void MainWidget::on_serPort_Send_PsBtn_clicked()
 {
     QString Message;
 
+    ui->serPort_Rec_TxEdit->clear();
     Message = ui->serPort_Send_TxEdit->toPlainText() ;
 
     if (ui->serPort_CR_CkBox->checkState() == Qt::Checked) //Retour a la ligne
@@ -225,6 +227,10 @@ void MainWidget::slot_serPort_shorCut_PsBtn()
     else if(serPort_shorCut_PsBtn==ui->serPort_RD_PsBtn)
     {
         strTemp  = "RD";
+    }
+    else if(serPort_shorCut_PsBtn==ui->serPort_RBAT_PsBtn)
+    {
+        strTemp  = "RBAT";
     }
 
     ui->serPort_Send_TxEdit->setText(strTemp);
