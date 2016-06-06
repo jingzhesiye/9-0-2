@@ -78,24 +78,12 @@ void MainWidget::init_ES_wave(void)
     RSMV.wave_Uc_curve ->attach(ui->ES_wave_QwtPlot);
 }
 
-void MainWidget:: startRD()
-{
-    timeThreadTimer.run(RD);
-//    qDebug()<<"111111111111111111111startRD";
-}
 
-void MainWidget:: startRS()
+void MainWidget:: start_RS()
 {
     timeThreadTimer.run(RS);
-//    qDebug()<<"111111111111111111111startRD";
 }
 
-
-//读取测量值ME
-void MainWidget:: startME()
-{
-    timeThreadTimer.run(ME);
-}
 
 
 

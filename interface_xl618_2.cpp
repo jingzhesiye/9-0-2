@@ -1,72 +1,52 @@
 #include "xl618.h"
 #include "stdio.h"
 #include "QDebug"
-#if 1
+
+
 UINT8 xl618::getKL(UINT8 type,pRKLTYPE data)
 {
-    FLOAT32 *fData;
     UINT8 retValue = ERR_UNIVERSAL;
-    if(type)
+
+    char *pSend = (char*)sendBuf;
+
+    strcpy(pSend,"KL\n\rCHANNAL;U1R"CR);
+    pSend += strlen("KL\n\rCHANNAL;U1R"CR);
+    strcpy(pSend,"CHANNAL;I1R"CR);
+    pSend += strlen("CHANNAL;I1R"CR);
+
+    UINT16 frameSize = pSend - (char*)sendBuf;
+    char *temp;
+
+    if((retValue = readOneFrame(frameSize,(char*)"KL",NULL,(char*)"KLACK",800)) == ERR_RIGHT)
     {
-
-        char *pSend = (char*)sendBuf;
-//        strcpy(pSend,STR_KL);
-//        pSend += strlen(STR_KL);
-
-        strcpy(pSend,"KL\n\rCHANNAL;U1R"CR);
-        pSend += strlen("KL\n\rCHANNAL;U1R"CR);
-
-        UINT16 frameSize = pSend - (char*)sendBuf;
-        char *temp;
-
-        if((retValue = readOneFrame(frameSize,(char*)"KL",NULL,(char*)"KLACK",800)) == ERR_RIGHT)
-        {//解析帧
-
-            temp = strstr((char*)recvBuf,"U1;");
-            if(temp)
+        temp = strstr((char*)recvBuf,"U1R;");
+        if(temp)
+        {
+            for(UINT32 j = 0; j < 256; j ++)
             {
-                 memcpy((char *)&(data->U1), temp,sizeof(float)*256);
+                sscanf(temp,"%E"CR,&data->U1R[j]); //取到指定字符集为止的字符串
+                while(*(temp++) != '\n');
 
             }
 
-            temp = strstr((char*)recvBuf,"I1;");
-            if(temp)
+        }
+
+        temp = strstr((char*)recvBuf,"I1R;");
+        if(temp)
+        {
+            for(UINT32 j = 0; j < 64; j ++)
             {
-                 memcpy((char *)&(data->I1), temp,sizeof(float)*256);
-            }
-
-            temp = strstr((char*)recvBuf,"U1R;");
-            if(temp)
-            {
-//                memcpy(data->PRODUCT, temp+strlen("PRODUCT;"),temp1-temp-strlen("PRODUCT;")-1);
-
-//                qDebug()<<QString::number(strlen(temp)-strlen("KLACK;"));
-//                memcpy((char *)&(data->U1R), (char *)temp,(sizeof(float)+2)*);
-
-//                qDebug("xxxx%s",temp);
-
-                //temp++;
-                for(UINT32 j = 0; j < 256; j ++)
-                {
-                    sscanf(temp,"%E"CR,&data->U1R[j]); //取到指定字符集为止的字符串
-                    while(*(temp++) != '\n');
-                   // qDebug("xxxx%d==%f\n",j,data->U1R[j]);
-                }
-
-            }
-
-            temp = strstr((char*)recvBuf,"I1R;");
-            if(temp)
-            {
-                 memcpy((char *)&(data->I1R), temp,sizeof(float)*256);
+                sscanf(temp,"%E"CR,&data->I1R[j]);     //以指数形式输出单精度
+                while(*(temp++) != '\n');
+               //qDebug("xxxx%d==%f\n",j,data->U1[j]);
             }
         }
     }else
-        retValue = ERR_RIGHT;
+    retValue = ERR_RIGHT;
 
     return retValue;
 }
-#endif
+
 UINT8 xl618::getLKL(UINT8 type,pLKLTYPE data)//	type:0~5位分别表示通道1~6 Ua~Ic，位置1表示读取该通道 data:存储通道数据缓冲区
 {
 

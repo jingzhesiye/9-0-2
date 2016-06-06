@@ -22,22 +22,23 @@ SOURCES += main.cpp \
     SerialPort/serPort_Page.cpp \
     thread/thread_fun.cpp \
     thread/thread_init.cpp \
-    elapseTime.cpp \
     sysIni.cpp \
     form/save_doc.cpp \
     form/edit_form.cpp \
     ripple/ripple.cpp \
-    testPower/ME_update.cpp \
-    testPower/ES_update.cpp \
     sideBar_right.cpp \
-    testPower/ES_wave.cpp \
-    testPower/testPower_page.cpp \
     interface_xl618_1.cpp \
     interface_xl618_2.cpp \
-    testPower/set_parameter.cpp \
-    testPower/read_BMS.cpp \
     ripple/ripple_wave.cpp \
-    testPower/RD_update.cpp
+    testPower/RD_ctl.cpp \
+    testPower/BMS_ctl.cpp \
+    testPower/ES_init.cpp \
+    testPower/ES_ctl.cpp \
+    testPower/ME_ctl.cpp \
+    testPower/SP_setPar.cpp \
+    testPower/testPower_option.cpp \
+    ripple/RRF_ctl.cpp \
+    runTime.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -61,3 +62,6 @@ INCLUDEPATH +="D:/software/Qwt-6.0.2_485/include"
 LIBS+=-L "D:/software/Qwt-6.0.2_485/lib" -lqwt
 
 CONFIG+=qaxcontainer
+
+OTHER_FILES += \
+    Àı–¥.txt

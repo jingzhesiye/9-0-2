@@ -454,9 +454,11 @@ typedef struct
 
 typedef struct
 {
-    FLOAT32 RF;
-    FLOAT32 RV;
-    //注意对齐
+    FLOAT32 L1RF;
+    FLOAT32 L1RA;
+    FLOAT32 L2RF;
+    FLOAT32 L2RA;
+
 }RRFTYPE,*pRRFTYPE,**ppRRFTYPE;
 
 
@@ -639,7 +641,7 @@ typedef QList<int> QIntList;
 //定时器类型
 
 #define SSMV_RMS	       10
-#define RSMV_WAVE	       31              //波形图
+#define KL	       31              //波形图
 #define RSMV_PHASOR 	       32          //相位
 
 #define RSMV_WAVEALL	       37          //解析

@@ -26,9 +26,9 @@ public:
     bool    m_waitStart;
     void    run(int timerNum = 0);
     void    run();
-    double   RSMV_wave_axesY[6][260];
+    double   KL_axesY[6][260];
     //double  gwave_Yval_Cur[3][260];
-    double  RSMV_arrayTemp[40];
+    double   KL_arrayTemp[40];
 
     UINT32  RSMV_waveall_sampleCnt  ;//采样点数目
     UINT32  RSMV_waveall_chlIndex  ;//索引通道
@@ -83,7 +83,7 @@ private slots:
     void slt_SSMV_rms_timeDone();
     void slt_ME_timeDone();
     void slt_RSMV_waveall_timeDone();
-    void slt_RSMV_wave_timeDone();
+    void slt_KL_timeDone();
     void slt_RSMV_phasor_timeDone();
     void slt_RS_timeDone();
     void slt_RRF_timeDone();
@@ -106,9 +106,9 @@ private slots:
    {
         enableItem(ME);
    }
-   void set_RSMV_WAVE_Arg()
+   void set_KL_Arg()
    {
-        enableItem(RSMV_WAVE);
+        enableItem(KL);
    }
 
    void set_RSMV_WAVEALL_Arg()
@@ -159,7 +159,7 @@ private slots:
 
     QTimer     *SSMV_RMS_Timer;
     QTimer     *ME_Timer;
-    QTimer     *RSMV_Wave_Timer;
+    QTimer     *KL_Timer;
     QTimer     *RSMV_Waveall_Timer;
     QTimer     *RSMV_Phasor_Timer ;
 
@@ -196,7 +196,7 @@ private:
 
     bool IsSSMV_RMS;
     bool IsME;
-    bool IsRSMV_WAVE;
+    bool IsKL;
     bool IsRSMV_WAVEALL;
     bool IsRSMV_PHASOR;
     bool IsRS;

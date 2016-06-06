@@ -17,8 +17,8 @@ timeThread::timeThread()
     ME_Timer =new QTimer(this);
     connect(ME_Timer, SIGNAL(timeout()), this, SLOT(set_ME_Arg()) );
 
-    RSMV_Wave_Timer =new QTimer(this);
-    connect(RSMV_Wave_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_WAVE_Arg()) );
+    KL_Timer =new QTimer(this);
+    connect(KL_Timer, SIGNAL(timeout()), this, SLOT(set_KL_Arg()) );
 
     RSMV_Waveall_Timer =new QTimer(this);
     connect(RSMV_Waveall_Timer, SIGNAL(timeout()), this, SLOT(set_RSMV_WAVEALL_Arg()) );
@@ -59,7 +59,7 @@ timeThread::timeThread()
 
     IsSSMV_RMS                = false;
     IsME                = false;
-    IsRSMV_WAVE               = false;
+    IsKL               = false;
     IsRSMV_WAVEALL            = false;
     IsRSMV_PHASOR             = false;
     IsRS               = false;
@@ -98,7 +98,7 @@ void timeThread::enableItem(int Item)
     {
         case SSMV_RMS:                  this->IsSSMV_RMS        = true; break;
         case ME:                  this->IsME        = true; break;
-        case RSMV_WAVE:                 this->IsRSMV_WAVE       = true; break;
+        case KL:                  this->IsKL       = true; break;
         case RSMV_WAVEALL:              this->IsRSMV_WAVEALL           = true; break;
         case RSMV_PHASOR:               this->IsRSMV_PHASOR                     = true; break;
         case RS:                 this->IsRS                       = true; break;
@@ -129,10 +129,10 @@ void timeThread::run()
             IsME = false;
             slt_ME_timeDone();
         }
-        if (IsRSMV_WAVE == true)
+        if (IsKL == true)
         {
-            IsRSMV_WAVE = false;
-            slt_RSMV_wave_timeDone();
+            IsKL = false;
+            slt_KL_timeDone();
 
         }
         if (IsRSMV_WAVEALL == true)
@@ -212,11 +212,11 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
 
             }
         break;
-        case RSMV_WAVE:
+        case KL:
             {
                 timerNum = 0;
-                RSMV_Wave_Timer->setInterval(4000);
-                RSMV_Wave_Timer->start();
+                KL_Timer->setInterval(4000);
+                KL_Timer->start();
             }
         break;
 
@@ -225,7 +225,6 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
                 timerNum = 0;
                 RSMV_Waveall_Timer->setInterval(3000);
                 RSMV_Waveall_Timer->start();
-
             }
         break;
 
@@ -258,7 +257,6 @@ void timeThread::run(int timerNum)//定时器不能放在run（）函数里面
                 timerNum = 0;
                 RD_Timer->setInterval(5000);
                 RD_Timer->start();
-                qDebug()<<"FASDF";
             }
         break;
         case RFT3_WAVE:
@@ -326,9 +324,9 @@ void timeThread::close_timer(int timerNum)
 
     break;
 
-    case RSMV_WAVE:
-                        RSMV_Wave_Timer->stop();
-                        IsRSMV_WAVE = false;
+    case KL:
+                        KL_Timer->stop();
+                        IsKL = false;
      break;
 
      case RSMV_WAVEALL:
@@ -387,7 +385,7 @@ void timeThread::close_timer(int timerNum)
 {
     SSMV_RMS_Timer->stop();
     ME_Timer->stop();
-    RSMV_Wave_Timer->stop();
+    KL_Timer->stop();
     RSMV_Waveall_Timer->stop();
     RSMV_Phasor_Timer->stop();
     RS_Timer->stop();
@@ -402,7 +400,7 @@ void timeThread::close_timer(int timerNum)
 
     IsSSMV_RMS        = false;
     IsME        = false;
-    IsRSMV_WAVE       = false;
+    IsKL       = false;
     IsRSMV_PHASOR     = false;
     IsRS       = false;
     IsRRF   = false;
@@ -454,6 +452,7 @@ INT32 timeThread:: search_maxIntValue( INT32 *Temp,INT32 len)
 
 void timeThread:: slt_RSMV_waveall_timeDone()
 {
+#if 0
     memset(IntFrame,0,8000);
    //qDebug()<<QString ::number( RSMV_wave_axesY[0][i]);
     if( (driver_619->RWAVEALL(&RSMV_waveall_sampleCnt,&RSMV_waveall_chlCount,IntFrame,8000) == ERR_RIGHT) )
@@ -461,7 +460,7 @@ void timeThread:: slt_RSMV_waveall_timeDone()
         for(UINT32 i = 0; i < RSMV_waveall_sampleCnt; i++ )
         {
 
-            RSMV_wave_axesY[0][i]=IntFrame[i+RSMV_waveall_chlIndex*RSMV_waveall_sampleCnt];
+            KL_axesY[0][i]=IntFrame[i+RSMV_waveall_chlIndex*RSMV_waveall_sampleCnt];
             RSMV_wave_axesY[1][i]=IntFrame[i+(RSMV_waveall_chlIndex+1)*RSMV_waveall_sampleCnt];
             RSMV_wave_axesY[2][i]=IntFrame[i+(RSMV_waveall_chlIndex+2)*RSMV_waveall_sampleCnt];
            // qDebug()<<QString ::number( RSMV_wave_axesY[0][i]);
@@ -475,6 +474,7 @@ void timeThread:: slt_RSMV_waveall_timeDone()
         //qDebug()<<"RSMV_waveall_chlIndex"<<QString ::number( RSMV_waveall_chlIndex);
         emit sig_RSMV_waveall_update();
     }
+    #endif
 }
 
 void timeThread::slt_RSMV_phasor_timeDone()
@@ -520,61 +520,7 @@ void timeThread::dealFullData(QString elapsedTime, int *targetRow, int *realLen,
 
 }
 
-void timeThread::slt_RS_timeDone()
-{
-#if 1
-    pRSTYPE  pRSTYPE_Temp =NULL;
 
-    if((pRSTYPE_Temp=(pRSTYPE)calloc(1,sizeof(RSTYPE)))==NULL)
-    {
-        free(pRSTYPE_Temp);
-        pRSTYPE_Temp=NULL;
-        return ;
-    }
-
-    //qDebug()<<QString::number(sizeof(RSTYPE));
-    if( driver_619->getRS(pRSTYPE_Temp) == ERR_RIGHT )
-    {
-        //qDebug()<<"slt_RS_timeDone"<<QString::number(pRSTYPE_Temp->VOLTAGENEED,'d',4);
-        emit sig_RS_update(pRSTYPE_Temp);
-    }
-
-    free(pRSTYPE_Temp);
-    pRSTYPE_Temp=NULL;
-#endif
-    //qDebug()<<"slt_RD_timeDone";
-}
-
-
-
-void timeThread::slt_RD_timeDone()
-{
-#if 1
-    pRDTYPE  pRDTYPE_Temp =NULL;
-
-    if((pRDTYPE_Temp=(pRDTYPE)calloc(1,sizeof(RDTYPE)))==NULL)
-    {
-        free(pRDTYPE_Temp);
-        pRDTYPE_Temp=NULL;
-        return ;
-    }
-
-    if( driver_619->getRD(pRDTYPE_Temp) == ERR_RIGHT )
-    {
-       // qDebug()<<"slt_RD_timeDone"<<QString::number(pRDTYPE_Temp->POWER,'d',4);
-        emit sig_RD_update(pRDTYPE_Temp);
-    }
-
-    free(pRDTYPE_Temp);
-    pRDTYPE_Temp=NULL;
-#endif
-
-
-}
-/*******************************************************************************************************
-*Fun:     接收有效值、波形数据、波形数据最大值
-*Desc:    设置发送的数据值，同时关闭控件按钮操作，打开线程回读
-*******************************************************************************************************/
 void timeThread::slt_RFT3_timeDone()
 {
 

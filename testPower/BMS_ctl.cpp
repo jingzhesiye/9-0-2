@@ -13,6 +13,9 @@ void MainWidget:: slt_RS_update(pRSTYPE pRSTYPE_Temp)
     ui->BMS_RD_TblWidget->item(3,1)->setText(QString::number(pRSTYPE_Temp->CURRENCENEED*0.1,'d',1));//充电电流需求.A
     ui->BMS_RD_TblWidget->item(2,3)->setText(QString::number(pRSTYPE_Temp->CHARGETIME,'d',1));//累计充电时间
 
+    float f_Std;
+    f_Std = ui->ES_standard_TblWidget->item(1,3)->text().toFloat(0);
+    ui->ES_TE_LnEdit->setText(QString::number((pRSTYPE_Temp->CHARGETIME - f_Std)/(f_Std*0.01)));
 
     if(pRSTYPE_Temp->STATE==0)
     {

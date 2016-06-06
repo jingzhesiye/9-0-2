@@ -40,9 +40,9 @@ private:
     QList<QPushButton *> serPort_shorCut_list;
     bool eventFilter(QObject *target,QEvent *event);
 
-    QTimer *elapseTimer;
-    QTime   elapseTime;   //运行时间
-    int     elapseTimeCal;
+    QTimer *runTimer;
+    QTime   runTime;   //运行时间
+    int     runTimeCal;
 
     timeThread        timeThreadTimer ;
     QPolygonF         ESTD_PolygonF;//坐标点
@@ -57,14 +57,14 @@ private:
     void init_elapseTime();//定时器时间
     void init_rms_harmonic();
 
-    void startRD();
-    void startRS();
-    void startME();
-    void startWAVE();
+    void start_RD();
+    void start_RS();
+    void start_ME();
+    void start_rippleWave();
     void startES();
     void startESTD();
-    void startRRF();
-    void startELAPSETIME();
+    void start_RRF();
+    void start_runTime();
     void startENERGY_PUL();
     void startENERGY_STD();
     void clean_main_SkWidget_1();
@@ -97,7 +97,7 @@ private slots:
 
     void slt_RRF_update(pRRFTYPE);
 
-    void slt_elapseTimer_timeout();
+    void slt_runTimer_timeout();
     void on_start_PsBtn_clicked(bool checked);
 
     void on_serPort_write_SP_PsBtn_clicked();

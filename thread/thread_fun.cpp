@@ -20,7 +20,7 @@ void timeThread::slt_battery_timeDone()
 {
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"ME_locked";
+        qDebug()<<"Battery_locked";
         return ;
     }
 
@@ -110,7 +110,7 @@ QStringList timeThread:: getRCR()
 void timeThread::slt_ME_timeDone()
 {
 //    qDebug()<<"slt_ME_timeDone";
-#if 0
+#if 1
     if(mutexUpdate.tryLock()==false)
     {
         qDebug()<<"ME_locked";
@@ -125,89 +125,152 @@ void timeThread::slt_ME_timeDone()
          emit sig_ME_update(driver_619->pMETYPE_Data);
     }
 #endif
-   // mutexUpdate.unlock();
+    mutexUpdate.unlock();
  }
 
-
-
-void timeThread::slt_RSMV_wave_timeDone()
+void timeThread::slt_RD_timeDone()
 {
-    qDebug()<<"slt_RSMV_wave_timeDone"<<QString::number(wave_chlNum)<<QString::number(wave_sampleCnt);
+#if 1
+    if(mutexUpdate.tryLock()==false)
+    {
+        qDebug()<<"RD_locked";
+        return ;
+    }
+#endif
 
-//    if(mutexUpdate.tryLock()==false)
-//    {
-//        qDebug()<<"RSMV_wave_locked";
-//        return ;
-//    }
+    pRDTYPE  pRDTYPE_Temp = NULL;
 
-    pRKLTYPE      pRKLTYPE_Temp=NULL;
+    if((pRDTYPE_Temp=(pRDTYPE)calloc(1,sizeof(RDTYPE)))==NULL)
+    {
+        free(pRDTYPE_Temp);
+        pRDTYPE_Temp=NULL;
+        return ;
+    }
 
-    if((pRKLTYPE_Temp=(pRKLTYPE)calloc(1,sizeof(RKLTYPE)))==NULL)
+    if( driver_619->getRD(pRDTYPE_Temp) == ERR_RIGHT )
+    {
+       // qDebug()<<"slt_RD_timeDone"<<QString::number(pRDTYPE_Temp->POWER,'d',4);
+        emit sig_RD_update(pRDTYPE_Temp);
+    }
+
+    free(pRDTYPE_Temp);
+    pRDTYPE_Temp=NULL;
+   mutexUpdate.unlock();
+}
+
+void timeThread::slt_RS_timeDone()
+{
+#if 1
+    if(mutexUpdate.tryLock()==false)
+    {
+        qDebug()<<"RD_locked";
+        return ;
+    }
+#endif
+
+    pRSTYPE  pRSTYPE_Temp =NULL;
+
+    if((pRSTYPE_Temp=(pRSTYPE)calloc(1,sizeof(RSTYPE)))==NULL)
+    {
+        free(pRSTYPE_Temp);
+        pRSTYPE_Temp=NULL;
+        return ;
+    }
+
+    //qDebug()<<QString::number(sizeof(RSTYPE));
+    if( driver_619->getRS(pRSTYPE_Temp) == ERR_RIGHT )
+    {
+        //qDebug()<<"slt_RS_timeDone"<<QString::number(pRSTYPE_Temp->VOLTAGENEED,'d',4);
+        emit sig_RS_update(pRSTYPE_Temp);
+    }
+
+    free(pRSTYPE_Temp);
+    pRSTYPE_Temp=NULL;
+
+    mutexUpdate.unlock();
+}
+
+void timeThread::slt_KL_timeDone()
+{
+    //qDebug()<<"slt_KL_timeDone"<<QString::number(wave_chlNum)<<QString::number(wave_sampleCnt);
+
+    if(mutexUpdate.tryLock()==false)
+    {
+        qDebug()<<"KL_locked";
+        return ;
+    }
+
+    pRKLTYPE pRKLTYPE_Temp=NULL;
+
+    if((pRKLTYPE_Temp = (pRKLTYPE)calloc(1,sizeof(RKLTYPE)))==NULL)
     {
         free(pRKLTYPE_Temp);
         pRKLTYPE_Temp=NULL;
         return ;
     }
 
-
     if( (driver_619->getKL(wave_chlNum,pRKLTYPE_Temp) == ERR_RIGHT) )
     {
-#if 1
+
         for(int i = 0; i <wave_sampleCnt; i++ )  //wave_sampleCnt
         {
 
-           RSMV_wave_axesY[0][i]= pRKLTYPE_Temp->U1R[i];//Ua
-//         RSMV_wave_axesY[1][i]= (*(pKLTYPE_Temp->CH2))->elt[i];//Ub
-//         RSMV_wave_axesY[2][i]= (*(pKLTYPE_Temp->CH3))->elt[i];//Uv
+           KL_axesY[0][i] =  pRKLTYPE_Temp->U1R[i];//U1R
+           KL_axesY[1][i] =  pRKLTYPE_Temp->I1R[i];//I1R
+//         KL_axesY[2][i]= (*(pKLTYPE_Temp->CH3))->elt[i];//Uv
 
-            qDebug("xxxx--%2f",pRKLTYPE_Temp->U1R[i]);
+            //qDebug("xxxx--%2f",pRKLTYPE_Temp->U1R[i]);
         }
 
-            RSMV_arrayTemp[0] = search_maxDoubleValue(&RSMV_wave_axesY[0][0],wave_sampleCnt);
-//          RSMV_arrayTemp[1] = search_maxDoubleValue(&RSMV_wave_axesY[1][0],RSMV_wave_sampleCnt);
-//          RSMV_arrayTemp[2] = search_maxDoubleValue(&RSMV_wave_axesY[2][0],RSMV_wave_sampleCnt);
-            RSMV_arrayTemp[3] = search_maxDoubleValue(&RSMV_arrayTemp[0],3);
+            KL_arrayTemp[0] = search_maxDoubleValue(&KL_axesY[0][0],wave_sampleCnt);
+            KL_arrayTemp[1] = search_maxDoubleValue(&KL_axesY[1][0],wave_sampleCnt);
+//          KL_arrayTemp[2] = search_maxDoubleValue(&KL_axesY[2][0],KL_sampleCnt);
+//            KL_arrayTemp[3] = search_maxDoubleValue(&KL_arrayTemp[0],3);
 
-           emit  sig_wave_update();
-#endif
+            if(wave_chlNum==0) //U1
+            {
+                KL_arrayTemp[3]  = KL_arrayTemp[0];        //获取最大值用于坐标计算
+            }
+            else               //I1
+            {
+                KL_arrayTemp[3]  = KL_arrayTemp[1];
+            }
+
+            emit  sig_wave_update();
+
         }
 
     //qDebug()<<QString::number((*(pKLTYPE_Temp->CH1))->elt[0]);
-
     free(pRKLTYPE_Temp);
     pRKLTYPE_Temp=NULL;
-//    mutexUpdate.unlock();
-
+    mutexUpdate.unlock();
  }
 
 void timeThread::slt_RRF_timeDone()
 {
-    qDebug()<<"slt_RRF_timeDone";
 
-#if 0
+#if 1
     if(mutexUpdate.tryLock()==false)
     {
-        qDebug()<<"ME_locked";
+        qDebug()<<"RRF_locked";
         return ;
     }
 #endif
+
     pRRFTYPE   pRRFTYPE_Temp =NULL;
     pRRFTYPE_Temp=(pRRFTYPE)calloc(1,sizeof(RRFTYPE));
 
-#if 1
+
     if( driver_619->getRRF(pRRFTYPE_Temp) == 1 )
     {
          // qDebug()<<"slt_RRF_timeDone"<<QString ::number(pRRFTYPE_Temp->RV,'d',4);
           emit sig_RRF_update(pRRFTYPE_Temp);
     }
 
-
     free(pRRFTYPE_Temp);
     pRRFTYPE_Temp=NULL;
-     //timeThreadTimer.mutexUpdate.unlock();
-   // mutexUpdate.unlock();
-#endif
 
+    mutexUpdate.unlock();
  }
 
 

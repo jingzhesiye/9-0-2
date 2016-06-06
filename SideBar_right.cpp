@@ -19,7 +19,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_1->click();
+    ui->sideBar_TlBtn_2->click();
 }
 
 
@@ -29,7 +29,7 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
     {
       ui->sideBar_right_Page->setDisabled(false);
       timeThreadTimer.stop();
-      elapseTimer->stop();
+      runTimer->stop();
       return;
     }
     switch(ui->main_SkWidget->currentIndex())
@@ -37,18 +37,18 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
 
         case 0:
                 clean_main_SkWidget_1();//清除界面1的数据
-//                startRD();
-                startRS();//BMS
-//                startES();//电能误差
-                startME(); //测量值
-                startELAPSETIME();
+//              startES();//电能误差.这个自己算也行
+
+                start_RD();
+                start_RS(); //BMS?
+                start_ME(); //测量值
+                start_runTime();
         break;
 
         case 1:
-               // startRRF();
-                startWAVE();
-               //ripple
-                //startRIPPLE();
+                start_RRF();         //纹波系数
+                start_runTime();
+                start_rippleWave();  //纹波波形
         break;
         default:
         break;
@@ -81,6 +81,7 @@ void MainWidget::changeButtonStatus() {
 //        ui->RS_charger_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
 //        ui->ES_standard_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Interactive);
 
+
         ui->RS_charger_TblWidget->setColumnWidth(0,110);
         ui->RS_charger_TblWidget->setColumnWidth(1,110);
         ui->RS_charger_TblWidget->setColumnWidth(2,130);
@@ -104,17 +105,22 @@ void MainWidget::changeButtonStatus() {
         ui->BMS_RD_TblWidget->setColumnWidth(5,100);
 
         ui->main_SkWidget->setCurrentIndex(0);
+        ui->start_PsBtn->setDisabled(false);
     }
     if(source==ui->sideBar_TlBtn_2)
     {
+         ui->start_PsBtn->setDisabled(false);
+        set_TblWdiget_Header( ui->RRF_ripple_TblWidget ,true,true);
         ui->main_SkWidget->setCurrentIndex(1);
     }
     if(source==ui->sideBar_TlBtn_3)
     {
+        ui->start_PsBtn->setDisabled(true);
         ui->main_SkWidget->setCurrentIndex(2);
     }
     if(source==ui->sideBar_TlBtn_4)
     {
+        ui->start_PsBtn->setDisabled(true);
         ui->main_SkWidget->setCurrentIndex(3);
         //ui->serPort_read_SP_PsBtn->click();
     }

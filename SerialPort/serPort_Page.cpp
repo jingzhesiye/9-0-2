@@ -53,6 +53,10 @@ void MainWidget::init_serPort()
     ui->serPort_flowCtl_CbBox->setCurrentIndex(0); //Flow control none
 
 
+
+    serPort_shorCut_list.append(ui->serPort_EB_PsBtn);
+    serPort_shorCut_list.append(ui->serPort_RRF_PsBtn);
+
     serPort_shorCut_list.append(ui->serPort_RP_PsBtn);
     serPort_shorCut_list.append(ui->serPort_AV_PsBtn);
     serPort_shorCut_list.append(ui->serPort_RSM_PsBtn);
@@ -232,7 +236,14 @@ void MainWidget::slot_serPort_shorCut_PsBtn()
     {
         strTemp  = "RBAT";
     }
-
+    else if(serPort_shorCut_PsBtn==ui->serPort_EB_PsBtn)
+    {
+        strTemp  = "EB";
+    }
+    else if(serPort_shorCut_PsBtn==ui->serPort_RRF_PsBtn)
+    {
+        strTemp  = "RRF";
+    }
     ui->serPort_Send_TxEdit->setText(strTemp);
     on_serPort_Send_PsBtn_clicked();
 }

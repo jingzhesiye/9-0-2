@@ -1,0 +1,2 @@
+ URT (unit run time)
+设备运行时间

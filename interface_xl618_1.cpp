@@ -167,7 +167,7 @@ UINT8 xl618::getRD(pRDTYPE data)
     pSend += strlen(STR_RD CR);
     UINT16 frameSize = pSend - (char*)sendBuf;
 
-    if((retValue = readOneFrame(frameSize,(char*)"RD",NULL,(char*)"RSACK",400)) == ERR_RIGHT)
+    if((retValue = readOneFrame(frameSize,(char*)"RD",NULL,(char*)"RDACK",400)) == ERR_RIGHT)
     {//解析帧
 
         char *temp;
@@ -297,14 +297,22 @@ UINT8 xl618::getRRF(pRRFTYPE data)
     UINT16 frameSize = pSend - (char*)sendBuf;
 
     if((retValue = readOneFrame(frameSize,(char*)"RRF",NULL,(char*)"RRFACK",500)) == ERR_RIGHT)
-    {//解析帧
-        temp = strstr((char *)recvBuf,"RF;");
+    {
+        temp = strstr((char *)recvBuf,"L1RF;");
         if(temp)
-            data->RF = (FLOAT32)atof(&temp[sizeof("RF;")-1]);
+            data->L1RF = (FLOAT32)atof(&temp[sizeof("L1RF;")-1]);
 
-        temp = strstr((char *)recvBuf,"RV;");
+        temp = strstr((char *)recvBuf,"L1RA;");
         if(temp)
-            data->RV = (FLOAT32)atof(&temp[sizeof("RV;")-1]);
+            data->L1RA = (FLOAT32)atof(&temp[sizeof("L1RA;")-1]);
+
+        temp = strstr((char *)recvBuf,"L2RF;");
+        if(temp)
+            data->L2RF = (FLOAT32)atof(&temp[sizeof("L2RF;")-1]);
+
+        temp = strstr((char *)recvBuf,"L2RA;");
+        if(temp)
+            data->L2RA = (FLOAT32)atof(&temp[sizeof("L2RA;")-1]);
     }
     return retValue;
 }
