@@ -58,13 +58,13 @@ static const uint qt_meta_data_MainWidget[] = {
      782,  614,   11,   11, 0x08,
      821,  614,   11,   11, 0x08,
      861,   11,   11,   11, 0x08,
-     895,   11,   11,   11, 0x08,
-     929,   11,   11,   11, 0x08,
-     962,   11,   11,   11, 0x08,
-     998,   11,   11,   11, 0x08,
-    1030,   11,   11,   11, 0x08,
-    1063,   11,   11,   11, 0x08,
-    1091,   11,   11,   11, 0x08,
+     893,   11,   11,   11, 0x08,
+     926,   11,   11,   11, 0x08,
+     954,   11,   11,   11, 0x08,
+     987,   11,   11,   11, 0x08,
+    1021,   11,   11,   11, 0x08,
+    1055,  506,   11,   11, 0x08,
+    1085,  506,   11,   11, 0x08,
 
        0        // eod
 };
@@ -93,14 +93,14 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "on_serPort_stopBit_CbBox_activated(int)\0"
     "on_serPort_parity_CbBox_activated(int)\0"
     "on_serPort_flowCtl_CbBox_activated(int)\0"
-    "on_RSMV_clearFrom_PsBtn_clicked()\0"
-    "on_RSMV_buildFrom_PsBtn_clicked()\0"
-    "on_RSMV_readFrom_PsBtn_clicked()\0"
-    "on_RSMV_saveFormMsg_PsBtn_clicked()\0"
     "on_ES_PE_zoomIn_PsBtn_clicked()\0"
     "on_ES_PE_zoomOut_PsBtn_clicked()\0"
     "on_keyBoard_PsBtn_clicked()\0"
     "on_ES_insertForm_PsBtn_clicked()\0"
+    "on_from_clearFrom_PsBtn_clicked()\0"
+    "on_from_buildForm_PsBtn_clicked()\0"
+    "on_intuit_CkBox_clicked(bool)\0"
+    "on_overallClu_CkBox_clicked(bool)\0"
 };
 
 void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -136,14 +136,14 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 24: _t->on_serPort_stopBit_CbBox_activated((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 25: _t->on_serPort_parity_CbBox_activated((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 26: _t->on_serPort_flowCtl_CbBox_activated((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 27: _t->on_RSMV_clearFrom_PsBtn_clicked(); break;
-        case 28: _t->on_RSMV_buildFrom_PsBtn_clicked(); break;
-        case 29: _t->on_RSMV_readFrom_PsBtn_clicked(); break;
-        case 30: _t->on_RSMV_saveFormMsg_PsBtn_clicked(); break;
-        case 31: _t->on_ES_PE_zoomIn_PsBtn_clicked(); break;
-        case 32: _t->on_ES_PE_zoomOut_PsBtn_clicked(); break;
-        case 33: _t->on_keyBoard_PsBtn_clicked(); break;
-        case 34: _t->on_ES_insertForm_PsBtn_clicked(); break;
+        case 27: _t->on_ES_PE_zoomIn_PsBtn_clicked(); break;
+        case 28: _t->on_ES_PE_zoomOut_PsBtn_clicked(); break;
+        case 29: _t->on_keyBoard_PsBtn_clicked(); break;
+        case 30: _t->on_ES_insertForm_PsBtn_clicked(); break;
+        case 31: _t->on_from_clearFrom_PsBtn_clicked(); break;
+        case 32: _t->on_from_buildForm_PsBtn_clicked(); break;
+        case 33: _t->on_intuit_CkBox_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 34: _t->on_overallClu_CkBox_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }

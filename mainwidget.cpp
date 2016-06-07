@@ -88,6 +88,35 @@ void MainWidget::init_timeThreadTimer_connect()
     qRegisterMetaType<QString>("QString");
 
     timeThreadTimer.slt_battery_timeDone();//开机读取一次
+
+    ui->RS_charger_TblWidget->setColumnWidth(0,110);
+    ui->RS_charger_TblWidget->setColumnWidth(1,110);
+    ui->RS_charger_TblWidget->setColumnWidth(2,130);
+    ui->RS_charger_TblWidget->setColumnWidth(3,120);
+    ui->RS_charger_TblWidget->setColumnWidth(4,130);
+    ui->RS_charger_TblWidget->setColumnWidth(5,120);
+
+    ui->ES_standard_TblWidget->setColumnWidth(0,80);
+    ui->ES_standard_TblWidget->setColumnWidth(1,80);
+    ui->ES_standard_TblWidget->setColumnWidth(2,110);
+    ui->ES_standard_TblWidget->setColumnWidth(3,80);
+    ui->ES_standard_TblWidget->setColumnWidth(4,110);
+    ui->ES_standard_TblWidget->setColumnWidth(5,80);
+
+
+    ui->BMS_RD_TblWidget->setColumnWidth(0,160);
+    ui->BMS_RD_TblWidget->setColumnWidth(1,100);
+    ui->BMS_RD_TblWidget->setColumnWidth(2,130);
+    ui->BMS_RD_TblWidget->setColumnWidth(3,100);
+    ui->BMS_RD_TblWidget->setColumnWidth(4,130);
+    ui->BMS_RD_TblWidget->setColumnWidth(5,100);
+
+//    ui->intuit_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//    ui->time_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//    ui->operating_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//    ui->load_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+//    ui->payment_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Interactive);
+//    ui->conclusion_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
 }
 
 //fun:用于清除表格
@@ -168,14 +197,3 @@ void MainWidget::slt_battery_update(QString str)
      ui->battery_Label->update();
      qDebug()<<str;
 }
-
-void MainWidget::on_ES_insertForm_PsBtn_clicked()
-{
-    QString strESTD,strPE;
-
-    strESTD  = QString::fromUtf8("电能误差记录(%): ")+ui->ES_PE_LnEdit->text()+"\n\r";
-    strPE   = QString::fromUtf8("时钟误差(%): ")+ui->ES_TE_LnEdit->text()+"\n\r";
-
-    ui->from_error_TxEdit->append(strESTD+strPE);
-}
-

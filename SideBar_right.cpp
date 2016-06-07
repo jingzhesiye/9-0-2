@@ -19,7 +19,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_2->click();
+    ui->sideBar_TlBtn_3->click();
 }
 
 
@@ -76,46 +76,23 @@ void MainWidget::changeButtonStatus() {
     if(source==ui->sideBar_TlBtn_1)
     {
         set_TblWdiget_Header( ui->BMS_RD_TblWidget ,false,false);
-        //ui->BMS_RD_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
-
-//        ui->RS_charger_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
-//        ui->ES_standard_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Interactive);
-
-
-        ui->RS_charger_TblWidget->setColumnWidth(0,110);
-        ui->RS_charger_TblWidget->setColumnWidth(1,110);
-        ui->RS_charger_TblWidget->setColumnWidth(2,130);
-        ui->RS_charger_TblWidget->setColumnWidth(3,120);
-        ui->RS_charger_TblWidget->setColumnWidth(4,130);
-        ui->RS_charger_TblWidget->setColumnWidth(5,120);
-
-        ui->ES_standard_TblWidget->setColumnWidth(0,80);
-        ui->ES_standard_TblWidget->setColumnWidth(1,80);
-        ui->ES_standard_TblWidget->setColumnWidth(2,110);
-        ui->ES_standard_TblWidget->setColumnWidth(3,80);
-        ui->ES_standard_TblWidget->setColumnWidth(4,110);
-        ui->ES_standard_TblWidget->setColumnWidth(5,80);
-
-
-        ui->BMS_RD_TblWidget->setColumnWidth(0,160);
-        ui->BMS_RD_TblWidget->setColumnWidth(1,100);
-        ui->BMS_RD_TblWidget->setColumnWidth(2,130);
-        ui->BMS_RD_TblWidget->setColumnWidth(3,100);
-        ui->BMS_RD_TblWidget->setColumnWidth(4,130);
-        ui->BMS_RD_TblWidget->setColumnWidth(5,100);
-
         ui->main_SkWidget->setCurrentIndex(0);
         ui->start_PsBtn->setDisabled(false);
     }
     if(source==ui->sideBar_TlBtn_2)
     {
-         ui->start_PsBtn->setDisabled(false);
+        ui->start_PsBtn->setDisabled(false);
         set_TblWdiget_Header( ui->RRF_ripple_TblWidget ,true,true);
         ui->main_SkWidget->setCurrentIndex(1);
     }
     if(source==ui->sideBar_TlBtn_3)
     {
         ui->start_PsBtn->setDisabled(true);
+        set_TblWdiget_Header( ui->time_TblWidget ,true,true);
+        set_TblWdiget_Header( ui->operating_TblWidget ,true,false);
+        set_TblWdiget_Header( ui->load_TblWidget ,true,false);
+        set_TblWdiget_Header( ui->payment_TblWidget ,true,false);//
+
         ui->main_SkWidget->setCurrentIndex(2);
     }
     if(source==ui->sideBar_TlBtn_4)

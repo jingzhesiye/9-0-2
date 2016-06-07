@@ -23,6 +23,14 @@ typedef unsigned long DWORD;//双字即为4个字节，
 
 typedef struct
 {
+    QString intuit;
+    QString operating;
+    QString time;
+    QString power;
+}OVERARLL_CONC;
+
+typedef struct
+{
     QString replaceStr;
     QString searchStr;
 }replaceDocType;

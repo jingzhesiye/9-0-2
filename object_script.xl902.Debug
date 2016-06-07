@@ -10,7 +10,6 @@ INPUT(
 ./debug\thread_init.o
 ./debug\sysIni.o
 ./debug\save_doc.o
-./debug\edit_form.o
 ./debug\ripple.o
 ./debug\sideBar_right.o
 ./debug\interface_xl618_1.o
@@ -25,6 +24,12 @@ INPUT(
 ./debug\testPower_option.o
 ./debug\RRF_ctl.o
 ./debug\runTime.o
+./debug\form_intuit.o
+./debug\form_time.o
+./debug\form_ctl.o
+./debug\form_operating.o
+./debug\form_overallClu.o
+./debug\form_load.o
 ./debug\moc_mainwidget.o
 ./debug\moc_xl618.o
 ./debug\moc_ManageSerialPort.o

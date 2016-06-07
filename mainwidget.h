@@ -71,16 +71,30 @@ private:
 
     QString getTemplatePath();
     void fillReplaceDocStructList(replaceDocTypeList *list, QString searchStr, QString replaceStr) ;
-    void fillReplaceDocTypeList( QTableWidget *modelDiscriptor, replaceDocTypeList *replaceDocTypeList_Data);
+    void fill_formInfo( QTableWidget *modelDiscriptor, replaceDocTypeList *replaceDocTypeList_Data);
+
+    void fill_form_time( QTableWidget *from_information_TbWidget, replaceDocTypeList *replaceDocTypeList_Data);
+    void fill_form_intuit(QString str, replaceDocTypeList *replaceDocTypeList_Data);
+    void fill_form_overallClu( QString str, replaceDocTypeList *replaceDocTypeList_Data);
+
+    void fill_form_operating( QTableWidget *temp_TbWidget, replaceDocTypeList *replaceDocTypeList_Data);
+    void fill_form_load( QTableWidget *temp_TbWidget, replaceDocTypeList *replaceDocTypeList_Data);
+
+    void insert_form_time();
+    void insert_form_operating();
+    void insert_form_load();
+    void fill_form_time();
+
+
 
 private slots:
     void changeButtonStatus();
     void slot_serPort_shorCut_PsBtn();
 
     //串口
-    void  slot_serPort_open();
-    void  slot_serPort_close();
-    void  slt_serPort_RecDataToUI(const QByteArray &,int);
+    void slot_serPort_open();
+    void slot_serPort_close();
+    void slt_serPort_RecDataToUI(const QByteArray &,int);
     void on_serPort_CleanRec_PsBtn_clicked();
     void on_serPort_CleanSend_PsBtn_clicked();
     void on_serPort_Send_PsBtn_clicked();
@@ -110,18 +124,21 @@ private slots:
     void on_serPort_parity_CbBox_activated(int index);
     void on_serPort_flowCtl_CbBox_activated(int index);
 
-    void on_RSMV_clearFrom_PsBtn_clicked();
-    void on_RSMV_buildFrom_PsBtn_clicked();
-
-    void on_RSMV_readFrom_PsBtn_clicked();
-
-    void on_RSMV_saveFormMsg_PsBtn_clicked();
     void on_ES_PE_zoomIn_PsBtn_clicked();
 
     void on_ES_PE_zoomOut_PsBtn_clicked();
+
     void on_keyBoard_PsBtn_clicked();
 
     void on_ES_insertForm_PsBtn_clicked();
+
+    void on_from_clearFrom_PsBtn_clicked();
+
+    void on_from_buildForm_PsBtn_clicked();
+
+    void on_intuit_CkBox_clicked(bool checked);
+
+    void on_overallClu_CkBox_clicked(bool checked);
 
 private:
     QComboBox       *SP_chargeType_cbbox;
@@ -129,6 +146,7 @@ private:
     QComboBox       *SP_measureType_cbbox;
 
     ReceiveSMV  RSMV;
+    OVERARLL_CONC   overAll_conc;
 };
 
 #endif // WIDGET_H

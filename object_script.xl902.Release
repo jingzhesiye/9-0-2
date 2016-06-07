@@ -10,7 +10,6 @@ INPUT(
 ./release\thread_init.o
 ./release\sysIni.o
 ./release\save_doc.o
-./release\edit_form.o
 ./release\ripple.o
 ./release\sideBar_right.o
 ./release\interface_xl618_1.o
@@ -25,6 +24,12 @@ INPUT(
 ./release\testPower_option.o
 ./release\RRF_ctl.o
 ./release\runTime.o
+./release\form_intuit.o
+./release\form_time.o
+./release\form_ctl.o
+./release\form_operating.o
+./release\form_overallClu.o
+./release\form_load.o
 ./release\moc_mainwidget.o
 ./release\moc_xl618.o
 ./release\moc_ManageSerialPort.o

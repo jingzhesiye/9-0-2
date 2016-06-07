@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     thread/thread_init.cpp \
     sysIni.cpp \
     form/save_doc.cpp \
-    form/edit_form.cpp \
     ripple/ripple.cpp \
     sideBar_right.cpp \
     interface_xl618_1.cpp \
@@ -38,7 +37,13 @@ SOURCES += main.cpp \
     testPower/SP_setPar.cpp \
     testPower/testPower_option.cpp \
     ripple/RRF_ctl.cpp \
-    runTime.cpp
+    runTime.cpp \
+    form/form_intuit.cpp \
+    form/form_time.cpp \
+    form/form_ctl.cpp \
+    form/form_operating.cpp \
+    form/form_overallClu.cpp \
+    form/form_load.cpp
 
 HEADERS  += \
     mainwidget.h \

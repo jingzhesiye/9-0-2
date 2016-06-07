@@ -23,8 +23,10 @@ void MainWidget::fillReplaceDocStructList(replaceDocTypeList *list, QString sear
     list->append(replaceDocType_Data);
 }
 
+
+
 //替换数据列表的内容
-void MainWidget::fillReplaceDocTypeList( QTableWidget *from_information_TbWidget, replaceDocTypeList *replaceDocTypeList_Data)
+void MainWidget::fill_formInfo( QTableWidget *from_information_TbWidget, replaceDocTypeList *replaceDocTypeList_Data)
 {
     QString cUserName           = from_information_TbWidget->item(0, 1)->text(); //送检单位
     QString cUserAddr           = from_information_TbWidget->item(0, 3)->text(); //送检单位地址
@@ -42,6 +44,12 @@ void MainWidget::fillReplaceDocTypeList( QTableWidget *from_information_TbWidget
     QString nextCheckDate       = from_information_TbWidget->item(5, 3)->text(); //有 效 期
     QString fTemperature        = from_information_TbWidget->item(6, 1)->text(); //温度
     QString fHumidity           = from_information_TbWidget->item(6, 3)->text(); //湿度
+
+    QString checkAddr          = from_information_TbWidget->item(8, 1)->text(); //检定地点
+
+    QString checker           = from_information_TbWidget->item(12,1)->text(); //检定员
+    QString auditer           = from_information_TbWidget->item(12,3)->text(); //核验员
+
 
     fillReplaceDocStructList(replaceDocTypeList_Data, "{cUserName}"        ,cUserName);            //送检单位
     fillReplaceDocStructList(replaceDocTypeList_Data, "{cUserAddr}"        ,cUserAddr);            //送检单位地址
@@ -61,6 +69,11 @@ void MainWidget::fillReplaceDocTypeList( QTableWidget *from_information_TbWidget
     fillReplaceDocStructList(replaceDocTypeList_Data, "{nextCheckDate}"    ,nextCheckDate);        //有效期
     fillReplaceDocStructList(replaceDocTypeList_Data, "{fTemperature}"     ,fTemperature);         //温度
     fillReplaceDocStructList(replaceDocTypeList_Data, "{fHumidity}"        ,fHumidity);            //湿度
+
+    fillReplaceDocStructList(replaceDocTypeList_Data, "{checker}"        ,checker);            //检定员
+    fillReplaceDocStructList(replaceDocTypeList_Data, "{auditer}"        ,auditer);            //核验员
+    fillReplaceDocStructList(replaceDocTypeList_Data, "{checkAddr}"     ,checkAddr);            //核验员
+
 
 }
 
