@@ -14,11 +14,9 @@ INPUT(
 ./debug\sideBar_right.o
 ./debug\interface_xl618_1.o
 ./debug\interface_xl618_2.o
-./debug\ripple_wave.o
 ./debug\RD_ctl.o
 ./debug\BMS_ctl.o
 ./debug\ES_init.o
-./debug\ES_ctl.o
 ./debug\ME_ctl.o
 ./debug\SP_setPar.o
 ./debug\testPower_option.o
@@ -30,6 +28,9 @@ INPUT(
 ./debug\form_operating.o
 ./debug\form_overallClu.o
 ./debug\form_load.o
+./debug\ripple_wave.o
+./debug\charging_wave.o
+./debug\RS_ctl.o
 ./debug\moc_mainwidget.o
 ./debug\moc_xl618.o
 ./debug\moc_ManageSerialPort.o

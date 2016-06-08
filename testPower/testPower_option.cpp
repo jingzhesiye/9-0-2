@@ -12,12 +12,15 @@
 #if 1
  void MainWidget::init_ESTD_wave(void)//标准偏差
  {
-     //ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
-     //ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
-     //ui->ES_PE_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
-     //ui->ES_PE_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
+     ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
 
-     //uiES_PE_QwtPlot
+     ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
+    //ui->ES_PE_QwtPlot->setAxisScale(QwtPlot::yRight,-10,10,5);
+//   ui->ES_PE_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
+//   ui->ES_PE_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
+
+     ui->ES_PE_QwtPlot->enableAxis(QwtPlot::yLeft,true);
+    // ui->ES_PE_QwtPlot->enableAxis(QwtPlot::yRight,true);
 
      RSMV.wave_ESTD_grid = new QwtPlotGrid;   //设置网格         //电压
      RSMV.wave_ESTD_grid->setMajPen( QPen(QColor(0,170, 255, 255), 0, Qt::SolidLine ) );
@@ -33,11 +36,6 @@
      RSMV.wave_ESTD_curve->setPen( QColor( Qt::white ) );
      RSMV.wave_ESTD_curve->setCurveAttribute( QwtPlotCurve::Fitted );
 
-//     RSMV.wave_ESTD_curve = new QwtPlotCurve("wave_Ua_curve");//设置曲线
-//     RSMV.wave_ESTD_curve->setRenderHint(QwtPlotItem::RenderAntialiased);
-//     RSMV.wave_ESTD_curve->setLegendAttribute(QwtPlotCurve::LegendShowLine,true);
-//     //RSMV.wave_ESTD_curve->setStyle( QwtPlotCurve::NoCurve );
-//     RSMV.wave_ESTD_curve->setStyle( QwtPlotCurve::Lines );
      QwtSymbol *symbol = new QwtSymbol( QwtSymbol::Ellipse,
          QBrush( Qt::yellow ), QPen( Qt::yellow, 2 ), QSize( 3, 3 ) );
       RSMV.wave_ESTD_curve->setSymbol( symbol );
@@ -62,6 +60,7 @@
   #endif
 
     RSMV.wave_ESTD_curve ->attach(ui->ES_PE_QwtPlot);
+    RSMV.wave_ESTD_curve->setYAxis( QwtPlot::yRight );
     ui->ES_PE_QwtPlot->replot();
  }
 #endif

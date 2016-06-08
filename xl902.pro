@@ -28,11 +28,9 @@ SOURCES += main.cpp \
     sideBar_right.cpp \
     interface_xl618_1.cpp \
     interface_xl618_2.cpp \
-    ripple/ripple_wave.cpp \
     testPower/RD_ctl.cpp \
     testPower/BMS_ctl.cpp \
     testPower/ES_init.cpp \
-    testPower/ES_ctl.cpp \
     testPower/ME_ctl.cpp \
     testPower/SP_setPar.cpp \
     testPower/testPower_option.cpp \
@@ -43,7 +41,10 @@ SOURCES += main.cpp \
     form/form_ctl.cpp \
     form/form_operating.cpp \
     form/form_overallClu.cpp \
-    form/form_load.cpp
+    form/form_load.cpp \
+    ripple/ripple_wave.cpp \
+    testPower/charging_wave.cpp \
+    testPower/RS_ctl.cpp
 
 HEADERS  += \
     mainwidget.h \

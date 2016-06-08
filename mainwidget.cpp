@@ -117,6 +117,18 @@ void MainWidget::init_timeThreadTimer_connect()
 //    ui->load_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
 //    ui->payment_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Interactive);
 //    ui->conclusion_TblWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch);
+
+    ui->load_TblWidget->setColumnWidth(0,110);
+    ui->load_TblWidget->setColumnWidth(1,110);
+    ui->load_TblWidget->setColumnWidth(2,110);
+    ui->load_TblWidget->setColumnWidth(3,150);
+
+    ui->payment_TblWidget->setColumnWidth(0,140);
+    ui->payment_TblWidget->setColumnWidth(1,140);
+    ui->payment_TblWidget->setColumnWidth(2,170);
+    ui->payment_TblWidget->setColumnWidth(3,80);
+    ui->payment_TblWidget->setColumnWidth(4,80);
+    ui->payment_TblWidget->setColumnWidth(5,80);
 }
 
 //fun:用于清除表格

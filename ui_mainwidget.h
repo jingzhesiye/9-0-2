@@ -82,9 +82,9 @@ public:
     QPushButton *ES_PE_zoomIn_PsBtn;
     QPushButton *ES_PE_zoomOut_PsBtn;
     QwtPlot *ES_PE_QwtPlot;
-    QWidget *ES_wave_tab;
+    QWidget *charging_wave_tab;
     QGridLayout *gridLayout_20;
-    QwtPlot *ES_wave_QwtPlot;
+    QwtPlot *charging_wave_QwtPlot;
     QFrame *ES_standard_Frame;
     QGridLayout *gridLayout_28;
     QSpacerItem *ES_standard_HlSpacer;
@@ -107,11 +107,11 @@ public:
     QPushButton *from_clearFrom_PsBtn;
     QLabel *from_information_Label;
     QSpacerItem *from_information_HlSpacer;
-    QPushButton *from_buildForm_PsBtn;
     QFrame *from_error_Frame;
     QGridLayout *gridLayout_25;
     QLabel *from_error_Label;
     QSpacerItem *from_error_HlSpacer;
+    QPushButton *from_buildForm_PsBtn;
     QTabWidget *form_error_TbWidget;
     QWidget *intuit_tab;
     QGridLayout *gridLayout_15;
@@ -749,7 +749,7 @@ public:
         sizePolicy8.setVerticalStretch(0);
         sizePolicy8.setHeightForWidth(ES_TbWidget->sizePolicy().hasHeightForWidth());
         ES_TbWidget->setSizePolicy(sizePolicy8);
-        ES_TbWidget->setMinimumSize(QSize(369, 180));
+        ES_TbWidget->setMinimumSize(QSize(552, 180));
         ES_TbWidget->setMaximumSize(QSize(16777215, 225));
         QFont font5;
         font5.setFamily(QString::fromUtf8("Arial Narrow"));
@@ -852,7 +852,7 @@ public:
         sizePolicy10.setHeightForWidth(ES_PE_QwtPlot->sizePolicy().hasHeightForWidth());
         ES_PE_QwtPlot->setSizePolicy(sizePolicy10);
         ES_PE_QwtPlot->setMinimumSize(QSize(0, 120));
-        ES_PE_QwtPlot->setMaximumSize(QSize(16777215, 120));
+        ES_PE_QwtPlot->setMaximumSize(QSize(552, 120));
         ES_PE_QwtPlot->setFont(font6);
         ES_PE_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
 "background-color: rgb(0, 0, 0);"));
@@ -860,26 +860,27 @@ public:
         gridLayout_18->addWidget(ES_PE_QwtPlot, 1, 0, 1, 1);
 
         ES_TbWidget->addTab(ES_PE_tab, QString());
-        ES_wave_tab = new QWidget();
-        ES_wave_tab->setObjectName(QString::fromUtf8("ES_wave_tab"));
-        gridLayout_20 = new QGridLayout(ES_wave_tab);
+        charging_wave_tab = new QWidget();
+        charging_wave_tab->setObjectName(QString::fromUtf8("charging_wave_tab"));
+        gridLayout_20 = new QGridLayout(charging_wave_tab);
         gridLayout_20->setSpacing(0);
         gridLayout_20->setContentsMargins(0, 0, 0, 0);
         gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
-        ES_wave_QwtPlot = new QwtPlot(ES_wave_tab);
-        ES_wave_QwtPlot->setObjectName(QString::fromUtf8("ES_wave_QwtPlot"));
-        sizePolicy10.setHeightForWidth(ES_wave_QwtPlot->sizePolicy().hasHeightForWidth());
-        ES_wave_QwtPlot->setSizePolicy(sizePolicy10);
-        ES_wave_QwtPlot->setMinimumSize(QSize(0, 0));
+        charging_wave_QwtPlot = new QwtPlot(charging_wave_tab);
+        charging_wave_QwtPlot->setObjectName(QString::fromUtf8("charging_wave_QwtPlot"));
+        sizePolicy5.setHeightForWidth(charging_wave_QwtPlot->sizePolicy().hasHeightForWidth());
+        charging_wave_QwtPlot->setSizePolicy(sizePolicy5);
+        charging_wave_QwtPlot->setMinimumSize(QSize(552, 140));
+        charging_wave_QwtPlot->setMaximumSize(QSize(552, 140));
         QFont font7;
         font7.setFamily(QString::fromUtf8("Kalinga"));
-        ES_wave_QwtPlot->setFont(font7);
-        ES_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
+        charging_wave_QwtPlot->setFont(font7);
+        charging_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
 "background-color: rgb(0, 0, 0);"));
 
-        gridLayout_20->addWidget(ES_wave_QwtPlot, 0, 0, 1, 1);
+        gridLayout_20->addWidget(charging_wave_QwtPlot, 0, 0, 1, 1);
 
-        ES_TbWidget->addTab(ES_wave_tab, QString());
+        ES_TbWidget->addTab(charging_wave_tab, QString());
 
         gridLayout->addWidget(ES_TbWidget, 0, 2, 1, 1);
 
@@ -1388,11 +1389,6 @@ public:
 
         gridLayout_21->addItem(from_information_HlSpacer, 0, 1, 1, 1);
 
-        from_buildForm_PsBtn = new QPushButton(from_information_Frame);
-        from_buildForm_PsBtn->setObjectName(QString::fromUtf8("from_buildForm_PsBtn"));
-
-        gridLayout_21->addWidget(from_buildForm_PsBtn, 0, 2, 1, 1);
-
 
         gridLayout_26->addWidget(from_information_Frame, 4, 0, 1, 3);
 
@@ -1430,6 +1426,11 @@ public:
         from_error_HlSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_25->addItem(from_error_HlSpacer, 0, 1, 1, 1);
+
+        from_buildForm_PsBtn = new QPushButton(from_error_Frame);
+        from_buildForm_PsBtn->setObjectName(QString::fromUtf8("from_buildForm_PsBtn"));
+
+        gridLayout_25->addWidget(from_buildForm_PsBtn, 0, 2, 1, 1);
 
 
         gridLayout_26->addWidget(from_error_Frame, 0, 0, 1, 2);
@@ -2251,8 +2252,8 @@ public:
 
         retranslateUi(MainWidget);
 
-        main_SkWidget->setCurrentIndex(2);
-        ES_TbWidget->setCurrentIndex(0);
+        main_SkWidget->setCurrentIndex(0);
+        ES_TbWidget->setCurrentIndex(1);
         form_error_TbWidget->setCurrentIndex(2);
 
 
@@ -2376,7 +2377,7 @@ public:
         ES_PE_zoomIn_PsBtn->setText(QApplication::translate("MainWidget", "\347\274\251\345\260\217", 0, QApplication::UnicodeUTF8));
         ES_PE_zoomOut_PsBtn->setText(QApplication::translate("MainWidget", "\346\224\276\345\244\247", 0, QApplication::UnicodeUTF8));
         ES_TbWidget->setTabText(ES_TbWidget->indexOf(ES_PE_tab), QApplication::translate("MainWidget", "\347\224\265\350\203\275\350\257\257\345\267\256", 0, QApplication::UnicodeUTF8));
-        ES_TbWidget->setTabText(ES_TbWidget->indexOf(ES_wave_tab), QApplication::translate("MainWidget", "\350\276\223\345\205\245\346\263\242\345\275\242", 0, QApplication::UnicodeUTF8));
+        ES_TbWidget->setTabText(ES_TbWidget->indexOf(charging_wave_tab), QApplication::translate("MainWidget", "\345\205\205\347\224\265\350\277\207\347\250\213", 0, QApplication::UnicodeUTF8));
         ES_standard_Label->setText(QApplication::translate("MainWidget", "\346\240\207\345\207\206\350\241\250:", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem42 = BMS_RD_TblWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem42->setText(QApplication::translate("MainWidget", "\351\241\271\347\233\256", 0, QApplication::UnicodeUTF8));
@@ -2611,8 +2612,8 @@ public:
 
         from_clearFrom_PsBtn->setText(QApplication::translate("MainWidget", "\346\270\205\347\251\272\346\212\245\350\241\250", 0, QApplication::UnicodeUTF8));
         from_information_Label->setText(QApplication::translate("MainWidget", "\346\243\200\345\256\232\344\277\241\346\201\257", 0, QApplication::UnicodeUTF8));
-        from_buildForm_PsBtn->setText(QApplication::translate("MainWidget", "\347\224\237\346\210\220\346\212\245\350\241\250", 0, QApplication::UnicodeUTF8));
         from_error_Label->setText(QApplication::translate("MainWidget", "\346\243\200\345\256\232\347\273\223\350\256\272", 0, QApplication::UnicodeUTF8));
+        from_buildForm_PsBtn->setText(QApplication::translate("MainWidget", "\347\224\237\346\210\220\346\212\245\350\241\250", 0, QApplication::UnicodeUTF8));
         intuit_Label->setText(QApplication::translate("MainWidget", "\346\243\200\345\256\232\347\273\223\346\236\234:", 0, QApplication::UnicodeUTF8));
         intuit_CkBox->setText(QApplication::translate("MainWidget", "\345\220\210\346\240\274", 0, QApplication::UnicodeUTF8));
         form_error_TbWidget->setTabText(form_error_TbWidget->indexOf(intuit_tab), QApplication::translate("MainWidget", "\345\244\226\350\247\202\346\243\200\346\265\213", 0, QApplication::UnicodeUTF8));

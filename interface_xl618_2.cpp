@@ -26,9 +26,7 @@ UINT8 xl618::getKL(UINT8 type,pRKLTYPE data)
             {
                 sscanf(temp,"%E"CR,&data->U1R[j]); //取到指定字符集为止的字符串
                 while(*(temp++) != '\n');
-
             }
-
         }
 
         temp = strstr((char*)recvBuf,"I1R;");

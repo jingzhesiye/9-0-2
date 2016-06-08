@@ -61,10 +61,22 @@ void MainWidget::clean_main_SkWidget_1()
 
     ui->ES_PE_LnEdit->setText("0");
     ui->ES_TE_LnEdit->setText("0");
-    ui->ES_wave_QwtPlot->replot();
+    ui->charging_wave_QwtPlot->replot();
 
     ESTD_PolygonF.clear();
     RSMV.wave_ESTD_curve->setSamples( ESTD_PolygonF );
     ui->ES_PE_QwtPlot->replot();
 
 }
+
+void MainWidget::clean_main_SkWidget_2()
+{
+    for(int i =0;i<2;i++)
+    {
+      ui->RRF_ripple_TblWidget->item(i,0)->setText("0");
+      ui->RRF_ripple_TblWidget->item(i,1)->setText("0");
+      ui->RRF_ripple_TblWidget->item(i,2)->setText("0");
+   }
+}
+
+

@@ -11,7 +11,7 @@ void MainWidget:: start_rippleWave()
     RSMV.wave_Ub_curve ->setRawSamples( 0,0, 0);
     RSMV.wave_Uc_curve ->setRawSamples( 0,0, 0);
 
-    ui->ES_wave_QwtPlot->replot();
+    ui->ripple_wave_QwtPlot->replot();
 
     timeThreadTimer.wave_chlNum =ui->RRF_ripple_chl_CbBox->currentIndex(); //0电压 1电流
 

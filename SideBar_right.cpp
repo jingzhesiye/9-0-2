@@ -19,7 +19,7 @@ void MainWidget::init_sideBar()
         connect(b, SIGNAL(clicked()), this, SLOT(changeButtonStatus()));
     }
 
-    ui->sideBar_TlBtn_3->click();
+    ui->sideBar_TlBtn_1->click();
 }
 
 
@@ -46,6 +46,7 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
         break;
 
         case 1:
+                clean_main_SkWidget_2();
                 start_RRF();         //纹波系数
                 start_runTime();
                 start_rippleWave();  //纹波波形

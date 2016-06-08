@@ -68,6 +68,7 @@ private:
     void startENERGY_PUL();
     void startENERGY_STD();
     void clean_main_SkWidget_1();
+    void clean_main_SkWidget_2();
 
     QString getTemplatePath();
     void fillReplaceDocStructList(replaceDocTypeList *list, QString searchStr, QString replaceStr) ;
