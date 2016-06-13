@@ -609,7 +609,7 @@ background-color: rgba(12, 153, 134, 255);</string>
           </size>
          </property>
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::AllEditTriggers</set>
          </property>
          <attribute name="horizontalHeaderVisible">
           <bool>false</bool>
@@ -664,16 +664,6 @@ background-color: rgba(12, 153, 134, 255);</string>
          <column>
           <property name="text">
            <string>6</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>8</string>
           </property>
          </column>
          <item row="0" column="0">
@@ -732,24 +722,8 @@ background-color: rgba(12, 153, 134, 255);</string>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
           </property>
-         </item>
-         <item row="0" column="6">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-          </property>
           <property name="flags">
-           <set>ItemIsSelectable|ItemIsEnabled</set>
-          </property>
-         </item>
-         <item row="0" column="7">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="textAlignment">
-           <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+           <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
           </property>
          </item>
          <item row="1" column="0">
@@ -758,6 +732,9 @@ background-color: rgba(12, 153, 134, 255);</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+          </property>
+          <property name="flags">
+           <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
           </property>
          </item>
          <item row="1" column="1">
@@ -775,6 +752,9 @@ background-color: rgba(12, 153, 134, 255);</string>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
           </property>
+          <property name="flags">
+           <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+          </property>
          </item>
          <item row="1" column="3">
           <property name="text">
@@ -791,6 +771,9 @@ background-color: rgba(12, 153, 134, 255);</string>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
           </property>
+          <property name="flags">
+           <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+          </property>
          </item>
          <item row="1" column="5">
           <property name="text">
@@ -798,6 +781,9 @@ background-color: rgba(12, 153, 134, 255);</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+          </property>
+          <property name="flags">
+           <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
           </property>
          </item>
         </widget>
@@ -1038,159 +1024,6 @@ background-color: rgba(12, 153, 134, 255);</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <item row="0" column="3">
-           <widget class="QGroupBox" name="ES_value_GpBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>73</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>165</width>
-              <height>216</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Arial Narrow</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"> QGroupBox::title {
-     subcontrol-origin: margin;
-     padding: 0 3px;
-	 color: rgb(255, 255, 255);
- }
-
- QGroupBox {
-    border: 1px solid rgb(18, 220, 200);
-    border-radius: 5px;
-    margin-top: 0ex; /* leave space at the top for the title */
-   background-color: rgba(12, 153, 134, 255);
-
- }
-</string>
-            </property>
-            <property name="title">
-             <string>误差计算(%)</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_23">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>10</number>
-             </property>
-             <property name="rightMargin">
-              <number>2</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <property name="horizontalSpacing">
-              <number>10</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>0</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="ES_PE_Label">
-               <property name="font">
-                <font>
-                 <family>Arial Narrow</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="text">
-                <string>电能误差: </string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="ES_TE_LnEdit">
-               <property name="font">
-                <font>
-                 <family>Arial Narrow</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="ES_TE_Label">
-               <property name="font">
-                <font>
-                 <family>Arial Narrow</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="text">
-                <string>时钟误差: </string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="ES_PE_LnEdit">
-               <property name="font">
-                <font>
-                 <family>Arial Narrow</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <spacer name="ES_HlSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="3" column="1">
-              <widget class="QPushButton" name="ES_insertForm_PsBtn">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>记入报表</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
           <item row="0" column="2">
            <widget class="QTabWidget" name="ES_TbWidget">
             <property name="sizePolicy">
@@ -1232,7 +1065,7 @@ background-color: rgba(12, 153, 134, 255);</string>
 	border-top-right-radius:10px;
     padding:3px;
 */
-    width:270px;
+    width:288px;
 	border-top-left-radius:10px;
 	border-top-right-radius:10px;
 	color: rgb(255, 255, 255);
@@ -1255,7 +1088,7 @@ QTabBar::tab:!selected
              <enum>QTabWidget::Rounded</enum>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <property name="iconSize">
              <size>
@@ -1263,7 +1096,7 @@ QTabBar::tab:!selected
               <height>16</height>
              </size>
             </property>
-            <widget class="QWidget" name="ES_PE_tab">
+            <widget class="QWidget" name="error_wave_tab">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1273,8 +1106,16 @@ QTabBar::tab:!selected
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
+             <property name="styleSheet">
+              <string notr="true">#error_wave_tab
+{
+	background-color: rgb(0, 0, 0);
+}
+
+</string>
+             </property>
              <attribute name="title">
-              <string>电能误差</string>
+              <string>误差状态</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_18">
               <property name="margin">
@@ -1283,8 +1124,87 @@ QTabBar::tab:!selected
               <property name="spacing">
                <number>0</number>
               </property>
-              <item row="0" column="0">
-               <widget class="QFrame" name="ES_PE_Frame">
+              <item row="1" column="4">
+               <spacer name="error_wave_VlSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Minimum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>79</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="1">
+               <spacer name="error_wave_VlSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>73</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="error_wave_PE_Label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>电能</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLabel" name="error_wave_TE_Label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 0);</string>
+                </property>
+                <property name="text">
+                 <string>时钟</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="5">
+               <widget class="QFrame" name="error_wave_Frame">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                   <horstretch>0</horstretch>
@@ -1294,13 +1214,13 @@ QTabBar::tab:!selected
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>5</height>
+                  <height>30</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>25</height>
+                  <height>29</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1309,7 +1229,7 @@ QTabBar::tab:!selected
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">#ES_PE_Frame
+                 <string notr="true">#error_wave_Frame
 {
     border: 1px solid rgb(18, 220, 200);
     background: qlineargradient(spread:reflect,
@@ -1337,7 +1257,7 @@ QTabBar::tab:!selected
                   <number>0</number>
                  </property>
                  <item row="0" column="0">
-                  <spacer name="ES_PE_HlSpacer">
+                  <spacer name="error_wave_HlSpacer">
                    <property name="font">
                     <font>
                      <family>Arial Narrow</family>
@@ -1355,7 +1275,7 @@ QTabBar::tab:!selected
                   </spacer>
                  </item>
                  <item row="0" column="3">
-                  <widget class="QPushButton" name="ES_PE_zoomIn_PsBtn">
+                  <widget class="QPushButton" name="error_wave_zoomIn_PsBtn">
                    <property name="font">
                     <font>
                      <family>Arial Narrow</family>
@@ -1367,7 +1287,7 @@ QTabBar::tab:!selected
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QPushButton" name="ES_PE_zoomOut_PsBtn">
+                  <widget class="QPushButton" name="error_wave_zoomOut_PsBtn">
                    <property name="font">
                     <font>
                      <family>Arial Narrow</family>
@@ -1381,8 +1301,8 @@ QTabBar::tab:!selected
                 </layout>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QwtPlot" name="ES_PE_QwtPlot">
+              <item row="1" column="3">
+               <widget class="QwtPlot" name="error_wave_QwtPlot">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -1392,13 +1312,13 @@ QTabBar::tab:!selected
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>120</height>
+                  <height>112</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>552</width>
-                  <height>120</height>
+                  <width>565</width>
+                  <height>112</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1415,8 +1335,17 @@ background-color: rgb(0, 0, 0);</string>
              </layout>
             </widget>
             <widget class="QWidget" name="charging_wave_tab">
+             <property name="styleSheet">
+              <string notr="true">#charging_wave_tab
+{
+	background-color: rgb(0, 0, 0);
+}
+
+
+</string>
+             </property>
              <attribute name="title">
-              <string>充电过程</string>
+              <string>充电状态</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_20">
               <property name="margin">
@@ -1425,7 +1354,7 @@ background-color: rgb(0, 0, 0);</string>
               <property name="spacing">
                <number>0</number>
               </property>
-              <item row="0" column="0">
+              <item row="0" column="3">
                <widget class="QwtPlot" name="charging_wave_QwtPlot">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -1435,14 +1364,14 @@ background-color: rgb(0, 0, 0);</string>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>552</width>
-                  <height>140</height>
+                  <width>540</width>
+                  <height>141</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>552</width>
-                  <height>140</height>
+                  <width>540</width>
+                  <height>141</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1456,8 +1385,245 @@ background-color: rgb(0, 0, 0);</string>
                 </property>
                </widget>
               </item>
+              <item row="0" column="4" rowspan="2">
+               <spacer name="charging_wave_VlSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>130</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLabel" name="charging_wave_vol_Label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>电压</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" rowspan="3">
+               <spacer name="charging_wave_VlSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>130</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="7" column="4">
+               <widget class="QLabel" name="charging_wave_cur_Label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 0);</string>
+                </property>
+                <property name="text">
+                 <string>电流</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QGroupBox" name="ES_value_GpBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>130</width>
+              <height>73</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>130</width>
+              <height>216</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial Narrow</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"> QGroupBox::title {
+     subcontrol-origin: margin;
+     padding: 0 3px;
+	 color: rgb(255, 255, 255);
+ }
+
+ QGroupBox {
+    border: 1px solid rgb(18, 220, 200);
+    border-radius: 5px;
+    margin-top: 0ex; /* leave space at the top for the title */
+   background-color: rgba(12, 153, 134, 255);
+
+ }
+</string>
+            </property>
+            <property name="title">
+             <string>误差计算(%)</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_23">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="ES_PE_Label">
+               <property name="font">
+                <font>
+                 <family>Arial Narrow</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="text">
+                <string>电能误差: </string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="ES_TE_Label">
+               <property name="font">
+                <font>
+                 <family>Arial Narrow</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="text">
+                <string>时钟误差: </string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="ES_PE_LnEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial Narrow</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="ES_TE_LnEdit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial Narrow</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QPushButton" name="ES_insertForm_PsBtn">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>记入报表</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -2336,7 +2502,7 @@ background-color: rgba(12, 153, 134, 255);
          </item>
          <item row="1" column="1">
           <property name="text">
-           <string>XL-903直流充电机现场校验仪</string>
+           <string>XL-902直流充电机现场校验仪</string>
           </property>
          </item>
          <item row="1" column="2">
@@ -3545,54 +3711,42 @@ QTabBar::tab:!selected
              <property name="spacing">
               <number>0</number>
              </property>
-             <item row="4" column="4">
+             <item row="5" column="3">
+              <widget class="QComboBox" name="serPort_BVS_CbBox">
+               <item>
+                <property name="text">
+                 <string>ver.2011</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ver.2015</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="3">
               <widget class="QPushButton" name="serPort_EB_PsBtn">
                <property name="text">
                 <string>EB</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="2">
+             <item row="2" column="1">
               <widget class="QPushButton" name="serPort_ME_PsBtn">
                <property name="text">
                 <string>ME</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="7">
-              <spacer name="horizontalSpacer_17">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="1" column="0">
-              <spacer name="horizontalSpacer_16">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="4">
+             <item row="2" column="3">
               <widget class="QPushButton" name="serPort_RS_PsBtn">
                <property name="text">
                 <string>RS</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="2">
+             <item row="4" column="1">
               <widget class="QPushButton" name="serPort_AV_PsBtn">
                <property name="enabled">
                 <bool>false</bool>
@@ -3602,35 +3756,35 @@ QTabBar::tab:!selected
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
+             <item row="1" column="1">
               <widget class="QPushButton" name="serPort_RP_PsBtn">
                <property name="text">
                 <string>RP</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="4">
+             <item row="1" column="3">
               <widget class="QPushButton" name="serPort_RSM_PsBtn">
                <property name="text">
                 <string>RSM</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
+             <item row="3" column="1">
               <widget class="QPushButton" name="serPort_RBAT_PsBtn">
                <property name="text">
                 <string>RBAT</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="4">
+             <item row="3" column="3">
               <widget class="QPushButton" name="serPort_RD_PsBtn">
                <property name="text">
                 <string>RD</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="2">
+             <item row="5" column="1">
               <widget class="QPushButton" name="serPort_RRF_PsBtn">
                <property name="text">
                 <string>RRF</string>

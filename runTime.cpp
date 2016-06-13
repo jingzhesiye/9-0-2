@@ -5,7 +5,7 @@
 #include "ui_mainwidget.h"
 
 //初始化运行时间
-void MainWidget:: init_elapseTime()
+void MainWidget:: init_runTime()
 {
     runTimer =new QTimer(this);
     connect(runTimer, SIGNAL(timeout()), this, SLOT(slt_runTimer_timeout()));     //定时关闭屏幕

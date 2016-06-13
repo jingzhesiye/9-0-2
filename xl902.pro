@@ -29,11 +29,9 @@ SOURCES += main.cpp \
     interface_xl618_1.cpp \
     interface_xl618_2.cpp \
     testPower/RD_ctl.cpp \
-    testPower/BMS_ctl.cpp \
     testPower/ES_init.cpp \
     testPower/ME_ctl.cpp \
     testPower/SP_setPar.cpp \
-    testPower/testPower_option.cpp \
     ripple/RRF_ctl.cpp \
     runTime.cpp \
     form/form_intuit.cpp \
@@ -43,8 +41,12 @@ SOURCES += main.cpp \
     form/form_overallClu.cpp \
     form/form_load.cpp \
     ripple/ripple_wave.cpp \
-    testPower/charging_wave.cpp \
-    testPower/RS_ctl.cpp
+    testPower/RS_ctl.cpp \
+    testPower/RS_wave.cpp \
+    testPower/testPower_option.cpp \
+    setColumnWidth.cpp \
+    eventFilter.cpp \
+    testPower/PE_TE_wave.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -55,7 +57,8 @@ HEADERS  += \
     SerialPort/qextserialbase.h \
     SerialPort/ManageSerialPort.h \
     thread/timeThread.h \
-    testPower/RSMV_option.h
+    testPower/RSMV_option.h \
+    testPower/qwt_option.h
 
 FORMS    += \
     mainwidget.ui

@@ -7,11 +7,18 @@ UINT8 timeThread::transmitsSimply (UINT8 *data)//串口快速发送
     UINT8   *PtrReadTemp= (UINT8 *)malloc(readSize * sizeof(UINT8));
     UINT8   *PtrFree=PtrReadTemp;
 
+    if(mutexUpdate.tryLock()==false)
+    {
+        qDebug()<<"transmitsSimply";
+        return retValue;
+    }
+
     retValue = driver_619->sendOther(data,readSize,PtrReadTemp,&readSize);
 
     PtrReadTemp=PtrFree;
     free(PtrReadTemp);
     PtrReadTemp = NULL;
+    mutexUpdate.unlock();
 
     return retValue;
 }

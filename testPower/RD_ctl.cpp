@@ -26,6 +26,4 @@ void MainWidget:: slt_RD_update(pRDTYPE pRDTYPE_Temp)
 
     ui->RS_charger_TblWidget->item(1,3)->setText(QString::number(pRDTYPE_Temp->CURRENCEOUTMAX*0.1,'d',1)); //最高输出电流：
     ui->RS_charger_TblWidget->item(1,5)->setText(QString::number(pRDTYPE_Temp->POWER,'d',1));          //输出总电能
-
-
 }

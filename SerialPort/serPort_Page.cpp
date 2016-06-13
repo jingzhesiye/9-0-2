@@ -247,3 +247,11 @@ void MainWidget::slot_serPort_shorCut_PsBtn()
     ui->serPort_Send_TxEdit->setText(strTemp);
     on_serPort_Send_PsBtn_clicked();
 }
+
+//QString("{outVol_%1}").arg(QString::number(i))
+void MainWidget::on_serPort_BVS_CbBox_activated(int index)
+{
+    QString strTemp = QString("BVS\n\rVISION;%1\n\r").arg(QString::number(index));
+    ui->serPort_Send_TxEdit->setText(strTemp);
+    on_serPort_Send_PsBtn_clicked();
+}

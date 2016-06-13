@@ -5,6 +5,10 @@
 #include "xl618.h"
 #include "QMessageBox"
 #include "QTimer"
+#include <stdio.h>
+#include <fcntl.h> //O_RDWR
+#include <unistd.h>
+#include <QDebug>
 
  //将按钮放在一个list
 void MainWidget::init_sideBar()
@@ -30,6 +34,8 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
       ui->sideBar_right_Page->setDisabled(false);
       timeThreadTimer.stop();
       runTimer->stop();
+      Qt_delay(2000);
+      is_MT_semiAutomatic (false);
       return;
     }
     switch(ui->main_SkWidget->currentIndex())
@@ -39,8 +45,13 @@ void MainWidget::on_start_PsBtn_clicked(bool checked)
                 clean_main_SkWidget_1();//清除界面1的数据
 //              startES();//电能误差.这个自己算也行
 
+                if(!is_MT_semiAutomatic (true))
+                {
+                    return;
+                }
+
                 start_RD();
-                start_RS(); //BMS?
+                start_RS(); //BMS
                 start_ME(); //测量值
                 start_runTime();
         break;
@@ -103,3 +114,29 @@ void MainWidget::changeButtonStatus() {
         //ui->serPort_read_SP_PsBtn->click();
     }
 }
+
+//半自动需要设置
+bool MainWidget::is_MT_semiAutomatic (bool isON)
+{
+    QString str1 ,str2;
+
+    str1 = QString::fromUtf8("EE\n\r");
+    str2 = QString::fromUtf8("电能检测停止异常");
+
+    if(isON)
+    {
+        str1 = QString::fromUtf8("EB\n\r");
+       // str2 = QString::fromUtf8("电能检测启动成功");
+    }
+
+    if(SP_measureType_cbbox->currentIndex() == 2)
+    {
+        if(timeThreadTimer.transmitsSimply((UINT8*)str1.toLatin1().data())!=ERR_RIGHT )
+        {
+            show_MsBox(str2,3000);
+            return false;
+        }
+    }
+    return true;
+}
+

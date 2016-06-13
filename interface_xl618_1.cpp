@@ -25,6 +25,7 @@ xl618::xl618()
 
 xl618::~xl618()
 {
+
 }
 
 //接收线程收到的串口数据
@@ -109,7 +110,7 @@ UINT8 xl618::getRBAT(QString &str)
 UINT8 xl618::sendOther(UINT8 *writeBuf,UINT32 writeSize,UINT8 *readBuf,UINT32 *readSize)
 {
     memcpy(sendBuf,writeBuf,writeSize);
-    return readOneFrame(writeSize,NULL,NULL,NULL,300);
+    return readOneFrame(writeSize,NULL,NULL,NULL,500);
 }
 
 

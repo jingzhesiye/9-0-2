@@ -3,6 +3,7 @@
 #include "ui_mainwidget.h"
 #include "thread/timeThread.h"
 #include"testPower/RSMV_option.h"
+#include"testPower/qwt_option.h"
 #include "xl618.h"
 #include <QWidget>
 #include "QToolButton"
@@ -29,6 +30,7 @@ public:
 
     void  init_serPort();                                                  //初始化串口界面
     void  init_timeThreadTimer_connect();
+    void  setColumnWidth();
     void  write_ini(QString path,QString arg);
     void  read_ini();
 private:
@@ -50,11 +52,14 @@ private:
     double            xval[300];  //波形图目前这样设置不会有问题
 
 
-    void init_ES_wave();
+    void init_charging_wave();
+    void charging_wave_update();
     void init_ripple_wave();
-    void init_ESTD_wave();
-
-    void init_elapseTime();//定时器时间
+    void init_PE_wave();
+    bool is_MT_semiAutomatic (bool);
+    void Qt_delay(int msec);
+    QString Qt_f_to_string_6(float a );
+    void init_runTime();//定时器时间
     void init_rms_harmonic();
 
     void start_RD();
@@ -86,9 +91,12 @@ private:
     void insert_form_load();
     void fill_form_time();
 
-
-
+signals:
+    void sig_charging_wave_update();
+    void sig_PE_wave_update();
 private slots:
+    void slt_charging_wave_update();
+    void slt_PE_wave_update();
     void changeButtonStatus();
     void slot_serPort_shorCut_PsBtn();
 
@@ -125,10 +133,6 @@ private slots:
     void on_serPort_parity_CbBox_activated(int index);
     void on_serPort_flowCtl_CbBox_activated(int index);
 
-    void on_ES_PE_zoomIn_PsBtn_clicked();
-
-    void on_ES_PE_zoomOut_PsBtn_clicked();
-
     void on_keyBoard_PsBtn_clicked();
 
     void on_ES_insertForm_PsBtn_clicked();
@@ -141,6 +145,15 @@ private slots:
 
     void on_overallClu_CkBox_clicked(bool checked);
 
+
+    void on_serPort_BVS_CbBox_activated(int index);
+
+    void on_ES_standard_TblWidget_cellChanged(int row, int column);
+
+    void on_error_wave_zoomOut_PsBtn_clicked();
+
+    void on_error_wave_zoomIn_PsBtn_clicked();
+
 private:
     QComboBox       *SP_chargeType_cbbox;
     QComboBox       *SP_loadType_cbbox;
@@ -148,6 +161,8 @@ private:
 
     ReceiveSMV  RSMV;
     OVERARLL_CONC   overAll_conc;
+    QWT_option   qwtOption;
+
 };
 
 #endif // WIDGET_H
