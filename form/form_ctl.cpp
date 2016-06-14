@@ -86,10 +86,29 @@ void MainWidget::on_from_buildForm_PsBtn_clicked()
 //  documents->dynamicCall("Save()");//保存
 //  documents->dynamicCall("Close(boolean)", true);//关闭文本窗口
 //  temp_AxWidget->dynamicCall("Quit(void)");//退出word
+
+
+//    //设置保存
+//    QVariant newFileName("./jingTest.doc"); //存放位置和名称
+//    QVariant fileFormat(1); //文件格式
+//    QVariant LockComments(false);
+//    QVariant Password("");     //设置打开密码
+//    QVariant recent(true);
+//    QVariant writePassword("");
+//    QVariant ReadOnlyRecommended(false);
+
+//    documents->querySubObject("SaveAs(const QVariant&, const QVariant&,const QVariant&, const QVariant&, const QVariant&, const QVariant&,const QVariant&)",    newFileName, fileFormat, LockComments, Password, recent, writePassword, ReadOnlyRecommended);
+//    documents->dynamicCall("Close (boolean)", true);   //关闭文档
+//    temp_AxWidget->dynamicCall("Quit (void)");//退出
+
+    documents->dynamicCall("SaveAs (const QString&)", QString("D:/doc/docbyqt.doc"));
+    documents->dynamicCall("Close (boolean)", false);
+    temp_AxWidget->dynamicCall("Quit()");
 }
 
 
 #if 0
+
 //AC.template.verifiedRecord
 void  MainWidget::init_word()
 {

@@ -12,8 +12,8 @@ void MainWidget::init_charging_wave(void)
 //    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,3.0);
 //    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::xTop, 0.0,3.0);
 
-    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::yLeft  , 0,750,250);
-    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::yRight  , 0,300,100);
+//    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::yLeft  , 0,750,250);
+//    ui->charging_wave_QwtPlot->setAxisScale(QwtPlot::yRight  , 0,300,100);
 
     ui->charging_wave_QwtPlot->enableAxis(QwtPlot::xBottom,true);
     ui->charging_wave_QwtPlot->enableAxis(QwtPlot::yLeft,true); //显示坐标轴

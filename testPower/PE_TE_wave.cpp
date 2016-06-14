@@ -13,9 +13,9 @@
 
  void MainWidget::init_PE_wave(void)
  {
-     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
-     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
-     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yRight,-10,10,5);
+//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
+//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
+//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yRight,-10,10,5);
 //   ui->error_wave_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
 //   ui->error_wave_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
 
@@ -32,6 +32,8 @@
      qwtOption.PE_QPCurve->setRenderHint(QwtPlotItem::RenderAntialiased);
      qwtOption.PE_QPCurve->setStyle( QwtPlotCurve::Lines );
      qwtOption.PE_QPCurve->setPen( QColor( 255, 0, 0 ) );
+     qwtOption.PE_QPCurve->setYAxis(QwtPlot::yLeft); //设置波形关联轴
+
 
      QwtSymbol *symbol_1 = new QwtSymbol( QwtSymbol::NoSymbol,QBrush( QColor( 255, 0, 0 ) ), QPen(  QColor( 255, 0, 0 ), 2 ), QSize( 2, 2 ) );
      qwtOption.PE_QPCurve->setSymbol( symbol_1 );
@@ -70,6 +72,7 @@
          qwtOption.PE_QPCurve->setSamples( qwtOption.PE_polygonF );
      }
 
+     qwtOption.PE_QPCurve->setSamples( qwtOption.PE_polygonF );
      qwtOption.TE_QPCurve->setSamples( qwtOption.TE_polygonF );
 
      ui->error_wave_QwtPlot->replot();

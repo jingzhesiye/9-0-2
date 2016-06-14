@@ -26,11 +26,11 @@ void MainWidget::slt_ME_update(pMETYPE  pMETYPE_Temp)
     ui->ES_standard_TblWidget->item(0,5)->setText(Qt_f_to_string_6(pMETYPE_Temp->W1));//标准
 
     ui->ES_standard_TblWidget->item(1,1)->setText(Qt_f_to_string_6(pMETYPE_Temp->I1));
-    ui->ES_standard_TblWidget->item(1,3)->setText(Qt_f_to_string_6(pMETYPE_Temp->Time));
+    ui->ES_standard_TblWidget->item(1,3)->setText(Qt_f_to_string_6(pMETYPE_Temp->Time/60));
     ui->ES_standard_TblWidget->item(1,5)->setText(Qt_f_to_string_6(pMETYPE_Temp->W1C));//被检
 
     ui->ES_TE_LnEdit->setText(QString::number(( ui->BMS_RD_TblWidget->item(2,3)->text().toFloat()- ui->ES_standard_TblWidget->item(1,3)->text().toFloat())/(ui->ES_standard_TblWidget->item(1,3)->text().toFloat()*0.01)));
-    qwtOption.TE_polygonF<< QPointF(runTimeCal, ui->ES_TE_LnEdit->text().toFloat(0) );
+    qwtOption.TE_polygonF<< QPointF(runTimeCal,ui->ES_TE_LnEdit->text().toFloat(0) );
 
    if(SP_measureType_cbbox->currentIndex() == 0)
     {

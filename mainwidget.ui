@@ -2029,7 +2029,7 @@ background-color: rgb(0, 0, 0);</string>
          </item>
          <item row="3" column="0">
           <property name="text">
-           <string>充电电流需求(V)</string>
+           <string>充电电流需求(A)</string>
           </property>
           <property name="textAlignment">
            <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -2299,9 +2299,6 @@ background-color: rgba(12, 153, 134, 255);
             </color>
            </brush>
           </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
-          </property>
          </item>
          <item row="0" column="1">
           <property name="text">
@@ -2324,9 +2321,6 @@ background-color: rgba(12, 153, 134, 255);
              <blue>0</blue>
             </color>
            </brush>
-          </property>
-          <property name="flags">
-           <set>NoItemFlags</set>
           </property>
          </item>
          <item row="0" column="2">

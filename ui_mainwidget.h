@@ -1228,7 +1228,6 @@ public:
         __qtablewidgetitem76->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
         __qtablewidgetitem76->setFont(font8);
         __qtablewidgetitem76->setForeground(brush);
-        __qtablewidgetitem76->setFlags(Qt::NoItemFlags);
         RRF_ripple_TblWidget->setItem(0, 0, __qtablewidgetitem76);
         QBrush brush1(QColor(0, 0, 0, 255));
         brush1.setStyle(Qt::NoBrush);
@@ -1236,7 +1235,6 @@ public:
         __qtablewidgetitem77->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
         __qtablewidgetitem77->setFont(font8);
         __qtablewidgetitem77->setForeground(brush1);
-        __qtablewidgetitem77->setFlags(Qt::NoItemFlags);
         RRF_ripple_TblWidget->setItem(0, 1, __qtablewidgetitem77);
         QTableWidgetItem *__qtablewidgetitem78 = new QTableWidgetItem();
         __qtablewidgetitem78->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
@@ -2505,7 +2503,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem67 = BMS_RD_TblWidget->item(2, 5);
         ___qtablewidgetitem67->setText(QApplication::translate("MainWidget", "0", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem68 = BMS_RD_TblWidget->item(3, 0);
-        ___qtablewidgetitem68->setText(QApplication::translate("MainWidget", "\345\205\205\347\224\265\347\224\265\346\265\201\351\234\200\346\261\202(V)", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem68->setText(QApplication::translate("MainWidget", "\345\205\205\347\224\265\347\224\265\346\265\201\351\234\200\346\261\202(A)", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem69 = BMS_RD_TblWidget->item(3, 1);
         ___qtablewidgetitem69->setText(QApplication::translate("MainWidget", "0", 0, QApplication::UnicodeUTF8));
         BMS_RD_TblWidget->setSortingEnabled(__sortingEnabled2);
