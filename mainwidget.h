@@ -2,7 +2,6 @@
 #define WIDGET_H
 #include "ui_mainwidget.h"
 #include "thread/timeThread.h"
-#include"testPower/RSMV_option.h"
 #include"testPower/qwt_option.h"
 #include "xl618.h"
 #include <QWidget>
@@ -159,7 +158,6 @@ private:
     QComboBox       *SP_loadType_cbbox;
     QComboBox       *SP_measureType_cbbox;
 
-    ReceiveSMV  RSMV;
     OVERARLL_CONC   overAll_conc;
     QWT_option   qwtOption;
 

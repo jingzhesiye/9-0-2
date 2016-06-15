@@ -56,7 +56,7 @@ void MainWidget::init_timeThreadTimer_connect()
     connect(&timeThreadTimer, SIGNAL(sig_battery_update(QString )),  this, SLOT(slt_battery_update(QString )));
     qRegisterMetaType<QString>("QString");
 
-    timeThreadTimer.slt_battery_timeDone();//开机读取一次
+   // timeThreadTimer.slt_battery_timeDone();//开机读取一次
 }
 
 //fun:用于清除表格

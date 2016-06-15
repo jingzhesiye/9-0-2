@@ -1,6 +1,5 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
-#include "testPower/RSMV_option.h"
 #include <qwt_symbol.h>
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot.h>
@@ -13,9 +12,11 @@
 
  void MainWidget::init_PE_wave(void)
  {
-//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
-//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
-//     ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yRight,-10,10,5);
+
+     ui->ES_TbWidget->setCurrentIndex(0);
+//   ui->error_wave_QwtPlot->setAxisScale(QwtPlot::xBottom, 0.0,10.0);
+//   ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yLeft,-10,10,5);
+//   ui->error_wave_QwtPlot->setAxisScale(QwtPlot::yRight,-10,10,5);
 //   ui->error_wave_QwtPlot->enableAxis(QwtPlot::xBottom,false);  //隐藏x标
 //   ui->error_wave_QwtPlot->enableAxis(QwtPlot::yLeft,false);  //隐藏y标
 
@@ -47,9 +48,10 @@
      QwtSymbol *symbol_2 = new QwtSymbol( QwtSymbol::NoSymbol,QBrush( QColor( 255, 255, 0 ) ), QPen(  QColor( 255, 255, 0 ), 2 ), QSize( 2, 2 ) );
      qwtOption.TE_QPCurve->setSymbol( symbol_2 );
 
-      (void) new QwtPlotMagnifier( ui->error_wave_QwtPlot->canvas() );
-      (void) new QwtPlotPanner(ui->error_wave_QwtPlot->canvas()  );
-  //鼠标放大
+    (void) new QwtPlotMagnifier( ui->error_wave_QwtPlot->canvas() );
+    (void) new QwtPlotPanner(ui->error_wave_QwtPlot->canvas()  );
+
+  //鼠标滚轮放大
   #if 0
       QwtPlotZoomer* zoomer = new QwtPlotZoomer(ui->qwtPlot->canvas());
       zoomer->setRubberBandPen( QColor( Qt::black ) );
@@ -74,9 +76,7 @@
 
      qwtOption.PE_QPCurve->setSamples( qwtOption.PE_polygonF );
      qwtOption.TE_QPCurve->setSamples( qwtOption.TE_polygonF );
-
      ui->error_wave_QwtPlot->replot();
-     qDebug()<<"HELLO"<<QString::number(runTimeCal);
  }
 
  void MainWidget::on_error_wave_zoomOut_PsBtn_clicked()

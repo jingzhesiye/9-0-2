@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     thread/thread_init.cpp \
     sysIni.cpp \
     form/save_doc.cpp \
-    ripple/ripple.cpp \
     sideBar_right.cpp \
     interface_xl618_1.cpp \
     interface_xl618_2.cpp \
@@ -57,7 +56,6 @@ HEADERS  += \
     SerialPort/qextserialbase.h \
     SerialPort/ManageSerialPort.h \
     thread/timeThread.h \
-    testPower/RSMV_option.h \
     testPower/qwt_option.h
 
 FORMS    += \

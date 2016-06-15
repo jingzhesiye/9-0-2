@@ -10,7 +10,6 @@ INPUT(
 ./release\thread_init.o
 ./release\sysIni.o
 ./release\save_doc.o
-./release\ripple.o
 ./release\sideBar_right.o
 ./release\interface_xl618_1.o
 ./release\interface_xl618_2.o

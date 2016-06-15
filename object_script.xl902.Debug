@@ -10,7 +10,6 @@ INPUT(
 ./debug\thread_init.o
 ./debug\sysIni.o
 ./debug\save_doc.o
-./debug\ripple.o
 ./debug\sideBar_right.o
 ./debug\interface_xl618_1.o
 ./debug\interface_xl618_2.o

@@ -41,8 +41,13 @@ public:
     QwtPlotCurve    *PE_QPCurve;
     QwtPlotCurve    *TE_QPCurve;
 
+    QwtPlotGrid     *ripple_QPGrid;
+    QwtPlotCurve    *ripple_Ua_QPCurve;
+    QwtPlotCurve    *ripple_cur_QPCurve;
 
-
+    QwtPlotMarker   *ripple_vmid_marker;
+    QwtPlotMarker   *ripple_vmax_marker;
+    QwtPlotMarker   *ripple_vmin_marker;
 
 };
 #endif // QWT_OPTION_H

@@ -1,7 +1,5 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
-#include "testPower/RSMV_option.h"
-
 //清空数据
 void MainWidget::clean_main_SkWidget_1()
 {

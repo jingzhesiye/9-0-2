@@ -143,7 +143,6 @@ void MainWidget::read_ini()
 
 }
 
-
 void MainWidget::on_serPort_portName_CbBox_activated(int index)
 {
     write_ini("serPort/portName",QString::number(index));

@@ -66,6 +66,13 @@ public:
     QGroupBox *ES_GpBox;
     QGridLayout *gridLayout;
     QTabWidget *ES_TbWidget;
+    QWidget *charging_wave_tab;
+    QGridLayout *gridLayout_20;
+    QwtPlot *charging_wave_QwtPlot;
+    QSpacerItem *charging_wave_VlSpacer_3;
+    QLabel *charging_wave_vol_Label;
+    QSpacerItem *charging_wave_VlSpacer_2;
+    QLabel *charging_wave_cur_Label;
     QWidget *error_wave_tab;
     QGridLayout *gridLayout_18;
     QSpacerItem *error_wave_VlSpacer_2;
@@ -78,13 +85,6 @@ public:
     QPushButton *error_wave_zoomIn_PsBtn;
     QPushButton *error_wave_zoomOut_PsBtn;
     QwtPlot *error_wave_QwtPlot;
-    QWidget *charging_wave_tab;
-    QGridLayout *gridLayout_20;
-    QwtPlot *charging_wave_QwtPlot;
-    QSpacerItem *charging_wave_VlSpacer_3;
-    QLabel *charging_wave_vol_Label;
-    QSpacerItem *charging_wave_VlSpacer_2;
-    QLabel *charging_wave_cur_Label;
     QGroupBox *ES_value_GpBox;
     QGridLayout *gridLayout_23;
     QLabel *ES_PE_Label;
@@ -714,13 +714,70 @@ public:
         ES_TbWidget->setTabPosition(QTabWidget::North);
         ES_TbWidget->setTabShape(QTabWidget::Rounded);
         ES_TbWidget->setIconSize(QSize(16, 16));
-        error_wave_tab = new QWidget();
-        error_wave_tab->setObjectName(QString::fromUtf8("error_wave_tab"));
-        QSizePolicy sizePolicy9(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        charging_wave_tab = new QWidget();
+        charging_wave_tab->setObjectName(QString::fromUtf8("charging_wave_tab"));
+        charging_wave_tab->setStyleSheet(QString::fromUtf8("#charging_wave_tab\n"
+"{\n"
+"	background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"\n"
+""));
+        gridLayout_20 = new QGridLayout(charging_wave_tab);
+        gridLayout_20->setSpacing(0);
+        gridLayout_20->setContentsMargins(0, 0, 0, 0);
+        gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
+        charging_wave_QwtPlot = new QwtPlot(charging_wave_tab);
+        charging_wave_QwtPlot->setObjectName(QString::fromUtf8("charging_wave_QwtPlot"));
+        sizePolicy5.setHeightForWidth(charging_wave_QwtPlot->sizePolicy().hasHeightForWidth());
+        charging_wave_QwtPlot->setSizePolicy(sizePolicy5);
+        charging_wave_QwtPlot->setMinimumSize(QSize(540, 141));
+        charging_wave_QwtPlot->setMaximumSize(QSize(540, 141));
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("Kalinga"));
+        charging_wave_QwtPlot->setFont(font5);
+        charging_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
+"background-color: rgb(0, 0, 0);"));
+
+        gridLayout_20->addWidget(charging_wave_QwtPlot, 0, 3, 1, 1);
+
+        charging_wave_VlSpacer_3 = new QSpacerItem(1, 130, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        gridLayout_20->addItem(charging_wave_VlSpacer_3, 0, 4, 2, 1);
+
+        charging_wave_vol_Label = new QLabel(charging_wave_tab);
+        charging_wave_vol_Label->setObjectName(QString::fromUtf8("charging_wave_vol_Label"));
+        sizePolicy7.setHeightForWidth(charging_wave_vol_Label->sizePolicy().hasHeightForWidth());
+        charging_wave_vol_Label->setSizePolicy(sizePolicy7);
+        charging_wave_vol_Label->setMaximumSize(QSize(30, 21));
+        charging_wave_vol_Label->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);"));
+
+        gridLayout_20->addWidget(charging_wave_vol_Label, 7, 1, 1, 1);
+
+        charging_wave_VlSpacer_2 = new QSpacerItem(1, 130, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        gridLayout_20->addItem(charging_wave_VlSpacer_2, 0, 1, 3, 1);
+
+        charging_wave_cur_Label = new QLabel(charging_wave_tab);
+        charging_wave_cur_Label->setObjectName(QString::fromUtf8("charging_wave_cur_Label"));
+        QSizePolicy sizePolicy9(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy9.setHorizontalStretch(0);
         sizePolicy9.setVerticalStretch(0);
-        sizePolicy9.setHeightForWidth(error_wave_tab->sizePolicy().hasHeightForWidth());
-        error_wave_tab->setSizePolicy(sizePolicy9);
+        sizePolicy9.setHeightForWidth(charging_wave_cur_Label->sizePolicy().hasHeightForWidth());
+        charging_wave_cur_Label->setSizePolicy(sizePolicy9);
+        charging_wave_cur_Label->setMaximumSize(QSize(16777215, 20));
+        charging_wave_cur_Label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 0);"));
+
+        gridLayout_20->addWidget(charging_wave_cur_Label, 7, 4, 1, 1);
+
+        ES_TbWidget->addTab(charging_wave_tab, QString());
+        error_wave_tab = new QWidget();
+        error_wave_tab->setObjectName(QString::fromUtf8("error_wave_tab"));
+        QSizePolicy sizePolicy10(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy10.setHorizontalStretch(0);
+        sizePolicy10.setVerticalStretch(0);
+        sizePolicy10.setHeightForWidth(error_wave_tab->sizePolicy().hasHeightForWidth());
+        error_wave_tab->setSizePolicy(sizePolicy10);
         error_wave_tab->setLayoutDirection(Qt::LeftToRight);
         error_wave_tab->setStyleSheet(QString::fromUtf8("#error_wave_tab\n"
 "{\n"
@@ -765,9 +822,9 @@ public:
         error_wave_Frame->setSizePolicy(sizePolicy3);
         error_wave_Frame->setMinimumSize(QSize(0, 30));
         error_wave_Frame->setMaximumSize(QSize(16777215, 29));
-        QFont font5;
-        font5.setFamily(QString::fromUtf8("Arial Narrow"));
-        error_wave_Frame->setFont(font5);
+        QFont font6;
+        font6.setFamily(QString::fromUtf8("Arial Narrow"));
+        error_wave_Frame->setFont(font6);
         error_wave_Frame->setStyleSheet(QString::fromUtf8("#error_wave_Frame\n"
 "{\n"
 "    border: 1px solid rgb(18, 220, 200);\n"
@@ -793,13 +850,13 @@ public:
 
         error_wave_zoomIn_PsBtn = new QPushButton(error_wave_Frame);
         error_wave_zoomIn_PsBtn->setObjectName(QString::fromUtf8("error_wave_zoomIn_PsBtn"));
-        error_wave_zoomIn_PsBtn->setFont(font5);
+        error_wave_zoomIn_PsBtn->setFont(font6);
 
         gridLayout_3->addWidget(error_wave_zoomIn_PsBtn, 0, 3, 1, 1);
 
         error_wave_zoomOut_PsBtn = new QPushButton(error_wave_Frame);
         error_wave_zoomOut_PsBtn->setObjectName(QString::fromUtf8("error_wave_zoomOut_PsBtn"));
-        error_wave_zoomOut_PsBtn->setFont(font5);
+        error_wave_zoomOut_PsBtn->setFont(font6);
 
         gridLayout_3->addWidget(error_wave_zoomOut_PsBtn, 0, 1, 1, 1);
 
@@ -808,77 +865,20 @@ public:
 
         error_wave_QwtPlot = new QwtPlot(error_wave_tab);
         error_wave_QwtPlot->setObjectName(QString::fromUtf8("error_wave_QwtPlot"));
-        QSizePolicy sizePolicy10(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy10.setHorizontalStretch(0);
-        sizePolicy10.setVerticalStretch(0);
-        sizePolicy10.setHeightForWidth(error_wave_QwtPlot->sizePolicy().hasHeightForWidth());
-        error_wave_QwtPlot->setSizePolicy(sizePolicy10);
+        QSizePolicy sizePolicy11(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy11.setHorizontalStretch(0);
+        sizePolicy11.setVerticalStretch(0);
+        sizePolicy11.setHeightForWidth(error_wave_QwtPlot->sizePolicy().hasHeightForWidth());
+        error_wave_QwtPlot->setSizePolicy(sizePolicy11);
         error_wave_QwtPlot->setMinimumSize(QSize(0, 112));
         error_wave_QwtPlot->setMaximumSize(QSize(565, 112));
-        error_wave_QwtPlot->setFont(font5);
+        error_wave_QwtPlot->setFont(font6);
         error_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
 "background-color: rgb(0, 0, 0);"));
 
         gridLayout_18->addWidget(error_wave_QwtPlot, 1, 3, 1, 1);
 
         ES_TbWidget->addTab(error_wave_tab, QString());
-        charging_wave_tab = new QWidget();
-        charging_wave_tab->setObjectName(QString::fromUtf8("charging_wave_tab"));
-        charging_wave_tab->setStyleSheet(QString::fromUtf8("#charging_wave_tab\n"
-"{\n"
-"	background-color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"\n"
-""));
-        gridLayout_20 = new QGridLayout(charging_wave_tab);
-        gridLayout_20->setSpacing(0);
-        gridLayout_20->setContentsMargins(0, 0, 0, 0);
-        gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
-        charging_wave_QwtPlot = new QwtPlot(charging_wave_tab);
-        charging_wave_QwtPlot->setObjectName(QString::fromUtf8("charging_wave_QwtPlot"));
-        sizePolicy5.setHeightForWidth(charging_wave_QwtPlot->sizePolicy().hasHeightForWidth());
-        charging_wave_QwtPlot->setSizePolicy(sizePolicy5);
-        charging_wave_QwtPlot->setMinimumSize(QSize(540, 141));
-        charging_wave_QwtPlot->setMaximumSize(QSize(540, 141));
-        QFont font6;
-        font6.setFamily(QString::fromUtf8("Kalinga"));
-        charging_wave_QwtPlot->setFont(font6);
-        charging_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
-"background-color: rgb(0, 0, 0);"));
-
-        gridLayout_20->addWidget(charging_wave_QwtPlot, 0, 3, 1, 1);
-
-        charging_wave_VlSpacer_3 = new QSpacerItem(1, 130, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
-        gridLayout_20->addItem(charging_wave_VlSpacer_3, 0, 4, 2, 1);
-
-        charging_wave_vol_Label = new QLabel(charging_wave_tab);
-        charging_wave_vol_Label->setObjectName(QString::fromUtf8("charging_wave_vol_Label"));
-        sizePolicy7.setHeightForWidth(charging_wave_vol_Label->sizePolicy().hasHeightForWidth());
-        charging_wave_vol_Label->setSizePolicy(sizePolicy7);
-        charging_wave_vol_Label->setMaximumSize(QSize(30, 21));
-        charging_wave_vol_Label->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);"));
-
-        gridLayout_20->addWidget(charging_wave_vol_Label, 7, 1, 1, 1);
-
-        charging_wave_VlSpacer_2 = new QSpacerItem(1, 130, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
-        gridLayout_20->addItem(charging_wave_VlSpacer_2, 0, 1, 3, 1);
-
-        charging_wave_cur_Label = new QLabel(charging_wave_tab);
-        charging_wave_cur_Label->setObjectName(QString::fromUtf8("charging_wave_cur_Label"));
-        QSizePolicy sizePolicy11(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy11.setHorizontalStretch(0);
-        sizePolicy11.setVerticalStretch(0);
-        sizePolicy11.setHeightForWidth(charging_wave_cur_Label->sizePolicy().hasHeightForWidth());
-        charging_wave_cur_Label->setSizePolicy(sizePolicy11);
-        charging_wave_cur_Label->setMaximumSize(QSize(16777215, 20));
-        charging_wave_cur_Label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 0);"));
-
-        gridLayout_20->addWidget(charging_wave_cur_Label, 7, 4, 1, 1);
-
-        ES_TbWidget->addTab(charging_wave_tab, QString());
 
         gridLayout->addWidget(ES_TbWidget, 0, 2, 1, 1);
 
@@ -1143,10 +1143,10 @@ public:
         gridLayout_11->setObjectName(QString::fromUtf8("gridLayout_11"));
         ripple_wave_QwtPlot = new QwtPlot(test_ripple_Page);
         ripple_wave_QwtPlot->setObjectName(QString::fromUtf8("ripple_wave_QwtPlot"));
-        sizePolicy10.setHeightForWidth(ripple_wave_QwtPlot->sizePolicy().hasHeightForWidth());
-        ripple_wave_QwtPlot->setSizePolicy(sizePolicy10);
+        sizePolicy11.setHeightForWidth(ripple_wave_QwtPlot->sizePolicy().hasHeightForWidth());
+        ripple_wave_QwtPlot->setSizePolicy(sizePolicy11);
         ripple_wave_QwtPlot->setMinimumSize(QSize(0, 0));
-        ripple_wave_QwtPlot->setFont(font6);
+        ripple_wave_QwtPlot->setFont(font5);
         ripple_wave_QwtPlot->setStyleSheet(QString::fromUtf8("color: rgb(0, 170, 255);\n"
 "background-color: rgb(0, 0, 0);"));
 
@@ -1686,8 +1686,8 @@ public:
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
         serPort_Rec_GbBox = new QGroupBox(serPort_Page);
         serPort_Rec_GbBox->setObjectName(QString::fromUtf8("serPort_Rec_GbBox"));
-        sizePolicy9.setHeightForWidth(serPort_Rec_GbBox->sizePolicy().hasHeightForWidth());
-        serPort_Rec_GbBox->setSizePolicy(sizePolicy9);
+        sizePolicy10.setHeightForWidth(serPort_Rec_GbBox->sizePolicy().hasHeightForWidth());
+        serPort_Rec_GbBox->setSizePolicy(sizePolicy10);
         serPort_Rec_GbBox->setStyleSheet(QString::fromUtf8(" QGroupBox::title {\n"
 "     subcontrol-origin: margin;\n"
 "     subcontrol-position: top center; /* position at the top center */\n"
@@ -1732,8 +1732,8 @@ public:
 
         serPort_send_GpBox = new QGroupBox(serPort_Page);
         serPort_send_GpBox->setObjectName(QString::fromUtf8("serPort_send_GpBox"));
-        sizePolicy9.setHeightForWidth(serPort_send_GpBox->sizePolicy().hasHeightForWidth());
-        serPort_send_GpBox->setSizePolicy(sizePolicy9);
+        sizePolicy10.setHeightForWidth(serPort_send_GpBox->sizePolicy().hasHeightForWidth());
+        serPort_send_GpBox->setSizePolicy(sizePolicy10);
         serPort_send_GpBox->setMinimumSize(QSize(420, 0));
         serPort_send_GpBox->setMaximumSize(QSize(420, 16777215));
         serPort_send_GpBox->setStyleSheet(QString::fromUtf8(" QGroupBox::title {\n"
@@ -1761,8 +1761,8 @@ public:
         gridLayout_8->setContentsMargins(5, 5, 5, 0);
         serPort_SP_GpBox = new QGroupBox(serPort_send_GpBox);
         serPort_SP_GpBox->setObjectName(QString::fromUtf8("serPort_SP_GpBox"));
-        sizePolicy10.setHeightForWidth(serPort_SP_GpBox->sizePolicy().hasHeightForWidth());
-        serPort_SP_GpBox->setSizePolicy(sizePolicy10);
+        sizePolicy11.setHeightForWidth(serPort_SP_GpBox->sizePolicy().hasHeightForWidth());
+        serPort_SP_GpBox->setSizePolicy(sizePolicy11);
         serPort_SP_GpBox->setMinimumSize(QSize(0, 215));
         serPort_SP_GpBox->setMaximumSize(QSize(16777215, 220));
         serPort_SP_GpBox->setStyleSheet(QString::fromUtf8(" QGroupBox::title {\n"
@@ -2317,7 +2317,7 @@ public:
         retranslateUi(MainWidget);
 
         main_SkWidget->setCurrentIndex(0);
-        ES_TbWidget->setCurrentIndex(0);
+        ES_TbWidget->setCurrentIndex(1);
         form_error_TbWidget->setCurrentIndex(2);
 
 
@@ -2373,7 +2373,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem15 = ES_standard_TblWidget->item(1, 1);
         ___qtablewidgetitem15->setText(QApplication::translate("MainWidget", "0", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem16 = ES_standard_TblWidget->item(1, 2);
-        ___qtablewidgetitem16->setText(QApplication::translate("MainWidget", "\347\264\257\350\256\241\346\227\266\351\227\264(m)", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem16->setText(QApplication::translate("MainWidget", "\347\264\257\350\256\241\346\227\266\351\227\264(s)", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem17 = ES_standard_TblWidget->item(1, 3);
         ___qtablewidgetitem17->setText(QApplication::translate("MainWidget", "0", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem18 = ES_standard_TblWidget->item(1, 4);
@@ -2428,14 +2428,14 @@ public:
         RS_charger_TblWidget->setSortingEnabled(__sortingEnabled1);
 
         ES_GpBox->setTitle(QString());
+        charging_wave_vol_Label->setText(QApplication::translate("MainWidget", "\347\224\265\345\216\213", 0, QApplication::UnicodeUTF8));
+        charging_wave_cur_Label->setText(QApplication::translate("MainWidget", "\347\224\265\346\265\201", 0, QApplication::UnicodeUTF8));
+        ES_TbWidget->setTabText(ES_TbWidget->indexOf(charging_wave_tab), QApplication::translate("MainWidget", "\345\205\205\347\224\265\347\212\266\346\200\201", 0, QApplication::UnicodeUTF8));
         error_wave_PE_Label->setText(QApplication::translate("MainWidget", "\347\224\265\350\203\275", 0, QApplication::UnicodeUTF8));
         error_wave_TE_Label->setText(QApplication::translate("MainWidget", "\346\227\266\351\222\237", 0, QApplication::UnicodeUTF8));
         error_wave_zoomIn_PsBtn->setText(QApplication::translate("MainWidget", "\347\274\251\345\260\217", 0, QApplication::UnicodeUTF8));
         error_wave_zoomOut_PsBtn->setText(QApplication::translate("MainWidget", "\346\224\276\345\244\247", 0, QApplication::UnicodeUTF8));
         ES_TbWidget->setTabText(ES_TbWidget->indexOf(error_wave_tab), QApplication::translate("MainWidget", "\350\257\257\345\267\256\347\212\266\346\200\201", 0, QApplication::UnicodeUTF8));
-        charging_wave_vol_Label->setText(QApplication::translate("MainWidget", "\347\224\265\345\216\213", 0, QApplication::UnicodeUTF8));
-        charging_wave_cur_Label->setText(QApplication::translate("MainWidget", "\347\224\265\346\265\201", 0, QApplication::UnicodeUTF8));
-        ES_TbWidget->setTabText(ES_TbWidget->indexOf(charging_wave_tab), QApplication::translate("MainWidget", "\345\205\205\347\224\265\347\212\266\346\200\201", 0, QApplication::UnicodeUTF8));
         ES_value_GpBox->setTitle(QApplication::translate("MainWidget", "\350\257\257\345\267\256\350\256\241\347\256\227(%)", 0, QApplication::UnicodeUTF8));
         ES_PE_Label->setText(QApplication::translate("MainWidget", "\347\224\265\350\203\275\350\257\257\345\267\256: ", 0, QApplication::UnicodeUTF8));
         ES_TE_Label->setText(QApplication::translate("MainWidget", "\346\227\266\351\222\237\350\257\257\345\267\256: ", 0, QApplication::UnicodeUTF8));

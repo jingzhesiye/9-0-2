@@ -38,13 +38,16 @@ void MainWidget::on_from_buildForm_PsBtn_clicked()
         show_MsBox(QString::fromUtf8("找不到报表模板路径"),3000);
     }
 
-#if 1
-    QAxWidget* temp_AxWidget = new QAxWidget("Word.Application");
+
+    QAxWidget* temp_AxWidget = new QAxWidget("Word.Application",this, Qt::MSWindowsOwnDC);
     temp_AxWidget->setProperty("Visible", true);                       //新建一个word应用程序,并设置为可见
 
     QAxObject* documents = temp_AxWidget->querySubObject("Documents");  //获取所有的工作文档
     documents->dynamicCall("Open(QVariant)",strPath );                  //路径不对打开奔溃
-
+    //documents->dynamicCall("add(QVariant&)","E:\\DC_template_verifiedRecord.dot" );                  //路径不对打开奔溃
+    // documents->dynamicCall("Add(QString)", QString::fromLocal8Bit("E:/DC_template_verifiedRecord.dot"));
+    //QAxObject *document = word->querySubObject("ActiveDocument");
+#if 1
     QAxObject *selection = temp_AxWidget->querySubObject("Selection");
     QAxObject *find = selection->querySubObject("Find");
 
@@ -88,7 +91,7 @@ void MainWidget::on_from_buildForm_PsBtn_clicked()
 //  temp_AxWidget->dynamicCall("Quit(void)");//退出word
 
 
-//    //设置保存
+    //设置保存
 //    QVariant newFileName("./jingTest.doc"); //存放位置和名称
 //    QVariant fileFormat(1); //文件格式
 //    QVariant LockComments(false);
@@ -101,9 +104,11 @@ void MainWidget::on_from_buildForm_PsBtn_clicked()
 //    documents->dynamicCall("Close (boolean)", true);   //关闭文档
 //    temp_AxWidget->dynamicCall("Quit (void)");//退出
 
-    documents->dynamicCall("SaveAs (const QString&)", QString("D:/doc/docbyqt.doc"));
-    documents->dynamicCall("Close (boolean)", false);
-    temp_AxWidget->dynamicCall("Quit()");
+//     documents->dynamicCall("SaveAs (QVariant)",newFileName);
+//     documents->dynamicCall("SaveAs (const QString&)",QDir::toNativeSeparators( QString("/templet/11111111111111111111111.doc")));
+//        documents->dynamicCall("SaveAs(const QString&)",QDir::toNativeSeparators(QString("E:\\11111111111111111111111.doc"))) ;
+//        documents->dynamicCall("Close (boolean)", false);
+//        temp_AxWidget->dynamicCall("Quit()");
 }
 
 
